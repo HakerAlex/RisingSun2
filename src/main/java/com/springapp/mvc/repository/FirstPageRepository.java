@@ -49,4 +49,8 @@ public class FirstPageRepository {
         return this.sessionFactory.getCurrentSession().createSQLQuery("Select tags.* from tags left join tagsarcticle on tags.ID=tagsarcticle.ID_Teg left join articles on tagsarcticle.ID_Arcticle=articles.ID where articles.NamePage=:name").addEntity(TagsEntity.class).setString("name", name).list();
     }
 
+
+    public UsersEntity usersByName(String name){
+        return (UsersEntity) this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * from users WHERE login=:login").setString("login", name).uniqueResult();
+    }
 }

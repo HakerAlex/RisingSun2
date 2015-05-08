@@ -1,18 +1,20 @@
 package com.springapp.mvc.controller;
 
-import com.springapp.mvc.domain.ArticlesEntity;
-import com.springapp.mvc.domain.FirstpageEntity;
-import com.springapp.mvc.domain.Search;
-import com.springapp.mvc.domain.TagsEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springapp.mvc.domain.*;
 import com.springapp.mvc.repository.ArticlesRepository;
 import com.springapp.mvc.repository.FirstPageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.sql.Date;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -65,4 +67,33 @@ public class FirstpageController {
     }
 
 
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String admin(Model model) {
+        return "admin";
+    }
+
+
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    @ResponseBody
+    public String ajaxAuth(@RequestParam("username") String username,@RequestParam("password") String password) {
+
+        UsersEntity users=this.firstPageRepository.usersByName(username);
+        if (users!=null) {
+            String userpass = users.getPassword();
+
+            boolean enabled = users.getStatus().equals(Status.ACTIVE);
+            boolean accountNotExpired = users.getStatus().equals(Status.ACTIVE);
+            boolean credentialsNotExpired = users.getStatus().equals(Status.ACTIVE);
+            boolean accountNonLocked = users.getStatus().equals(Status.ACTIVE);
+
+            Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+
+            for (UsersrulesEntity role : users.getUsersrulesById()) {
+                authorities.add(new SimpleGrantedAuthority(role.getRulesByIdRules().getNameRule()));
+            }
+
+            org.springframework.security.core.userdetails.User securityUser = new User(username, userpass, enabled, accountNotExpired, credentialsNotExpired, accountNonLocked, authorities);
+        }
+        return "{\"status\": 1}";
+    }
 }

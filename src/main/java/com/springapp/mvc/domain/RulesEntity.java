@@ -11,7 +11,6 @@ import java.util.Collection;
 public class RulesEntity {
     private int id;
     private String nameRule;
-    private Collection<AccesstableEntity> accesstablesById;
     private Collection<UsersrulesEntity> usersrulesById;
 
     @Id
@@ -55,14 +54,6 @@ public class RulesEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "rulesByIdRules")
-    public Collection<AccesstableEntity> getAccesstablesById() {
-        return accesstablesById;
-    }
-
-    public void setAccesstablesById(Collection<AccesstableEntity> accesstablesById) {
-        this.accesstablesById = accesstablesById;
-    }
 
     @OneToMany(mappedBy = "rulesByIdRules")
     public Collection<UsersrulesEntity> getUsersrulesById() {
