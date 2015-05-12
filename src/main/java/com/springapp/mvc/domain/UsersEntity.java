@@ -11,7 +11,7 @@ import java.util.Collection;
 public class UsersEntity {
     private int id;
     private String name;
-    private String login;
+    private String username;
     private String password;
     private String status;
     private Collection<ArticlesEntity> articlesById;
@@ -39,13 +39,13 @@ public class UsersEntity {
     }
 
     @Basic
-    @Column(name = "Login", nullable = false, insertable = true, updatable = true, length = 50)
-    public String getLogin() {
-        return login;
+    @Column(name = "username", nullable = false, insertable = true, updatable = true, length = 50)
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 
@@ -80,7 +80,7 @@ public class UsersEntity {
 
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (login != null ? !login.equals(that.login) : that.login != null) return false;
+        if (username != null ? !username.equals(that.username) : that.username != null) return false;
 
         return true;
     }
@@ -89,7 +89,7 @@ public class UsersEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
         return result;
     }
 

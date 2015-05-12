@@ -34,17 +34,17 @@
 										<!-- <div class="site-logo"></div> -->
 										<h1 class="login-title"><span>wel</span>come <small> Rising Sun Admin</small></h1>
 										</section>
-										<form id="form-signin" class="form-signin">
+										<form id="form-signin" class="form-signin" action="/j_spring_security_check" method="post">
 												<section>
 														<div class="input-group">
 																<div class="input-group-addon"><i class="fa fa-user"></i></div>
-																<input  type="text" class="form-control" name="username" placeholder="Username">
+																<input  type="text" class="form-control" value="${username}" name="j_username" placeholder="Username">
 														</div>
 														<div class="input-group">
 																<div class="input-group-addon"><i class="fa fa-key"></i></div>
-																<input type="password" class="form-control"  name="password" placeholder="Password">
+																<input type="password" class="form-control"  name="j_password" placeholder="Password">
 														</div>
-														<button class="btn btn-lg btn-theme-inverse btn-block" type="submit" id="sign-in">Sign in</button>
+														<button class="btn btn-lg btn-theme-inverse btn-block" type="submit"  id="sign-in">Sign in</button>
 												</section>
 										</form>
 								</div>	
@@ -117,31 +117,31 @@ $(function() {
 			  throbber.start();
 			  
 			
-			$("#form-signin").submit(function(event){
-					event.preventDefault();
-					var main=$("#main");
-					//scroll to top
-					main.animate({
-						scrollTop: 0
-					}, 500);
-					main.addClass("slideDown");		
-					
-					$.ajax({
-						url: "/auth", data: $(this).serialize(), type: "POST", dataType: 'json',
-						success: function (e) {
-								debugger;
-								setTimeout(function () { main.removeClass("slideDown") }, !e.status ? 500:3000);
-								 if (!e.status) { 
-									 $.notific8('Check Username or Password again !! ',{ life:5000,horizontalEdge:"bottom", theme:"danger" ,heading:" ERROR :); "});
-									return false;
-								 }
-								 setTimeout(function () { $("#loading-top span").text("Yes, account is access...") }, 500);
-								 setTimeout(function () { $("#loading-top span").text("Redirect to account page...")  }, 1500);
-								 setTimeout( "window.location.href='/dashboard'", 3100 );
-						}
-					});	
-			
-			});
+//			$("#form-signin").submit(function(event){
+//					event.preventDefault();
+//					var main=$("#main");
+//					//scroll to top
+//					main.animate({
+//						scrollTop: 0
+//					}, 500);
+//					main.addClass("slideDown");
+//
+//					$.ajax({
+//						url: "/j_spring_security_check", data: $(this).serialize(), type: "POST", dataType: 'json',
+//						success: function (e) {
+//								debugger;
+//								setTimeout(function () { main.removeClass("slideDown") }, !e.status ? 500:3000);
+//								 if (!e.status) {
+//									 $.notific8('Check Username or Password again !! ',{ life:5000,horizontalEdge:"bottom", theme:"danger" ,heading:" ERROR :); "});
+//									return false;
+//								 }
+//								 setTimeout(function () { $("#loading-top span").text("Yes, account is access...") }, 500);
+//								 setTimeout(function () { $("#loading-top span").text("Redirect to account page...")  }, 1500);
+//								 setTimeout( "window.location.href='/dashboard'", 3100 );
+//						}
+//					});
+//
+//			});
 	});
 </script>
 </body>
