@@ -66,9 +66,19 @@ public class FirstpageController {
         return new Search();
     }
 
-
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
+
+        return "admin";
+    }
+
+    @RequestMapping(value = "/admin/{error}", method = RequestMethod.GET)
+    public String admin(@PathVariable String error , Model model) {
+
+        if (error.equals("error")) {
+            model.addAttribute("error", 1);
+        }
+
         return "admin";
     }
 

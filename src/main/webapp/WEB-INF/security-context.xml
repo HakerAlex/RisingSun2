@@ -13,9 +13,9 @@
     <security:http use-expressions="true">
         <security:intercept-url pattern="/**" access="permitAll"/>
         <security:form-login login-page='/admin'
-                             default-target-url="/dashboard" authentication-failure-url="/admin"
+                             default-target-url="/dashboard" authentication-failure-url="/admin/error"
                              always-use-default-target="true"/>
-        <security:logout logout-success-url="/" delete-cookies = "JSESSIONID"/>
+        <security:logout logout-success-url="/admin" delete-cookies = "JSESSIONID"/>
         <security:session-management invalid-session-url="/">
             <security:concurrency-control error-if-maximum-exceeded="true"/>
         </security:session-management>

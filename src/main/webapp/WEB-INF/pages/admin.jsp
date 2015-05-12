@@ -2,6 +2,29 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
+
+
+<!-- Jquery Library -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery.ui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- Modernizr Library For HTML5 And CSS3 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/modernizr/modernizr.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/mmenu/jquery.mmenu.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/styleswitch.js"></script>
+<!-- Library 10+ Form plugins-->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/form/form.js"></script>
+<!-- Datetime plugins -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datetime/datetime.js"></script>
+<!-- Library Chart-->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/chart/chart.js"></script>
+<!-- Library  5+ plugins for bootstrap -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/pluginsForBS/pluginsForBS.js"></script>
+<!-- Library 10+ miscellaneous plugins -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/miscellaneous/miscellaneous.js"></script>
+<!-- Library Themes Customize-->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/caplet.custom.js"></script>
+
 <head>
 <!-- Meta information -->
 <meta charset="utf-8">
@@ -34,11 +57,23 @@
 										<!-- <div class="site-logo"></div> -->
 										<h1 class="login-title"><span>wel</span>come <small> Rising Sun Admin</small></h1>
 										</section>
+										<c:if test="${!empty error}" >
+											<script type="text/javascript">
+												$(function() {
+													$.notific8('Check Username or Password again !! ', {
+														life: 5000,
+														horizontalEdge: "bottom",
+														theme: "danger",
+														heading: " ERROR :); "
+													});
+												});
+											</script>
+										</c:if>
 										<form id="form-signin" class="form-signin" action="/j_spring_security_check" method="post">
 												<section>
 														<div class="input-group">
 																<div class="input-group-addon"><i class="fa fa-user"></i></div>
-																<input  type="text" class="form-control" value="${username}" name="j_username" placeholder="Username">
+																<input  type="text" class="form-control" name="j_username" placeholder="Username">
 														</div>
 														<div class="input-group">
 																<div class="input-group-addon"><i class="fa fa-key"></i></div>
@@ -71,26 +106,7 @@
 /////////////////////////////////////////////////////////////////////
 -->
 		
-<!-- Jquery Library -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery.ui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/bootstrap.min.js"></script>
-<!-- Modernizr Library For HTML5 And CSS3 -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/modernizr/modernizr.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/mmenu/jquery.mmenu.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/styleswitch.js"></script>
-<!-- Library 10+ Form plugins-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/form/form.js"></script>
-<!-- Datetime plugins -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datetime/datetime.js"></script>
-<!-- Library Chart-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/chart/chart.js"></script>
-<!-- Library  5+ plugins for bootstrap -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/pluginsForBS/pluginsForBS.js"></script>
-<!-- Library 10+ miscellaneous plugins -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/miscellaneous/miscellaneous.js"></script>
-<!-- Library Themes Customize-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/caplet.custom.js"></script>
+
 <script type="text/javascript">
 $(function() {
 		   //Login animation to center 
@@ -116,7 +132,8 @@ $(function() {
 			  throbber.appendTo(document.getElementById('canvas_loading'));
 			  throbber.start();
 			  
-			
+
+
 //			$("#form-signin").submit(function(event){
 //					event.preventDefault();
 //					var main=$("#main");
