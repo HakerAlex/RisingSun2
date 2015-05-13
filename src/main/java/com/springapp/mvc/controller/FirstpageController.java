@@ -1,17 +1,11 @@
 package com.springapp.mvc.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springapp.mvc.domain.*;
-import com.springapp.mvc.repository.ArticlesRepository;
 import com.springapp.mvc.repository.FirstPageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 
 import java.sql.Date;
 import java.util.*;
@@ -81,17 +75,6 @@ public class FirstpageController {
 
         return "admin";
     }
-
-
-    @RequestMapping(value = "/j_spring_security_check", method = RequestMethod.POST)
-    @ResponseBody
-    public String ajaxAuth(@RequestParam("j_username") String username,@RequestParam("j_password") String password) {
-
-
-        return "{\"status\": 1}";
-    }
-
-
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String dashboard(Model model) {
