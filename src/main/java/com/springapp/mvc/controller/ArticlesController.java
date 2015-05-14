@@ -1,18 +1,15 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.domain.ArticlesEntity;
-import com.springapp.mvc.domain.Search;
 import com.springapp.mvc.domain.TagsEntity;
 import com.springapp.mvc.repository.ArticlesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.sql.Date;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -46,22 +43,17 @@ public class ArticlesController {
     }
 
     @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String search(@ModelAttribute("search") Search search, BindingResult bindingResult, Model model) {
-        List<ArticlesEntity> news = this.articlesRepository.newsSearch("%" + search.getSearch() + "%");
+    public String search(@RequestParam("value") String search1, Model model) {
+        List<ArticlesEntity> news = this.articlesRepository.newsSearch("%" + search1 + "%");
         List<Date> list=this.articlesRepository.newsArchive();
         model.addAttribute("allnews", clearSymbols(news));
         model.addAttribute("archive", list);
-        model.addAttribute("searchr", " Search by value:"+search.getSearch());
+        model.addAttribute("searchr", " Search by value:"+search1);
         return "search";
     }
 
-    @ModelAttribute("search")
-    public Search search() {
-        return new Search();
-    }
-
     @RequestMapping(value = "archive/{date}", method = RequestMethod.GET)
-    public String search(@PathVariable Date date, Model model) {
+    public String searchByDate(@PathVariable Date date, Model model) {
         List<ArticlesEntity> news = this.articlesRepository.newsArchive(date);
         List<Date> list=this.articlesRepository.newsArchive();
         model.addAttribute("allnews", clearSymbols(news));
@@ -72,7 +64,7 @@ public class ArticlesController {
     }
 
     @RequestMapping(value = "tags/{tag}", method = RequestMethod.GET)
-    public String search(@PathVariable String tag,  Model model) {
+    public String searchByTag(@PathVariable String tag,  Model model) {
         List<ArticlesEntity> news = this.articlesRepository.newsSearchByTag(tag);
         List<Date> list=this.articlesRepository.newsArchive();
         TagsEntity tagE=this.articlesRepository.maxCountByTag(tag);

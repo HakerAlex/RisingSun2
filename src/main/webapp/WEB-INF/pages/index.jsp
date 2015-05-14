@@ -65,13 +65,20 @@
 
 
             </ul>
-			   <script type="text/javascript">
+
+
+
+               <script type="text/javascript">
            //<![CDATA[
            $('ul#menu-header').nav-bar();
             //]]>
             </script>
 		   </div>
-
+            <div class="two columns" style="padding-top:8px">
+               <form class="searching" method="post" action="${pageContext.request.contextPath}/search" commandName="search">
+                    <input tabindex="1" id="autocomplete" name="value" type="search" placeholder="Type and hit Enter">
+               </form>
+            </div>
 
          </div>
 

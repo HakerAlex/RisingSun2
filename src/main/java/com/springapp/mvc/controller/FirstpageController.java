@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
 import java.util.*;
 
-
-/**
- * Created by Alex on 01.05.2015.
- */
 @Controller
 public class FirstpageController {
 
@@ -58,11 +54,6 @@ public class FirstpageController {
         model.addAttribute("archive", list);
         model.addAttribute("tags", tags);
         return "news";
-    }
-
-    @ModelAttribute("search")
-    public Search search() {
-        return new Search();
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
