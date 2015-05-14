@@ -1,108 +1,156 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page language="java" import="javax.servlet.jsp.PageContext" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
-<head>
-	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
-<%@ include file="../pages/jspf/meta.jsp"%>
-<title>Rising sun news</title>
+<head>
+
+  <meta charset="utf-8" />
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Rising sun news</title>
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/foundation.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
+
+  <script src="${pageContext.request.contextPath}/resources/js/modernizr.foundation.js"></script>
+  
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/ligature.css">
+  
+  <!-- Google fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic' rel='stylesheet' type='text/css' />
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
 </head>
 
 <body>
-	<div id="wrapper">
 
-		<!-- Header -->
-		<div id="header">
-			<%@ include file="../pages/jspf/header.jsp"%>
-		</div>
+<!-- ######################## Main Menu ######################## -->
 
-		<!-- menu bar -->
-		<div id="menu_pane">
-			<%@ include file="../pages/jspf/menubar.jsp"%>
-		</div>
+<nav>
 
-		<!-- Content  -->
-		<div id="content">
+    <div class="twelve columns header_nav">
+        <div class="row">
 
-			<!-- Content box -->
-			<div id="content-box">
+            <ul id="menu-header" class="nav-bar horizontal">
 
-				<!-- Content box left -->
-				<div id="content-box-left">
+                <li><a href="/">Home</a></li>
 
-					<div id="content-box-left-in">
-						<div class="box">
-							<div class="box-top">
-								<div class="box-bottom">
-									<div class="info-in">
+                <li class="has-flyout">
+                    <a href="#">Archive</a><a href="#" class="flyout-toggle"></a>
 
-									</div>
-							<c:if test = "${!empty searchr}">
-								<p>
-									<span style="color: #003B69; font-size: medium; font-weight: bold;"> ${searchr}</span>
-								</p>
-							</c:if>
-								</div>
-							</div>
-						</div>
-						<!-- Content box with light blue background -->
-						<div class="box">
-							<div class="box-top">
-								<div class="box-bottom">
-									<div id="box-in">
-										<div class="info-in">
+                    <ul class="flyout">
 
-										</div>
-                                      <c:if test = "${!empty allnews}">
-                                        <c:forEach items = "${allnews}" var = "news">
-										<div class="article">
-											<div class="date">
-												<p class="day">
-													<span><f:formatDate type="date" value="${news.dateCreate}" pattern="dd" />th</span>
-												</p>
-												<p><f:formatDate type="date" value="${news.dateCreate}" pattern="MM/yyyy" /></p>
-											</div>
-											<h3>
-												<a href="/news/${news.namePage}"> ${news.title}&hellip;</a>
-											</h3>
+                        <c:if test="${!empty archive}">
+                            <c:forEach items="${archive}" var="arch">
+                                <li class="has-flyout"><a href="/archive/${arch}"><f:formatDate type="date"
+                                                                                                value="${arch}"
+                                                                                                pattern="MM-yyyy"/></a>
+                                </li>
+                            </c:forEach>
+                        </c:if>
 
-										</div>
-                                        </c:forEach>
-                                      </c:if>
-                                    </div>
-								</div>
-							</div>
-						</div>
-						<!-- Content box with light blue background end -->
+                    </ul>
 
-						<div class="paging" title=""></div>
+                </li>
 
-					</div>
-				</div>
-				<!-- Content box left end -->
+                <li class="active"><a href="#">Search</a></li>
 
-				<!-- Content box right -->
-				<div id="content-box-right">
-					<%@ include file="../pages/jspf/content-box-right.jsp"%>
-				</div>
-				<!-- Content box right end -->
-				<div class="cleaner">&nbsp;</div>
+            </ul>
 
-			</div>
-			<!-- Content box end -->
 
-		</div>
-		<!-- Content end -->
 
-		<hr class="noscreen" />
+            <script type="text/javascript">
+                //<![CDATA[
+                $('ul#menu-header').nav - bar();
+                //]]>
+            </script>
 
-		<!-- Footer -->
-		<%@ include file="../pages/jspf/footer.jsp"%>
-		<!-- Footer end -->
+        </div>
+    </div>
 
-	</div>
+</nav>
+        
+<!-- ######################## Header (featured posts) ######################## -->
+     
+      
+<!-- ######################## Section ######################## -->
+
+<section>
+
+    <div class="section_main">
+
+        <div class="row">
+
+            <section class="eight columns">
+
+                <c:if test = "${!empty searchr}">
+                    <h2>${searchr}</h2>
+                </c:if>
+                <c:if test="${!empty allnews}">
+                    <c:forEach items="${allnews}" var="news">
+                        <article class="blog_post">
+
+                            <div class="three columns">
+
+                                <c:if test="${empty news.image}">
+                                    <a href="/news/${news.namePage}" class="th"><img src="${pageContext.request.contextPath}/resources/img/sunr.jpg" alt="desc"/>
+                                    </a>
+                                </c:if>
+
+                                <c:if test="${!empty news.image}">
+                                    <a href="/news/${news.namePage}" class="th"><img src="${news.image}" alt="desc">
+                                    </a>
+                                </c:if>
+
+                            </div>
+
+                            <div class="nine columns">
+                                <a href="/news/${news.namePage}"><h3>${news.title}</h3></a>
+                                <p> ${news.article}...</p>
+                                <span class="lsf-icon" title="calender"><f:formatDate type="date" value="${news.dateCreate}"
+                                                                                                                   pattern="dd/MM/yyyy"/></span>
+								<span class="lsf-icon" title="user"><a
+                                        href="/author/${news.usersByAuthor.name}"> ${news.usersByAuthor.name}</a></span>
+                            </div>
+
+
+
+                        </article>
+                    </c:forEach>
+                </c:if>
+            </section>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ######################## Section ######################## -->
+
+
+      
+ 
+
+<!-- ######################## Scripts ######################## --> 
+
+    <!-- Included JS Files (Compressed) -->
+    <script src="${pageContext.request.contextPath}/resources/js/foundation.min.js" type="text/javascript"></script>
+    <!-- Initialize JS Plugins -->
+     <script src="${pageContext.request.contextPath}/resources/js/app.js" type="text/javascript"></script>
 </body>
 </html>

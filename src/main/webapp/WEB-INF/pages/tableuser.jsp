@@ -104,6 +104,7 @@
                                                     <span class="label bg-danger">INACTIVE</span>
                                                 </c:if>
                                             </td>
+
                                             <td>
                                         <span class="tooltip-area">
                                             <a href="/edituser/${user.id}" class="btn btn-default btn-sm" title="Edit"><i

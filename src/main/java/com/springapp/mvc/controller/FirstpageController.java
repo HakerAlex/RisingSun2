@@ -33,8 +33,13 @@ public class FirstpageController {
             Object[] objectory=(Object[]) list;
             ArticlesEntity article=(ArticlesEntity) objectory[1];
             String ourText=org.apache.taglibs.string.util.XmlW.removeXml(article.getArticle());
-            int len=Math.min(3000, ourText.length() - 1);
-            article.setArticle(ourText.substring(0, len) + "...");
+            int len=Math.min(200, ourText.length() - 1);
+            article.setArticle(ourText.substring(0, len));
+            ourText= ourText.substring(0, len);
+            len=ourText.lastIndexOf(" ");
+            ourText=ourText.substring(0, len);
+            article.setArticle(ourText + "...");
+
         }
 
         List<Date> list=this.firstPageRepository.newsArchive();

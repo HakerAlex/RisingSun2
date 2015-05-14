@@ -42,6 +42,10 @@ public class ArticlesRepository {
         return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT articles.* from articles LEFT JOIN tagsarcticle on articles.ID = tagsarcticle.ID_Arcticle LEFT JOIN tags on tags.ID = tagsarcticle.ID_Teg where tags.Name=:name order by DateCreate").addEntity(ArticlesEntity.class).setString("name", name).list();
     }
 
+    public List<ArticlesEntity> newsSearchByAuthor(String name){
+        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT articles.* FROM articles   LEFT JOIN users on users.ID = articles.Author WHERE users.Name = :name ORDER BY DateCreate").addEntity(ArticlesEntity.class).setString("name", name).list();
+    }
+
     public TagsEntity maxCountByTag(String name){
         return (TagsEntity) this.sessionFactory.getCurrentSession().createSQLQuery("Select ID,Name from (Select ID_Teg, max(countTeg) as often from (Select ID_Teg, count(countTeg) as countTeg from (SELECT\n" +
                 "ID_Teg,\n" +
