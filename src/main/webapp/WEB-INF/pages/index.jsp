@@ -99,6 +99,7 @@
 
 			<div class='box photo col2'>
 
+
                 <c:if test="${empty news[1].image}">
                     <a href="news/${news[1].namePage}"><img src="${pageContext.request.contextPath}/resources/img/sunr.jpg" alt="desc"/>
                     </a>
@@ -107,6 +108,15 @@
                 <c:if test="${!empty news[1].image}">
                     <a href="news/${news[1].namePage}"><img src="${news[1].image}" alt="desc">
                     </a>
+                </c:if>
+
+                <c:if test="${news[0].feature==true}">
+                <marquee onmouseout="javascript:this.scrollAmount=4" onmouseover="javascript:this.scrollAmount=0"
+                         style="background-color: transparent;" direction="left" scrollamount="2">
+
+                    <a href="news/${news[1].namePage}"><img src="${pageContext.request.contextPath}/resources/img/top.jpg" alt="desc"/>
+                    </a>
+                </marquee>
                 </c:if>
 
 
