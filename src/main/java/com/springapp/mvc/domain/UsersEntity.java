@@ -110,4 +110,5 @@ public class UsersEntity {
     public void setUsersrulesById(Collection<UsersrulesEntity> usersrulesById) {
         this.usersrulesById = usersrulesById;
     }
+
 }

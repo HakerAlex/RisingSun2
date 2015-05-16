@@ -83,33 +83,38 @@
                                     <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Name</th>
+                                        <th>Full name</th>
                                         <th>Username</th>
                                         <th>Status</th>
+                                        <th>Rules</th>
                                         <th width="30%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody align="center">
                                     <c:forEach items="${users}" var="user">
                                         <tr>
-                                            <td>${user.id}</td>
-                                            <td valign="middle">${user.name}</td>
-                                            <td valign="middle">${user.username}</td>
+                                            <td>${user[0].id}</td>
+                                            <td valign="middle">${user[0].name}</td>
+                                            <td valign="middle">${user[0].username}</td>
 
                                             <td valign="middle">
-                                                <c:if test="${user.status=='ACTIVE'}">
+                                                <c:if test="${user[0].status=='ACTIVE'}">
                                                     <span class="label bg-success">ACTIVE</span>
                                                 </c:if>
-                                                <c:if test="${user.status=='INACTIVE'}">
+                                                <c:if test="${user[0].status=='INACTIVE'}">
                                                     <span class="label bg-danger">INACTIVE</span>
                                                 </c:if>
                                             </td>
 
+                                            <td valign="middle">${user[1].nameRule}</td>
+
                                             <td>
                                         <span class="tooltip-area">
-                                            <a href="/edituser/${user.id}" class="btn btn-default btn-sm" title="Edit"><i
+                                            <a href="/edituser/${user[0].id}" class="btn btn-default btn-sm" title="Edit"><i
                                                     class="fa fa-pencil"></i></a></span>
                                             </td>
+
+
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -165,6 +170,7 @@
 <!-- Library Themes Customize-->
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/caplet.custom.js"></script>
+
 
 </body>
 </html>
