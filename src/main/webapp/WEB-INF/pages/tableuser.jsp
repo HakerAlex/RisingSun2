@@ -66,20 +66,9 @@
                             <h2><strong>Table</strong> USERS </h2>
                         </header>
 
-                        <div class="panel-tools fully color" align="right" data-toolscolor="#6CC3A0">
-                            <ul class="tooltip-area">
-                                <li><a href="javascript:void(0)" class="btn btn-collapse" title="Collapse"><i
-                                        class="fa fa-sort-amount-asc"></i></a></li>
-                                <li><a href="javascript:void(0)" class="btn btn-reload" title="Reload"><i
-                                        class="fa fa-retweet"></i></a></li>
-                                <li><a href="javascript:void(0)" class="btn btn-close" title="Close"><i
-                                        class="fa fa-times"></i></a></li>
-                            </ul>
-                        </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table cellpadding="0" cellspacing="0" border="0"
-                                       class="table table-bordered table-striped">
+                                <table class="table table-striped table-hover" data-provide="data-table">
                                     <thead>
                                     <tr>
                                         <th>No.</th>
@@ -171,6 +160,15 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/caplet.custom.js"></script>
 
-
+<!-- Library datable -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/dataTables.bootstrap.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        $('table[data-provide="data-table"]').dataTable({
+            "iDisplayLength": 5
+        });
+    });
+</script>
 </body>
 </html>

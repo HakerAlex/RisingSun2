@@ -62,7 +62,7 @@
 
                 <section class="panel">
                     <header class="panel-heading">
-                        <h2><strong>EDIT</strong>USER</h2>
+                        <h2><strong>EDIT</strong> USER</h2>
                     </header>
                     <div class="panel-body">
                         <form id="formID" class="form-horizontal" method="post" action="${pageContext.request.contextPath}/updateuser" commandName="updateuser" data-collabel="3" data-alignlabel="right"  data-parsley-validate>
@@ -76,20 +76,20 @@
                             <div class="form-group">
                                 <label class="control-label">Full name</label>
                                 <div class="input-icon"> <i class="fa fa-user ico"></i>
-                                    <input class="form-control rounded" name="name" parsley-minlength="4"  parsley-validation-minlength="3" type="text" placeholder="Full name" value="${user.name}">
+                                    <input class="form-control rounded" name="name" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Full name" value="${user.name}">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label">Login</label>
                                 <div class="input-icon"> <i class="fa fa-user ico"></i>
-                                    <input class="form-control rounded" name="username" parsley-minlength="4"  parsley-validation-minlength="3" type="text" placeholder="Login" value="${user.username}">
+                                    <input class="form-control rounded" name="username" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3" parsley-trigger="change" type="text" placeholder="Login" value="${user.username}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Password</label>
                                 <div class="input-icon"> <i class="fa fa-key ico"></i>
-                                    <input class="form-control rounded" name="password" parsley-minlength="6" parsley-validation-minlength="3" type="password" placeholder="Password" value="${user.password}">
+                                    <input class="form-control rounded" name="password" parsley-required="true" parsley-minlength="6" parsley-validation-minlength="3" parsley-trigger="change" type="password" placeholder="Password" value="${user.password}">
                                 </div>
                             </div>
 
@@ -103,7 +103,7 @@
                                         <label class="control-label">Status <span>ON</span></label>
                                         </c:if>
 
-                                        <c:if test="${user.status=='INACTIVE'}">
+                                        <c:if test="${user.status!='ACTIVE'}">
                                             <div class="ios-switch theme-inverse pull-right">
                                                 <div class="switch"><input type="checkbox" name="status" ></div>
                                             </div>
