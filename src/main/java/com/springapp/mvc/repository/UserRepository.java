@@ -5,6 +5,7 @@ import com.springapp.mvc.domain.UsersEntity;
 import com.springapp.mvc.domain.UsersrulesEntity;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,10 +28,6 @@ public class UserRepository {
         session.getCurrentSession().update(user);
     }
 
-    public void deleteUser(int userId) {
-        session.getCurrentSession().delete(findUser(userId));
-    }
-
     public UsersEntity findUser(int userId) {
         return (UsersEntity) session.getCurrentSession().get(UsersEntity.class, userId);
     }
@@ -45,6 +42,10 @@ public class UserRepository {
         return session.getCurrentSession().createSQLQuery("Select * from rules WHERE not rules.ID in (Select rules.ID from users LEFT JOIN usersrules on users.ID = usersrules.ID_Users LEFT JOIN rules ON rules.ID = usersrules.ID_Rules WHERE ID_Users=:ID)").addEntity(RulesEntity.class).setInteger("ID",userId).list();
     }
 
+    public List<RulesEntity> allRules() {
+
+        return session.getCurrentSession().createSQLQuery("Select * from rules").addEntity(RulesEntity.class).list();
+    }
 
 
     public UsersEntity findUserByName(String username) {
@@ -56,4 +57,14 @@ public class UserRepository {
     public List<UsersEntity> getAllUsers() {
         return session.getCurrentSession().createSQLQuery("Select Users.ID as ID, Name,password, username,Status,GROUP_CONCAT(DISTINCT NameRule ORDER BY NameRule ASC SEPARATOR ', ') AS NameRule  from Users LEFT JOIN usersrules ON users.ID = usersrules.ID_Users LEFT JOIN rules ON rules.ID = usersrules.ID_Rules group by Name, username,Status, users.ID").addEntity(UsersEntity.class).addEntity(RulesEntity.class).list();
     }
+
+    public void updateRules(int id,String[] rules)
+    {
+            session.getCurrentSession().createSQLQuery("Delete from usersrules where ID_Users=:id").setInteger("id", id).executeUpdate();
+            for (String rule : rules) {
+                session.getCurrentSession().createSQLQuery("Insert into usersrules (ID_Users, ID_Rules) VALUES (:idusers,:idrules)").setInteger("idusers", id).setInteger("idrules", Integer.parseInt(rule.trim())).executeUpdate();
+            }
+    }
+
 }
+

@@ -5,18 +5,21 @@
 -->
 <nav id="menu">
   <ul>
+
+  <sec:authorize access="hasRole('Admin')">
     <li><span><i class="icon fa fa-smile-o"></i> USERS</span>
       <ul>
-        <li><a href="/adduser"><i class="icon  fa fa-rocket"></i> ADD USER </a></li>
         <li><a href="/tableuser"><i class="icon  fa fa-th"></i> EDIT USER </a></li>
+        <li><a href="/adduser"><i class="icon  fa fa-rocket"></i> ADD USER </a></li>
       </ul>
     </li>
+  </sec:authorize>
 
 
     <li><span><i class="icon  fa fa-inbox"></i> ARTICLES</span>
       <ul>
+        <li><a href="/tablearticles"><i class="icon  fa fa-th"></i> EDIT ARTICLE </a></li>
         <li><a href="/addarticles"><i class="icon  fa fa-rocket"></i> ADD ARCTICLE </a></li>
-        <li><a href="/editarticles"><i class="icon  fa fa-th"></i> EDIT ARTICLE </a></li>
       </ul>
     </li>
 

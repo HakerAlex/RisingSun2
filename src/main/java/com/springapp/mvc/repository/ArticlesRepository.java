@@ -2,6 +2,7 @@ package com.springapp.mvc.repository;
 
 import com.springapp.mvc.domain.ArticlesEntity;
 import com.springapp.mvc.domain.TagsEntity;
+import com.springapp.mvc.domain.UsersEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class ArticlesRepository {
 
 
     public List<ArticlesEntity> listAll(){
-        return this.sessionFactory.getCurrentSession().createQuery("from articles").list();
+        return this.sessionFactory.getCurrentSession().createSQLQuery("Select * from articles left join users ON articles.Author=users.ID").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).list();
     }
 
     public List<ArticlesEntity> newsSearch(String name){
@@ -65,7 +66,7 @@ public class ArticlesRepository {
         return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT LAST_DAY(DateCreate) + INTERVAL 1 DAY - INTERVAL 1 MONTH  as DateArchive FROM articles where articles.archive=1 GROUP BY DateArchive").list();
     }
 
-    public void removeArticle(Integer id){
+    public void deleteArticle(Integer id){
         ArticlesEntity article=(ArticlesEntity)this.sessionFactory.getCurrentSession().load(ArticlesEntity.class,id);
         if(null!=article){
             this.sessionFactory.getCurrentSession().delete(article);

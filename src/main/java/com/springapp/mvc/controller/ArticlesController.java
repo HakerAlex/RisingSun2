@@ -84,4 +84,14 @@ public class ArticlesController {
         return "search";
     }
 
+
+    @RequestMapping(value = "tablearticles", method = RequestMethod.GET)
+    public String tablearticles(Model model) {
+        List<ArticlesEntity> articles = this.articlesRepository.listAll();
+        model.addAttribute("articles", articles);
+        return "tablearticles";
+    }
+
+
+
 }
