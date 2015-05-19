@@ -42,7 +42,7 @@
           href="${pageContext.request.contextPath}/resources/assets/css/styleTheme4.css"/>
 
 </head>
-<body>
+<body  class="leftMenu nav-collapse in">
 <div id="wrapper">
     <%@ include file="../pages/admin/template.jsp" %>
 

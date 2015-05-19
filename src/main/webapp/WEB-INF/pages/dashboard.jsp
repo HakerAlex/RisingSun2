@@ -73,7 +73,7 @@
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/resources/assets/js/caplet.custom.js"></script>
 </head>
-<body>
+<body class="leftMenu nav-collapse in">
 <div id="wrapper">
     <%@ include file="../pages/admin/template.jsp" %>
 

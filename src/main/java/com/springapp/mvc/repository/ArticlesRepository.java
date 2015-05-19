@@ -29,10 +29,23 @@ public class ArticlesRepository {
         this.sessionFactory.getCurrentSession().save(arcticlesEntity);
     }
 
+    public List<UsersEntity> listAllAuthors(){
+        return this.sessionFactory.getCurrentSession().createSQLQuery("Select * from users").addEntity(UsersEntity.class).list();
+    }
+
+
+    public List<TagsEntity> listTagsByArticle(int id){
+        return this.sessionFactory.getCurrentSession().createSQLQuery("Select * from tagsarcticle LEFT JOIN tags on tags.ID = tagsarcticle.ID_Teg where ID_Arcticle=:id").addEntity(TagsEntity.class).setInteger("id",id).list();
+    }
 
 
     public List<ArticlesEntity> listAll(){
         return this.sessionFactory.getCurrentSession().createSQLQuery("Select * from articles left join users ON articles.Author=users.ID").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).list();
+    }
+
+
+    public ArticlesEntity getArticleByID(int id){
+        return (ArticlesEntity) this.sessionFactory.getCurrentSession().createSQLQuery("Select * from articles WHERE  articles.ID=:id").addEntity(ArticlesEntity.class).setInteger("id", id).uniqueResult();
     }
 
     public List<ArticlesEntity> newsSearch(String name){

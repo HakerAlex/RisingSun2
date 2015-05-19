@@ -42,7 +42,7 @@
         href="${pageContext.request.contextPath}/resources/assets/css/styleTheme4.css"/>
 
 </head>
-<body>
+<body  class="leftMenu nav-collapse in">
 <div id="wrapper">
   <%@ include file="../pages/admin/template.jsp" %>
 
@@ -50,7 +50,7 @@
 
         <ol class="breadcrumb">
             <li><a href="#">USERS</a></li>
-            <li><a href="#"> EDIT USER</a></li>
+            <li><a href="${pageContext.request.contextPath}/tableuser"> EDIT USER</a></li>
             <li class="active">USERS</li>
         </ol>
         <!-- //breadcrumb-->

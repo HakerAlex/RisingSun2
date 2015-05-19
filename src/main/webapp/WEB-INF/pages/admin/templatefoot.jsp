@@ -3,7 +3,7 @@
 //////////     LEFT NAV MENU     //////////
 ///////////////////////////////////////////////////////////
 -->
-<nav id="menu">
+<nav id="menu"  data-search="close">
   <ul>
 
   <sec:authorize access="hasRole('Admin')">

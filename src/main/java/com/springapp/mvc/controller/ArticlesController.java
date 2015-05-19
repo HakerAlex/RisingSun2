@@ -2,6 +2,7 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.domain.ArticlesEntity;
 import com.springapp.mvc.domain.TagsEntity;
+import com.springapp.mvc.domain.UsersEntity;
 import com.springapp.mvc.repository.ArticlesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,6 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-/**
- * Created by Alex on 01.05.2015.
- */
 @Controller
 public class ArticlesController {
 
@@ -92,6 +90,17 @@ public class ArticlesController {
         return "tablearticles";
     }
 
+
+    @RequestMapping(value = "editarticle/{id}", method = RequestMethod.GET)
+    public String editrticles(@PathVariable int id,Model model) {
+        ArticlesEntity article = this.articlesRepository.getArticleByID(id);
+        List<UsersEntity> users=this.articlesRepository.listAllAuthors();
+        List<TagsEntity> tags=this.articlesRepository.listTagsByArticle(id);
+        model.addAttribute("arcticle", article);
+        model.addAttribute("authors", users);
+        model.addAttribute("tags", tags);
+        return "editarticles";
+    }
 
 
 }
