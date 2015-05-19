@@ -63,7 +63,7 @@
                       action="${pageContext.request.contextPath}/updatearcticle" commandName="updatearcticle" data-collabel="3"
                       data-alignlabel="right" data-parsley-validate>
                     <div class="col-lg-5">
-                        <section class="panel" style="height: 90%">
+                        <section class="panel" style="height:100%">
                             <header class="panel-heading">
                                 <h2><strong>EDIT</strong> ARTICLE </h2>
                             </header>
@@ -166,7 +166,7 @@
                     </div>
 
                     <div class="col-lg-7">
-                        <section class="panel" style="height: 90%">
+                        <section class="panel" style="height: 100%">
                             <header class="panel-heading">
                                 <h2><strong>EDIT</strong> TEXT ARTICLE </h2>
                             </header>
@@ -264,8 +264,8 @@
     CKEDITOR.replace( 'editorCk', {
         removePlugins:'maximize',
         language: 'en',
-        height:500,
-        width:800,
+        height:350,
+        width:600,
         startupFocus : false,
         uiColor: '#FFFFFF'
     });

@@ -72,14 +72,14 @@
                                 <table class="table table-striped table-hover" data-provide="data-table">
                                     <thead>
                                     <tr>
-                                        <th width="5">No.</th>
-                                        <th width="20"> Title</th>
-                                        <th width="15"> Name page</th>
-                                        <th width="15">Date create</th>
-                                        <th width="15">Image</th>
-                                        <th width="10">Author</th>
-                                        <th width="10">Archive</th>
-                                        <th width="10">Action</th>
+                                        <th width="5%">No.</th>
+                                        <th width="20%"> Title</th>
+                                        <th width="15%"> Name page</th>
+                                        <th width="15%">Date create</th>
+                                        <th width="15%">Image</th>
+                                        <th width="10%">Author</th>
+                                        <th width="10%">Archive</th>
+                                        <th width="10%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody align="center">
