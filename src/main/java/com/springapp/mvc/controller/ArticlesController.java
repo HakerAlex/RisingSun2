@@ -4,6 +4,7 @@ import com.springapp.mvc.domain.ArticlesEntity;
 import com.springapp.mvc.domain.TagsEntity;
 import com.springapp.mvc.domain.UsersEntity;
 import com.springapp.mvc.repository.ArticlesRepository;
+import com.springapp.mvc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -18,11 +20,13 @@ import java.util.List;
 public class ArticlesController {
 
     private ArticlesRepository articlesRepository;
+    private UserRepository userRepository;
 
 
     @Autowired
-    public ArticlesController(ArticlesRepository articlesRepository){
+    public ArticlesController(ArticlesRepository articlesRepository, UserRepository userRepository){
         this.articlesRepository=articlesRepository;
+        this.userRepository=userRepository;
     }
 
 
@@ -82,7 +86,6 @@ public class ArticlesController {
         return "search";
     }
 
-
     @RequestMapping(value = "tablearticles", method = RequestMethod.GET)
     public String tablearticles(Model model) {
         List<ArticlesEntity> articles = this.articlesRepository.listAll();
@@ -90,9 +93,8 @@ public class ArticlesController {
         return "tablearticles";
     }
 
-
     @RequestMapping(value = "editarticle/{id}", method = RequestMethod.GET)
-    public String editrticles(@PathVariable int id,Model model) {
+    public String editarticles(@PathVariable int id,Model model) {
         ArticlesEntity article = this.articlesRepository.getArticleByID(id);
         List<UsersEntity> users=this.articlesRepository.listAllAuthors();
         List<TagsEntity> tags=this.articlesRepository.listTagsByArticle(id);
@@ -100,6 +102,30 @@ public class ArticlesController {
         model.addAttribute("authors", users);
         model.addAttribute("tags", tags);
         return "editarticles";
+    }
+
+    @RequestMapping(value = "updatearticle", method = RequestMethod.POST)
+    public String updatearticles(@RequestParam("article") String textarticle,@RequestParam("tags[]") String[] tags,@RequestParam("dateCreate") Timestamp datecreate, @RequestParam("author") int author, @RequestParam("id") int id,@RequestParam("title") String title, @RequestParam("namepage") String namepage, @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
+        ArticlesEntity article=new ArticlesEntity();
+        article.setId(id);
+        article.setTitle(title);
+        article.setNamePage(namepage);
+        article.setImage(image);
+
+        boolean ourA;
+        if (status.equals("on"))
+            ourA=true;
+        else
+            ourA=false;
+
+        article.setArchive(ourA);
+        article.setUsersByAuthor(this.userRepository.findUser(author));
+        article.setDateCreate(datecreate);
+        article.setArticle(textarticle);
+
+        this.articlesRepository.updateArticle(article,tags);
+
+        return "redirect:/tablearticles";
     }
 
 

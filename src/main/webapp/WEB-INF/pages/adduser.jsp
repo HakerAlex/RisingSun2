@@ -81,7 +81,7 @@
 
             <div class="row">
 
-
+                <div class="col-lg-5">
                 <section class="panel">
                     <header class="panel-heading">
                         <h2><strong>ADD</strong> USER</h2>
@@ -162,7 +162,7 @@
                         </form>
                     </div>
                 </section>
-
+                </div>
             </div>
             <!-- //content > row-->
 

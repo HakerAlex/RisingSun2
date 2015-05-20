@@ -60,7 +60,7 @@
 
             <div class="row">
                 <form id="formID" class="form-horizontal" method="post"
-                      action="${pageContext.request.contextPath}/updatearcticle" commandName="updatearcticle" data-collabel="3"
+                      action="${pageContext.request.contextPath}/updatearticle" commandName="updatearticle" data-collabel="3"
                       data-alignlabel="right" data-parsley-validate>
                     <div class="col-lg-5">
                         <section class="panel" style="height:100%">

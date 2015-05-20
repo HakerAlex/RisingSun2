@@ -2,6 +2,7 @@ package com.springapp.mvc.repository;
 
 import com.springapp.mvc.domain.ArticlesEntity;
 import com.springapp.mvc.domain.TagsEntity;
+import com.springapp.mvc.domain.TagsarcticleEntity;
 import com.springapp.mvc.domain.UsersEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -84,6 +85,39 @@ public class ArticlesRepository {
         if(null!=article){
             this.sessionFactory.getCurrentSession().delete(article);
         }
+    }
+
+    public TagsEntity getTagByName(String tagName)
+    {
+        return (TagsEntity) this.sessionFactory.getCurrentSession().createSQLQuery("Select * from tags where Name=:tag").addEntity(TagsEntity.class).setString("tag", tagName).uniqueResult();
+    }
+
+    public void addTagsToArticle(ArticlesEntity article, String[] tags)
+    {
+        for (String tag:tags)
+        {
+            TagsEntity ourtag=getTagByName(tag);
+            if (ourtag==null) {
+                this.sessionFactory.getCurrentSession().createSQLQuery("Insert INTO tags (Name) values (:tag) ").setString("tag", tag).executeUpdate();
+                ourtag=getTagByName(tag);
+            }
+
+            TagsarcticleEntity tagArt=new TagsarcticleEntity();
+            tagArt.setArticlesByIdArcticle(article);
+            tagArt.setTagsByIdTeg(ourtag);
+            this.sessionFactory.getCurrentSession().save(tagArt);
+        }
+    }
+
+    public void updateArticle(ArticlesEntity article, String[] tags){
+        try {
+            this.sessionFactory.getCurrentSession().update(article);
+            this.sessionFactory.getCurrentSession().createSQLQuery("Delete from tagsarcticle where tagsarcticle.ID_Arcticle=:idArticle").setInteger("idArticle", article.getId()).executeUpdate();
+
+            addTagsToArticle(article,tags);
+
+        }catch (Exception e)
+        {}
     }
 }
 
