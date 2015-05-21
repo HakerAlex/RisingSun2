@@ -59,7 +59,7 @@
 
             <div class="row">
 
-                <div class="col-lg-5">
+                <div class="col-lg-8">
                 <section class="panel">
                     <header class="panel-heading">
                         <h2><strong>EDIT</strong> USER</h2>

@@ -64,7 +64,7 @@
         href="${pageContext.request.contextPath}/resources/assets/css/styleTheme4.css"/>
 
 </head>
-<body>
+<body class="leftMenu nav-collapse in">
 <div id="wrapper">
   <%@ include file="../pages/admin/template.jsp" %>
 
@@ -81,7 +81,7 @@
 
             <div class="row">
 
-                <div class="col-lg-5">
+                <div class="col-lg-8">
                 <section class="panel">
                     <header class="panel-heading">
                         <h2><strong>ADD</strong> USER</h2>
