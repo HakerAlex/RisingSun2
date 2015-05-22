@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
 
   <script src="${pageContext.request.contextPath}/resources/js/modernizr.foundation.js"></script>
-  
+
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/ligature.css">
   
   <!-- Google fonts -->
@@ -36,6 +36,7 @@
   <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
 
 </head>
 <body>
@@ -91,7 +92,7 @@
        <div class="twelve columns">
 
         
-		<div id="container">
+		<div id="container"   >
 
 
             <c:if test = "${!empty allnews}">
@@ -166,6 +167,8 @@
       });
   //]]>
   </script>
+
+
 		<!-- END Masonry -->
 		</body>
 		</html>

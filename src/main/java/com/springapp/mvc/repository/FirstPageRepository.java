@@ -37,11 +37,8 @@ public class FirstPageRepository {
         return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT LAST_DAY(DateCreate) + INTERVAL 1 DAY - INTERVAL 1 MONTH  as DateArchive FROM articles where articles.archive=1 GROUP BY DateArchive").list();
     }
 
-    public void removeFirstPage(Integer id){
-        FirstpageEntity first=(FirstpageEntity)this.sessionFactory.getCurrentSession().load(FirstpageEntity.class,id);
-        if (null!=first){
-            this.sessionFactory.getCurrentSession().delete(first);
-        }
+    public void removeArticleFromFirstPage(Integer id){
+        this.sessionFactory.getCurrentSession().createSQLQuery("DELETE from firstpage WHERE Article_ID=:id").setInteger("id",id).executeUpdate();
     }
 
 
@@ -49,8 +46,4 @@ public class FirstPageRepository {
         return this.sessionFactory.getCurrentSession().createSQLQuery("Select tags.* from tags left join tagsarcticle on tags.ID=tagsarcticle.ID_Teg left join articles on tagsarcticle.ID_Arcticle=articles.ID where articles.NamePage=:name").addEntity(TagsEntity.class).setString("name", name).list();
     }
 
-
-    public UsersEntity usersByName(String name){
-        return (UsersEntity) this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * from users WHERE login=:login").setString("login", name).uniqueResult();
-    }
 }

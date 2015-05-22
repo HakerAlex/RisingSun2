@@ -4,8 +4,11 @@ import com.springapp.mvc.domain.ArticlesEntity;
 import com.springapp.mvc.domain.TagsEntity;
 import com.springapp.mvc.domain.UsersEntity;
 import com.springapp.mvc.repository.ArticlesRepository;
+import com.springapp.mvc.repository.FirstPageRepository;
 import com.springapp.mvc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +24,14 @@ public class ArticlesController {
 
     private ArticlesRepository articlesRepository;
     private UserRepository userRepository;
+    private FirstPageRepository firstPageRepository;
 
 
     @Autowired
-    public ArticlesController(ArticlesRepository articlesRepository, UserRepository userRepository){
+    public ArticlesController(ArticlesRepository articlesRepository, UserRepository userRepository, FirstPageRepository firstPageRepository){
         this.articlesRepository=articlesRepository;
         this.userRepository=userRepository;
+        this.firstPageRepository=firstPageRepository;
     }
 
 
@@ -93,6 +98,7 @@ public class ArticlesController {
         return "tablearticles";
     }
 
+    @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author') or hasRole('Corrector')")
     @RequestMapping(value = "editarticle/{id}", method = RequestMethod.GET)
     public String editarticles(@PathVariable int id,Model model) {
         ArticlesEntity article = this.articlesRepository.getArticleByID(id);
@@ -104,8 +110,9 @@ public class ArticlesController {
         return "editarticles";
     }
 
+    @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author') or hasRole('Corrector')")
     @RequestMapping(value = "updatearticle", method = RequestMethod.POST)
-    public String updatearticles(@RequestParam("article") String textarticle,@RequestParam("tags[]") String[] tags,@RequestParam("dateCreate") Timestamp datecreate, @RequestParam("author") int author, @RequestParam("id") int id,@RequestParam("title") String title, @RequestParam("namepage") String namepage, @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
+    public String updatearticles(@RequestParam("article") String textarticle,@RequestParam(value="tags[]", defaultValue = "",required = false) String[] tags,@RequestParam("dateCreate") Timestamp datecreate, @RequestParam("author") int author, @RequestParam("id") int id,@RequestParam("title") String title, @RequestParam("namepage") String namepage, @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
         ArticlesEntity article=new ArticlesEntity();
         article.setId(id);
         article.setTitle(title);
@@ -125,6 +132,49 @@ public class ArticlesController {
 
         this.articlesRepository.updateArticle(article,tags);
 
+        return "redirect:/tablearticles";
+    }
+
+
+    @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author')")
+    @RequestMapping(value = "addarticles", method = RequestMethod.GET)
+    public String editarticles(Model model) {
+        List<UsersEntity> users=this.articlesRepository.listAllAuthors();
+        model.addAttribute("authors", users);
+        return "addarticles";
+    }
+
+
+    @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author')")
+    @RequestMapping(value = "addarticletoDB", method = RequestMethod.POST)
+    public String addarticles(@RequestParam("article") String textarticle,@RequestParam(value="tags[]", defaultValue = "",required = false) String[] tags, @RequestParam("author") int author,@RequestParam("title") String title, @RequestParam("namepage") String namepage, @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
+        ArticlesEntity article=new ArticlesEntity();
+        article.setTitle(title);
+        article.setNamePage(namepage);
+        article.setImage(image);
+
+        boolean ourA;
+        if (status.equals("on"))
+            ourA=true;
+        else
+            ourA=false;
+
+        article.setArchive(ourA);
+        article.setUsersByAuthor(this.userRepository.findUser(author));
+        article.setArticle(textarticle);
+
+        this.articlesRepository.addArticle(article, tags);
+
+        return "redirect:/tablearticles";
+    }
+
+
+    @PreAuthorize("hasRole('Admin') or hasRole('Editor')")
+    @RequestMapping(value = "deletearticle/{id}", method = RequestMethod.GET)
+    public String deletearticles(@PathVariable int id,Model model) {
+        this.firstPageRepository.removeArticleFromFirstPage(id);
+        this.articlesRepository.deleteAllTagByArticleID(id);
+        this.articlesRepository.deleteArticle(id);
         return "redirect:/tablearticles";
     }
 

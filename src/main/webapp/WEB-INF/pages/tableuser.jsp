@@ -71,12 +71,12 @@
                                 <table class="table table-striped table-hover" data-provide="data-table">
                                     <thead>
                                     <tr>
-                                        <th>No.</th>
-                                        <th>Full name</th>
-                                        <th>Username</th>
-                                        <th>Status</th>
-                                        <th>Rules</th>
-                                        <th width="30%">Action</th>
+                                        <th class="text-center">No.</th>
+                                        <th class="text-center">Full name</th>
+                                        <th class="text-center">Username</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Rules</th>
+                                        <th width="10%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody align="center">

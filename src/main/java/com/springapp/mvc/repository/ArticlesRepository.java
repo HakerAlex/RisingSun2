@@ -26,10 +26,6 @@ public class ArticlesRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void addArticle(ArticlesEntity arcticlesEntity){
-        this.sessionFactory.getCurrentSession().save(arcticlesEntity);
-    }
-
     public List<UsersEntity> listAllAuthors(){
         return this.sessionFactory.getCurrentSession().createSQLQuery("Select * from users").addEntity(UsersEntity.class).list();
     }
@@ -109,15 +105,28 @@ public class ArticlesRepository {
         }
     }
 
+    public void deleteAllTagByArticleID(int id){
+        this.sessionFactory.getCurrentSession().createSQLQuery("Delete from tagsarcticle where tagsarcticle.ID_Arcticle=:idArticle").setInteger("idArticle",id).executeUpdate();
+    }
+
     public void updateArticle(ArticlesEntity article, String[] tags){
         try {
             this.sessionFactory.getCurrentSession().update(article);
-            this.sessionFactory.getCurrentSession().createSQLQuery("Delete from tagsarcticle where tagsarcticle.ID_Arcticle=:idArticle").setInteger("idArticle", article.getId()).executeUpdate();
-
+            deleteAllTagByArticleID(article.getId());
             addTagsToArticle(article,tags);
 
         }catch (Exception e)
-        {}
+        {
+        }
+    }
+
+    public void addArticle(ArticlesEntity article, String[] tags){
+        try {
+            this.sessionFactory.getCurrentSession().save(article);
+            addTagsToArticle(article,tags);
+        }catch (Exception e)
+        {
+        }
     }
 }
 

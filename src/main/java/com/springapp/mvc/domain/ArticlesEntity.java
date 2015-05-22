@@ -22,7 +22,7 @@ public class ArticlesEntity {
     private Collection<TagsarcticleEntity> tagsarcticlesById;
 
     @Id
-    @Column(name = "ID", nullable = false, insertable = true, updatable = true)
+    @Column(name = "ID",  insertable = true, updatable = true)
     @GeneratedValue
     public int getId() {
         return id;
@@ -74,7 +74,7 @@ public class ArticlesEntity {
 
 
     @Basic
-    @Column(name = "Image", nullable = false, insertable = true, updatable = true, length = 1500)
+    @Column(name = "Image", insertable = true, updatable = true, length = 1500)
     public String getImage() {
         return image;
     }
@@ -84,7 +84,7 @@ public class ArticlesEntity {
     }
 
     @Basic
-    @Column(name = "DateCreate", nullable = false, insertable = true, updatable = true)
+    @Column(name = "DateCreate", insertable = true, updatable = true)
     @GeneratedValue
     public Timestamp getDateCreate() {
         return dateCreate;

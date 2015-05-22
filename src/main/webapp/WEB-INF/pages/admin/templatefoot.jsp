@@ -19,7 +19,9 @@
     <li><span><i class="icon  fa fa-inbox"></i> ARTICLES</span>
       <ul>
         <li><a href="/tablearticles"><i class="icon  fa fa-th"></i> EDIT ARTICLE </a></li>
-        <li><a href="/addarticles"><i class="icon  fa fa-rocket"></i> ADD ARCTICLE </a></li>
+        <sec:authorize access="hasRole('Admin') or hasRole('Editor') or hasRole('Author')">
+          <li><a href="/addarticles"><i class="icon  fa fa-rocket"></i> ADD ARCTICLE </a></li>
+        </sec:authorize>
       </ul>
     </li>
 
@@ -27,8 +29,10 @@
     <li><span><i class="icon  fa fa-laptop"></i> FIRSTPAGE</span>
 
       <ul>
-        <li><a href="/addfirstpage"><i class="icon  fa fa-rocket"></i> ADD TO FIRSTPAGE </a></li>
-        <li><a href="/editfirstpage"><i class="icon  fa fa-th"></i> EDIT ON FIRSTPAGE </a></li>
+      <sec:authorize access="hasRole('Admin') or hasRole('Editor')">
+          <li><a href="/addfirstpage"><i class="icon  fa fa-rocket"></i> ADD TO FIRSTPAGE </a></li>
+          <li><a href="/editfirstpage"><i class="icon  fa fa-th"></i> EDIT ON FIRSTPAGE </a></li>
+      </sec:authorize>
       </ul>
 
     </li>

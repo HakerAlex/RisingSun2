@@ -39,7 +39,7 @@
 
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="userDetailsService">
-            <security:password-encoder hash="md5"></security:password-encoder>
+            <security:password-encoder hash="sha-256"></security:password-encoder>
         </security:authentication-provider>
     </security:authentication-manager>
 

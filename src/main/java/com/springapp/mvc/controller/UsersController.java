@@ -51,7 +51,7 @@ public class UsersController {
         UsersEntity user =this.userRepository.findUser(id);
 
         if (!user.getPassword().equals(password)) {
-            user.setPassword(DigestUtils.md5Hex(password));
+            user.setPassword(DigestUtils.sha256Hex(password));
         }
         user.setName(name);
         user.setUsername(username);
@@ -96,7 +96,7 @@ public class UsersController {
             return "adduser";
         }
         user.setUsername(username);
-        user.setPassword(DigestUtils.md5Hex(password));
+        user.setPassword(DigestUtils.sha256Hex(password));
 
         if (status.equals("on"))
             user.setStatus("ACTIVE");
