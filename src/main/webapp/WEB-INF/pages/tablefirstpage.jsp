@@ -84,12 +84,12 @@
                                     <tbody>
                                     <c:forEach items="${firstpages}" var="firstpage">
                                         <tr>
-                                            <td class="text-center" valign="middle">${firstpage[1].title}</td>
-                                            <td class="text-center" valign="middle">${firstpage[1].dateCreate}</td>
-                                            <td class="text-center" valign="middle">${firstpage[2].name}</td>
-                                            <td class="text-center" valign="middle"><span class="badge bg-success">${firstpage[0].raiting}</span></td>
+                                            <td align="center">${firstpage[1].title}</td>
+                                            <td align="center">${firstpage[1].dateCreate}</td>
+                                            <td align="center">${firstpage[2].name}</td>
+                                            <td align="center"><span class="badge bg-success">${firstpage[0].raiting}</span></td>
 
-                                            <td class="text-center" valign="middle">
+                                            <td align="center">
                                                 <c:if test="${firstpage[0].feature==false}">
                                                     <span class="label bg-success">FALSE</span>
                                                 </c:if>

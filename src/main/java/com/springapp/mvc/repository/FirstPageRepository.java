@@ -26,7 +26,7 @@ public class FirstPageRepository {
     }
 
     public List<FirstpageEntity> listAll(){
-        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM firstpage LEFT JOIN articles ON firstpage.Article_ID = articles.ID LEFT JOIN users ON users.ID = articles.Author ORDER BY Feature desc,Raiting").addEntity(FirstpageEntity.class).addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).list();
+        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM firstpage LEFT JOIN articles ON firstpage.Article_ID = articles.ID LEFT JOIN users ON users.ID = articles.Author ORDER BY Raiting desc").addEntity(FirstpageEntity.class).addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).list();
     }
 
     public List<FirstpageEntity> newsByName(String name){

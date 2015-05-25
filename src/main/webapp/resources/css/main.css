@@ -8,12 +8,12 @@
 
 @font-face {
     font-family: 'LigatureSymbols';
-    src: url('LigatureSymbols-2.05.eot');
-    src: url('LigatureSymbols-2.05.eot?#iefix') format('embedded-opentype'),
-         url('LigatureSymbols-2.05.woff') format('woff'),
-         url('LigatureSymbols-2.05.ttf') format('truetype'),
-         url('LigatureSymbols-2.05.svg#LigatureSymbols') format('svg');
-    src: url('LigatureSymbols-2.05.ttf') format('truetype');
+    src: url('/resources/fonts/LigatureSymbols-2.07.eot');
+    src: url('/resources/fonts/LigatureSymbols-2.07.eot?#iefix') format('embedded-opentype'),
+         url('/resources/fonts/LigatureSymbols-2.07.woff') format('woff'),
+         url('/resources/fonts/LigatureSymbols-2.07.ttf') format('truetype'),
+         url('/resources/fonts/LigatureSymbols-2.07.svg#LigatureSymbols') format('svg');
+    src: url('/resources/fonts/LigatureSymbols-2.07.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -120,7 +120,7 @@ h1,h2,h3,h4 {font-family:'Open Sans Condensed',sans-serif; font-weight: normal; 
 
 
 .heading_supersize {font-size: 128px; text-align:center; font-weight: normal; line-height: 150px; margin:0 0 10px; color: #212121}
-.heading_largesize {font-size: 34px; text-align:; font-weight: normal}
+.heading_largesize {font-size: 34px; text-align:center; font-weight: normal}
 
 .dropcap_red, 
 .dropcap_black {  
