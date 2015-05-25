@@ -30,8 +30,7 @@
 
       <ul>
       <sec:authorize access="hasRole('Admin') or hasRole('Editor')">
-          <li><a href="/addfirstpage"><i class="icon  fa fa-rocket"></i> ADD TO FIRSTPAGE </a></li>
-          <li><a href="/editfirstpage"><i class="icon  fa fa-th"></i> EDIT ON FIRSTPAGE </a></li>
+          <li><a href="/tablefirstpage"><i class="icon  fa fa-rocket"></i> EDIT FIRST PAGE </a></li>
       </sec:authorize>
       </ul>
 

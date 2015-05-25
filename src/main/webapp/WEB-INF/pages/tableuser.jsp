@@ -30,6 +30,7 @@
     <link type="text/css" rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/assets/css/bootstrap/bootstrap-themes.css"/>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap/dataTables.bootstrap.css">
 
     <!-- Styleswitch if  you don't chang theme , you can delete -->
     <link type="text/css" rel="alternate stylesheet" media="screen" title="style1"
@@ -67,11 +68,11 @@
                         </header>
 
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover" data-provide="data-table">
+                            <%--<div class="table-responsive">--%>
+                                <table class="display" data-provide="data-table">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">No.</th>
+                                        <%--<th class="text-center">No.</th>--%>
                                         <th class="text-center">Full name</th>
                                         <th class="text-center">Username</th>
                                         <th class="text-center">Status</th>
@@ -82,7 +83,7 @@
                                     <tbody align="center">
                                     <c:forEach items="${users}" var="user">
                                         <tr>
-                                            <td>${user[0].id}</td>
+                                            <%--<td>${user[0].id}</td>--%>
                                             <td valign="middle">${user[0].name}</td>
                                             <td valign="middle">${user[0].username}</td>
 
@@ -97,7 +98,7 @@
 
                                             <td valign="middle">${user[1].nameRule}</td>
 
-                                            <td>
+                                            <td align="center">
                                         <span class="tooltip-area">
                                             <a href="/edituser/${user[0].id}" class="btn btn-default btn-sm" title="Edit"><i
                                                     class="fa fa-pencil"></i></a></span>
@@ -108,7 +109,7 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
-                            </div>
+                            <%--</div>--%>
                         </div>
                     </section>
                 </div>
@@ -165,10 +166,14 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/dataTables.bootstrap.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        $('table[data-provide="data-table"]').dataTable({
-            "iDisplayLength": 5
-        });
+        $('table[data-provide="data-table"]').dataTable();
     });
+</script>
+
+<script type="text/javascript">
+    $('table[data-provide="data-table"]')
+            .removeClass( 'display' )
+            .addClass('table table-striped table-bordered');
 </script>
 </body>
 </html>

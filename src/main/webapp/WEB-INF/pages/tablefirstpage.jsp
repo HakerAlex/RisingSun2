@@ -51,9 +51,9 @@
     <div id="main">
 
         <ol class="breadcrumb">
-            <li><a href="#">ARTICLES</a></li>
-            <li><a href="#"> EDIT ARTICLES</a></li>
-            <li class="active">ARTICLES</li>
+            <li><a href="#">FIRST PAGE</a></li>
+            <li><a href="#"> EDIT FIRST PAGE</a></li>
+            <li class="active">FIRST PAGE</li>
         </ol>
         <!-- //breadcrumb-->
 
@@ -61,7 +61,63 @@
 
             <div class="row">
 
-                <div class="col-lg-12">
+                <div class="col-lg-6">
+
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h2><strong>Table</strong> FIRST PAGE </h2>
+                        </header>
+
+                        <div class="panel-body">
+                            <%--<div class="table-responsive">--%>
+                                <table cellpadding="0" cellspacing="0" border="0" class="display" data-provide="data-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Title article</th>
+                                        <th>Date create</th>
+                                        <th>Author</th>
+                                        <th>Raiting</th>
+                                        <th>Feature</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${firstpages}" var="firstpage">
+                                        <tr>
+                                            <td class="text-center" valign="middle">${firstpage[1].title}</td>
+                                            <td class="text-center" valign="middle">${firstpage[1].dateCreate}</td>
+                                            <td class="text-center" valign="middle">${firstpage[2].name}</td>
+                                            <td class="text-center" valign="middle"><span class="badge bg-success">${firstpage[0].raiting}</span></td>
+
+                                            <td class="text-center" valign="middle">
+                                                <c:if test="${firstpage[0].feature==false}">
+                                                    <span class="label bg-success">FALSE</span>
+                                                </c:if>
+                                                <c:if test="${firstpage[0].feature==true}">
+                                                    <span class="label bg-danger">TRUE</span>
+                                                </c:if>
+                                            </td>
+
+                                            <td align="center">
+                                        <span class="tooltip-area">
+                                             <sec:authorize access="hasAnyRole('Admin','Editor')">
+                                                <a href="/deletefirstpage/${firstpage[0].id}" data-confirm="Are you sure you want to delete?" class="btn btn-default btn-sm" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                            </sec:authorize>
+                                        </span>
+                                            </td>
+
+
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            <%--</div>--%>
+                        </div>
+                    </section>
+                </div>
+
+
+                <div class="col-lg-6">
 
                     <section class="panel">
                         <header class="panel-heading">
@@ -73,55 +129,25 @@
                                 <table class="display" data-provide="data-table">
                                     <thead>
                                     <tr>
-                                        <%--<th>No.</th>--%>
                                         <th>Title article</th>
-                                        <th> Name page </th>
-                                        <th> Date create </th>
-                                        <th> Image </th>
-                                        <th> Author </th>
-                                        <th> Archive </th>
-                                        <th> Action </th>
+                                        <th>Date create</th>
+                                        <th>Author</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${articles}" var="article">
                                         <tr>
-                                            <%--<td class="text-center" >${article[0].id}</td>--%>
-                                            <td class="text-center" valign="middle">${article[0].title}</td>
-                                            <td class="text-center" valign="middle">${article[0].namePage}</td>
-                                            <td class="text-center" valign="middle">${article[0].dateCreate}</td>
-
-                                            <td align="center" valign="middle">
-                                            <c:if test="${!empty article[0].image}">
-                                                <span class="label bg-success">FULL IMAGE</span>
-                                            </c:if>
-
-                                            <c:if test="${empty article[0].image}">
-                                                <span class="label bg-danger">EMPTY IMAGE</span>
-                                            </c:if>
-                                            </td>
-
-                                            <td class="text-center" valign="middle">${article[1].name}</td>
-
-                                            <td class="text-center" valign="middle">
-                                                <c:if test="${article[0].archive==false}">
-                                                    <span class="label bg-success">ACTIVE</span>
-                                                </c:if>
-                                                <c:if test="${article[0].archive==true}">
-                                                    <span class="label bg-danger">ARCHIVE</span>
-                                                </c:if>
-                                            </td>
-
+                                            <td  valign="middle">${article[0].title}</td>
+                                            <td  valign="middle">${article[0].dateCreate}</td>
+                                            <td  valign="middle">${article[1].name}</td>
                                             <td align="center">
                                         <span class="tooltip-area">
-                                            <a href="/editarticle/${article[0].id}" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
                                              <sec:authorize access="hasAnyRole('Admin','Editor')">
-                                                <a href="/deletearticle/${article[0].id}" data-confirm="Are you sure you want to delete?" class="btn btn-default btn-sm" title="Delete"><i class="fa fa-trash-o"></i></a>
-                                            </sec:authorize>
+                                                 <a data-toggle="modal" value="${article[0].id}" data-target="#md-normal" onclick="newVal(this)" href="#"><i class="fa fa-desktop"></i></a>
+                                             </sec:authorize>
                                         </span>
                                             </td>
-
-
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -140,6 +166,42 @@
 
     </div>
     <!-- //main-->
+
+
+        <div id="md-normal" class="modal fade">
+            <form id="addfirst" name="addfirst" method="post" action="${pageContext.request.contextPath}/addtofirstpage" commandname="addfirst">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                <h4 class="modal-title">Please confirm add to first page</h4>
+            </div>
+            <!-- //modal-header-->
+            <div class="modal-body">
+                <label class="control-label">Raiting </label>
+                <div class="cp-slider-wrapper" data-color="green"  data-max="100" data-range="min" data-value="50">
+                    <input type="hidden" name="raiting" id="raiting" />
+                    <nav>
+                        <a href="#" class="cp-prev"><i class="fa fa-chevron-left"></i></a>
+                        <a href="#" class="cp-next"><i class="fa fa-chevron-right"></i></a>
+                    </nav>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Feature</label>
+                    <div>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="feature">
+                            </label>
+                    </div>
+                </div>
+            </div>
+            <!-- //modal-body-->
+            <div class="modal-footer">
+                <button type="button " data-dismiss="modal" class="btn btn-inverse">Cancel</button>
+                <button type="submit" class="btn btn-theme" name="id" id="butOk">Add</button>
+            </div>
+            </form>
+        </div>
+
 
 
      <%@ include file="../pages/admin/templatefoot.jsp" %>
@@ -191,13 +253,13 @@
     });
 </script>
 
+
 <script type="text/javascript">
     // For demo to fit into DataTables site builder...
     $('table[data-provide="data-table"]')
             .removeClass( 'display' )
             .addClass('table table-striped table-bordered');
 </script>
-
 
 <script type="text/javascript">
 
@@ -208,7 +270,7 @@
             var slider=$(this), update=slider.find("input[type='hidden']"), data=slider.data();
             slider.modernSlider({
                 total: data.max || 100,
-                value:data.value,
+                value:50,
                 width: data.width || "100%",
                 range: data.range,
                 sliderOpened: data.opened,
@@ -239,6 +301,14 @@
     });
 </script>
 
+
+<script type="text/javascript">
+    function newVal(t){
+        var res = $(t).attr('value');
+        $('#butOk').val(res);
+        return false;
+    }
+</script>
 
 </body>
 </html>
