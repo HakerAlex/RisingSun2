@@ -73,12 +73,12 @@
                                 <table cellpadding="0" cellspacing="0" border="0" class="display" data-provide="data-table">
                                     <thead>
                                     <tr>
-                                        <th>Title article</th>
-                                        <th>Date create</th>
-                                        <th>Author</th>
-                                        <th>Raiting</th>
-                                        <th>Feature</th>
-                                        <th width="20%">Action</th>
+                                        <th align="center">Title article</th>
+                                        <th align="center">Date create</th>
+                                        <th align="center">Author</th>
+                                        <th align="center">Raiting</th>
+                                        <th align="center">Feature</th>
+                                        <th width="15%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -101,8 +101,8 @@
                                             <td align="center">
                                         <span class="tooltip-area">
                                              <sec:authorize access="hasAnyRole('Admin','Editor')">
-                                                <a href="/deletefirstpage/${firstpage[0].id}" data-confirm="Are you sure you want to delete?" class="btn btn-default btn-sm" title="Delete"><i class="fa fa-trash-o"></i></a>
                                                 <a href="/editfirstpage/${firstpage[0].id}" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
+                                                <a href="/deletefirstpage/${firstpage[0].id}" data-confirm="Are you sure you want to delete?" class="btn btn-default btn-sm" title="Delete"><i class="fa fa-trash-o"></i></a>
                                             </sec:authorize>
                                         </span>
                                             </td>
