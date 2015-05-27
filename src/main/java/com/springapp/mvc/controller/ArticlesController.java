@@ -8,12 +8,15 @@ import com.springapp.mvc.repository.FirstPageRepository;
 import com.springapp.mvc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.security.Principal;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -91,9 +94,30 @@ public class ArticlesController {
         return "search";
     }
 
+
+    @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author') or hasRole('Corrector')")
     @RequestMapping(value = "tablearticles", method = RequestMethod.GET)
     public String tablearticles(Model model) {
-        List<ArticlesEntity> articles = this.articlesRepository.listAll();
+
+        int onlyAuthor=0;
+        for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
+            if(authority.getAuthority().equals("Author"))
+                onlyAuthor=1;
+            else
+                onlyAuthor=0;
+            }
+
+
+        List<ArticlesEntity> articles;
+
+        if (onlyAuthor==1){
+            User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            articles= this.articlesRepository. newsByAuthorUsername(user.getUsername());
+        }
+        else
+            articles = this.articlesRepository.listAll();
+
+
         model.addAttribute("articles", articles);
         return "tablearticles";
     }

@@ -182,7 +182,6 @@
 <!-- Library datable -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/mockjax.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/bootstrap-editable.js"></script>
 
 <script type="text/javascript">

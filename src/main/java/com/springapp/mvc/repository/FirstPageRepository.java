@@ -56,4 +56,12 @@ public class FirstPageRepository {
         return   this.sessionFactory.getCurrentSession().createSQLQuery("Select * from articles left JOIN users on users.ID = articles.Author where not articles.id in (Select Article_ID from firstpage) and Archive = FALSE").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).list();
     }
 
+    public FirstpageEntity getRecordById(int id)
+    {
+        return  (FirstpageEntity)this.sessionFactory.getCurrentSession().createSQLQuery("Select * from firstpage where id=:id").addEntity(FirstpageEntity.class).setInteger("id",id).uniqueResult();
+    }
+
+    public void updateFirstPage(FirstpageEntity firstpage){
+        this.sessionFactory.getCurrentSession().update(firstpage);
+    }
 }

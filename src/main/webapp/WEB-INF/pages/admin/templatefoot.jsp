@@ -25,16 +25,14 @@
       </ul>
     </li>
 
-
+    <sec:authorize access="hasRole('Admin') or hasRole('Editor')">
     <li><span><i class="icon  fa fa-laptop"></i> FIRSTPAGE</span>
-
       <ul>
-      <sec:authorize access="hasRole('Admin') or hasRole('Editor')">
-          <li><a href="/tablefirstpage"><i class="icon  fa fa-rocket"></i> EDIT FIRST PAGE </a></li>
-      </sec:authorize>
-      </ul>
 
+          <li><a href="/tablefirstpage"><i class="icon  fa fa-rocket"></i> EDIT FIRST PAGE </a></li>
+      </ul>
     </li>
+    </sec:authorize>
   </ul>
 </nav>
 <!-- //nav left menu-->

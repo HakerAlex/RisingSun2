@@ -109,4 +109,33 @@ public class FirstpageController {
 
         return "redirect:/tablefirstpage";
     }
+
+
+    @PreAuthorize("hasRole('Admin') or hasRole('Editor')")
+    @RequestMapping(value = "/editfirstpage/{id}", method = RequestMethod.GET)
+    public String edittofirstpage(@PathVariable int id, Model model) {
+
+        model.addAttribute("firstpage",this.firstPageRepository.getRecordById(id));
+
+        return "editfirstpage";
+    }
+
+    @PreAuthorize("hasRole('Admin') or hasRole('Editor')")
+    @RequestMapping(value = "/updatefirstpage", method = RequestMethod.POST)
+    public String updatefirstpage(@RequestParam("id") int id, @RequestParam(value="feature" , required = false, defaultValue = "") String feature,@RequestParam(value="raiting" , required = false, defaultValue = "50") int raiting, Model model) {
+
+
+
+        FirstpageEntity firstpage=this.firstPageRepository.getRecordById(id);
+
+        boolean feat;
+        if (feature.equals("on")) feat=true;
+        else feat=false;
+
+        firstpage.setFeature(feat);
+        firstpage.setRaiting(raiting);
+        this.firstPageRepository.updateFirstPage(firstpage);
+
+        return "redirect:/tablefirstpage";
+    }
 }

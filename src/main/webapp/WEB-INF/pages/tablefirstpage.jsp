@@ -78,7 +78,7 @@
                                         <th>Author</th>
                                         <th>Raiting</th>
                                         <th>Feature</th>
-                                        <th>Action</th>
+                                        <th width="20%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -102,6 +102,7 @@
                                         <span class="tooltip-area">
                                              <sec:authorize access="hasAnyRole('Admin','Editor')">
                                                 <a href="/deletefirstpage/${firstpage[0].id}" data-confirm="Are you sure you want to delete?" class="btn btn-default btn-sm" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                <a href="/editfirstpage/${firstpage[0].id}" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
                                             </sec:authorize>
                                         </span>
                                             </td>
@@ -189,7 +190,7 @@
                     <label class="control-label">Feature</label>
                     <div>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="feature">
+                            <input type="checkbox" name="feature" id="feature">
                             </label>
                     </div>
                 </div>
@@ -244,7 +245,6 @@
 <!-- Library datable -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/mockjax.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/bootstrap-editable.js"></script>
 
 <script type="text/javascript">
@@ -285,6 +285,7 @@
     });
 </script>
 
+
 <script>
     $(document).ready(function() {
         $('a[data-confirm]').click(function(ev) {
@@ -309,6 +310,7 @@
         return false;
     }
 </script>
+
 
 </body>
 </html>
