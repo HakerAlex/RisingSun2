@@ -6,7 +6,7 @@ import com.springapp.mvc.domain.UsersrulesEntity;
 import com.springapp.mvc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -36,11 +36,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			boolean accountNonExpired = user.getStatus().equals(Status.ACTIVE.toString());
 			boolean credentialsNonExpired = user.getStatus().equals(Status.ACTIVE.toString());
 			boolean accountNonLocked = user.getStatus().equals(Status.ACTIVE.toString());
-			
+
 			//Let's populate user roles
 			Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 			for(UsersrulesEntity role : user.getUsersrulesById()){
-				authorities.add(new GrantedAuthorityImpl(role.getRulesByIdRules().getNameRule()));
+				authorities.add(new SimpleGrantedAuthority(role.getRulesByIdRules().getNameRule()));
 			}
 			
 			//Now let's create Spring Security User object

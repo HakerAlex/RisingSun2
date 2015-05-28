@@ -95,22 +95,26 @@ public class ArticlesController {
     }
 
 
+    public int onlyAuthor(){
+        int onlyAut=0;
+        for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
+            if(authority.getAuthority().equals("Author"))
+                onlyAut=1;
+            else
+                onlyAut=0;
+        }
+        return onlyAut;
+    }
+
+
+
     @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author') or hasRole('Corrector')")
     @RequestMapping(value = "tablearticles", method = RequestMethod.GET)
     public String tablearticles(Model model) {
 
-        int onlyAuthor=0;
-        for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
-            if(authority.getAuthority().equals("Author"))
-                onlyAuthor=1;
-            else
-                onlyAuthor=0;
-            }
-
-
         List<ArticlesEntity> articles;
 
-        if (onlyAuthor==1){
+        if (onlyAuthor()==1){
             User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             articles= this.articlesRepository. newsByAuthorUsername(user.getUsername());
         }

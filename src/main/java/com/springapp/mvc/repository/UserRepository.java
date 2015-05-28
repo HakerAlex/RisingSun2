@@ -2,10 +2,8 @@ package com.springapp.mvc.repository;
 
 import com.springapp.mvc.domain.RulesEntity;
 import com.springapp.mvc.domain.UsersEntity;
-import com.springapp.mvc.domain.UsersrulesEntity;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

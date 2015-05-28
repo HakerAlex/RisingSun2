@@ -62,7 +62,6 @@ public class UsersEntity {
 
     @Basic
     @Column(name = "status", nullable = false, insertable = true, updatable = true, length = 50)
-    @Enumerated(EnumType.STRING)
     public String getStatus() {
         return status;
     }
