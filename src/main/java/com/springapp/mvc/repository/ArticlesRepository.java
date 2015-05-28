@@ -94,7 +94,7 @@ public class ArticlesRepository {
     {
         for (String tag:tags)
         {
-            TagsEntity ourtag=getTagByName(tag);
+            TagsEntity ourtag=getTagByName(tag.trim());
             if (ourtag==null) {
                 this.sessionFactory.getCurrentSession().createSQLQuery("Insert INTO tags (Name) values (:tag) ").setString("tag", tag).executeUpdate();
                 ourtag=getTagByName(tag);

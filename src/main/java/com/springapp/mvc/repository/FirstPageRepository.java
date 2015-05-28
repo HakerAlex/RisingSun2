@@ -41,6 +41,11 @@ public class FirstPageRepository {
         this.sessionFactory.getCurrentSession().createSQLQuery("DELETE from firstpage WHERE ID=:id").setInteger("id",id).executeUpdate();
     }
 
+
+    public void removeArticleFromFirstPageByArticle_ID(Integer id){
+        this.sessionFactory.getCurrentSession().createSQLQuery("DELETE from firstpage WHERE Article_ID=:id").setInteger("id",id).executeUpdate();
+    }
+
     public List<TagsEntity> tagsByNewsName(String name){
         return this.sessionFactory.getCurrentSession().createSQLQuery("Select tags.* from tags left join tagsarcticle on tags.ID=tagsarcticle.ID_Teg left join articles on tagsarcticle.ID_Arcticle=articles.ID where articles.NamePage=:name").addEntity(TagsEntity.class).setString("name", name).list();
     }

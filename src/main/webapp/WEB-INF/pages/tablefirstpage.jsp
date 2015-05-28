@@ -78,7 +78,7 @@
                                         <th align="center">Author</th>
                                         <th align="center">Raiting</th>
                                         <th align="center">Feature</th>
-                                        <th width="15%">Action</th>
+                                        <th width="25%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>

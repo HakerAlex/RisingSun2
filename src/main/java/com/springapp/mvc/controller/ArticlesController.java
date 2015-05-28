@@ -106,6 +106,9 @@ public class ArticlesController {
         return onlyAut;
     }
 
+    public User getCurrentUser(){
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
 
 
     @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author') or hasRole('Corrector')")
@@ -115,7 +118,7 @@ public class ArticlesController {
         List<ArticlesEntity> articles;
 
         if (onlyAuthor()==1){
-            User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user=getCurrentUser();
             articles= this.articlesRepository. newsByAuthorUsername(user.getUsername());
         }
         else
@@ -129,12 +132,22 @@ public class ArticlesController {
     @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author') or hasRole('Corrector')")
     @RequestMapping(value = "editarticle/{id}", method = RequestMethod.GET)
     public String editarticles(@PathVariable int id,Model model) {
+
         ArticlesEntity article = this.articlesRepository.getArticleByID(id);
+
+        if (onlyAuthor()==1) {
+            User user=getCurrentUser();
+            if (user.getUsername()!=article.getUsersByAuthor().getUsername())return "forward:/tablearticles";
+        }
+
         List<UsersEntity> users=this.articlesRepository.listAllAuthors();
         List<TagsEntity> tags=this.articlesRepository.listTagsByArticle(id);
         model.addAttribute("arcticle", article);
         model.addAttribute("authors", users);
         model.addAttribute("tags", tags);
+
+
+
         return "editarticles";
     }
 
@@ -159,6 +172,8 @@ public class ArticlesController {
         article.setArticle(textarticle);
 
         this.articlesRepository.updateArticle(article,tags);
+
+        if (ourA) this.firstPageRepository.removeArticleFromFirstPageByArticle_ID(id);
 
         return "redirect:/tablearticles";
     }
