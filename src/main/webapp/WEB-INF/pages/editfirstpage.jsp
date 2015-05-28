@@ -85,7 +85,7 @@
                             <div class="form-group">
                                     <label class="control-label">Raiting </label>
                                 <br>
-                                <div class="form-group">
+                                <div class="panel-body">
                                     <div class="cp-slider-wrapper" data-color="green" data-max="100" data-range="min"
                                          data-value="${firstpage.raiting}">
                                         <input type="hidden" name="raiting" id="raiting"  align="center"/>
