@@ -50,7 +50,7 @@ public class FirstpageController {
         return "index";
     }
 
-    @RequestMapping(value = "news/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/news/{name}", method = RequestMethod.GET)
     public String getNewsByName(@PathVariable String name, Model model) {
         List<FirstpageEntity> news = this.firstPageRepository.newsByName(name);
         List<Date> list=this.firstPageRepository.newsArchive();
@@ -91,7 +91,7 @@ public class FirstpageController {
     }
 
 
-    @RequestMapping(value = "deletefirstpage/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deletefirstpage/{id}", method = RequestMethod.GET)
     public String deleteFromFirstpage(@PathVariable int id, Model model) {
         this.firstPageRepository.removeArticleFromFirstPage(id);
         return "redirect:/tablefirstpage";
