@@ -54,7 +54,7 @@
 
                         <c:if test="${!empty archive}">
                             <c:forEach items="${archive}" var="arch">
-                                <li class="has-flyout"><a href="/archive/${arch}"><f:formatDate type="date"
+                                <li class="has-flyout"><a href="${pageContext.request.contextPath}/archive/${arch}"><f:formatDate type="date"
                                                                                                 value="${arch}"
                                                                                                 pattern="MM-yyyy"/></a>
                                 </li>

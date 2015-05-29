@@ -103,7 +103,11 @@ public class ArticlesRepository {
             TagsarcticleEntity tagArt=new TagsarcticleEntity();
             tagArt.setArticlesByIdArcticle(article);
             tagArt.setTagsByIdTeg(ourtag);
-            this.sessionFactory.getCurrentSession().save(tagArt);
+
+            TagsarcticleEntity test = (TagsarcticleEntity) this.sessionFactory.getCurrentSession().createSQLQuery("Select * from tagsarcticle where ID_Arcticle=:idArticle and ID_Teg=:idTag").addEntity(TagsarcticleEntity.class).setInteger("idArticle", article.getId()).setInteger("idTag",ourtag.getId()).uniqueResult();
+
+            if (test==null)
+                this.sessionFactory.getCurrentSession().save(tagArt);
         }
     }
 
@@ -116,7 +120,6 @@ public class ArticlesRepository {
             this.sessionFactory.getCurrentSession().update(article);
             deleteAllTagByArticleID(article.getId());
             addTagsToArticle(article,tags);
-
         }catch (Exception e)
         {
         }

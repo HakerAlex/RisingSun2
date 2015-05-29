@@ -30,7 +30,7 @@ public class FirstPageRepository {
     }
 
     public List<FirstpageEntity> newsByName(String name){
-        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM firstpage LEFT JOIN articles on firstpage.Article_ID=articles.ID LEFT JOIN users on users.ID = articles.Author WHERE articles.NamePage=:name order by Raiting").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).setString("name", name).list();
+        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM articles LEFT JOIN users on users.ID = articles.Author WHERE articles.NamePage=:name").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).setString("name", name).list();
     }
 
     public List<Date> newsArchive(){

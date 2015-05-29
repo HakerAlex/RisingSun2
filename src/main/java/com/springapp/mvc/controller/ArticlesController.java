@@ -78,9 +78,13 @@ public class ArticlesController {
         List<ArticlesEntity> news = this.articlesRepository.newsSearchByTag(tag);
         List<Date> list=this.articlesRepository.newsArchive();
         TagsEntity tagE=this.articlesRepository.maxCountByTag(tag);
+        if (tagE==null) {
+            tagE=new TagsEntity();
+            tagE.setName("");
+        }
         model.addAttribute("allnews", clearSymbols(news));
         model.addAttribute("archive", list);
-        model.addAttribute("searchr", " Search by tag:<a href=\"/tags/"+tag+"\">"+tag+"</a>, this tag often to meet with <a href=\"/tags/"+tagE.getName()+"\">"+tagE.getName()+"</a>");
+        model.addAttribute("searchr", " Search by tag:<a href=\"../tags/"+tag+"\">"+tag+"</a>, this tag often to meet with <a href=\"../tags/"+tagE.getName()+"\">"+tagE.getName()+"</a>");
         return "search";
     }
 
@@ -90,7 +94,7 @@ public class ArticlesController {
         List<Date> list=this.articlesRepository.newsArchive();
         model.addAttribute("allnews", clearSymbols(news));
         model.addAttribute("archive", list);
-        model.addAttribute("searchr", " Search by author:<a href=\"/author/"+author+"\">"+author+"</a>");
+        model.addAttribute("searchr", " Search by author:<a href=\"../author/"+author+"\">"+author+"</a>");
         return "search";
     }
 

@@ -18,12 +18,10 @@ import java.util.*;
 public class FirstpageController {
 
     private FirstPageRepository firstPageRepository;
-    private ArticlesRepository articlesRepository;
 
     @Autowired
-    public FirstpageController(FirstPageRepository firstPageRepository,ArticlesRepository articlesRepository){
+    public FirstpageController(FirstPageRepository firstPageRepository){
         this.firstPageRepository=firstPageRepository;
-        this.articlesRepository=articlesRepository;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
