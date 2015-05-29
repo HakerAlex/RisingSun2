@@ -9,8 +9,8 @@
   <sec:authorize access="hasRole('Admin')">
     <li><span><i class="icon fa fa-smile-o"></i> USERS</span>
       <ul>
-        <li><a href="/tableuser"><i class="icon  fa fa-th"></i> EDIT USER </a></li>
-        <li><a href="/adduser"><i class="icon  fa fa-rocket"></i> ADD USER </a></li>
+        <li><a href="${pageContext.request.contextPath}/tableuser"><i class="icon  fa fa-th"></i> EDIT USER </a></li>
+        <li><a href="${pageContext.request.contextPath}/adduser"><i class="icon  fa fa-rocket"></i> ADD USER </a></li>
       </ul>
     </li>
   </sec:authorize>
@@ -18,9 +18,9 @@
 
     <li><span><i class="icon  fa fa-inbox"></i> ARTICLES</span>
       <ul>
-        <li><a href="/tablearticles"><i class="icon  fa fa-th"></i> EDIT ARTICLE </a></li>
+        <li><a href="${pageContext.request.contextPath}/tablearticles"><i class="icon  fa fa-th"></i> EDIT ARTICLE </a></li>
         <sec:authorize access="hasRole('Admin') or hasRole('Editor') or hasRole('Author')">
-          <li><a href="/addarticles"><i class="icon  fa fa-rocket"></i> ADD ARCTICLE </a></li>
+          <li><a href="${pageContext.request.contextPath}/addarticles"><i class="icon  fa fa-rocket"></i> ADD ARCTICLE </a></li>
         </sec:authorize>
       </ul>
     </li>
@@ -29,7 +29,7 @@
     <li><span><i class="icon  fa fa-laptop"></i> FIRSTPAGE</span>
       <ul>
 
-          <li><a href="/tablefirstpage"><i class="icon  fa fa-rocket"></i> EDIT FIRST PAGE </a></li>
+          <li><a href="${pageContext.request.contextPath}/tablefirstpage"><i class="icon  fa fa-rocket"></i> EDIT FIRST PAGE </a></li>
       </ul>
     </li>
     </sec:authorize>

@@ -100,7 +100,7 @@
 
                                             <td align="center">
                                         <span class="tooltip-area">
-                                            <a href="/edituser/${user[0].id}" class="btn btn-default btn-sm" title="Edit"><i
+                                            <a href="${pageContext.request.contextPath}/edituser/${user[0].id}" class="btn btn-default btn-sm" title="Edit"><i
                                                     class="fa fa-pencil"></i></a></span>
                                             </td>
 

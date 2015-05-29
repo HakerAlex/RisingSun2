@@ -101,8 +101,8 @@
                                             <td align="center">
                                         <span class="tooltip-area">
                                              <sec:authorize access="hasAnyRole('Admin','Editor')">
-                                                <a href="/editfirstpage/${firstpage[0].id}" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
-                                                <a href="/deletefirstpage/${firstpage[0].id}" data-confirm="Are you sure you want to delete?" class="btn btn-default btn-sm" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                <a href="${pageContext.request.contextPath}/editfirstpage/${firstpage[0].id}" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
+                                                <a href="${pageContext.request.contextPath}/deletefirstpage/${firstpage[0].id}" data-confirm="Are you sure you want to delete?" class="btn btn-default btn-sm" title="Delete"><i class="fa fa-trash-o"></i></a>
                                             </sec:authorize>
                                         </span>
                                             </td>

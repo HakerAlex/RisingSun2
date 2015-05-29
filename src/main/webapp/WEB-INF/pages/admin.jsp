@@ -69,7 +69,7 @@
 												});
 											</script>
 										</c:if>
-										<form id="form-signin" class="form-signin" action="/j_spring_security_check" method="post">
+										<form id="form-signin" class="form-signin" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
 												<section>
 														<div class="input-group">
 																<div class="input-group-addon"><i class="fa fa-user"></i></div>

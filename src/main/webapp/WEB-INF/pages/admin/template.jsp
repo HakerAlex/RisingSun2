@@ -33,7 +33,7 @@
           <ul class="dropdown-menu pull-right icon-right arrow">
 
             <sec:authorize access="isAuthenticated()">
-              <li><a href="/j_spring_security_logout"><i class="fa fa-sign-out"></i> Signout </a></li>
+              <li><a href="${pageContext.request.contextPath}/j_spring_security_logout"><i class="fa fa-sign-out"></i> Signout </a></li>
             </sec:authorize>
 
           </ul>

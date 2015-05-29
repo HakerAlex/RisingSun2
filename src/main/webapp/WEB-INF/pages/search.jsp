@@ -45,7 +45,7 @@
 
             <ul id="menu-header" class="nav-bar horizontal">
 
-                <li><a href="/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
 
                 <li class="has-flyout">
                     <a href="#">Archive</a><a href="#" class="flyout-toggle"></a>
@@ -111,24 +111,24 @@
                             <div class="three columns">
 
                                 <c:if test="${empty news.image}">
-                                    <a href="/news/${news.namePage}" class="th"><img src="${pageContext.request.contextPath}/resources/img/sunr.jpg" alt="desc"/>
+                                    <a href="${pageContext.request.contextPath}/news/${news.namePage}" class="th"><img src="${pageContext.request.contextPath}/resources/img/sunr.jpg" alt="desc"/>
                                     </a>
                                 </c:if>
 
                                 <c:if test="${!empty news.image}">
-                                    <a href="/news/${news.namePage}" class="th"><img src="${news.image}" alt="desc">
+                                    <a href="${pageContext.request.contextPath}/news/${news.namePage}" class="th"><img src="${news.image}" alt="desc">
                                     </a>
                                 </c:if>
 
                             </div>
 
                             <div class="nine columns">
-                                <a href="/news/${news.namePage}"><h3>${news.title}</h3></a>
+                                <a href="${pageContext.request.contextPath}/news/${news.namePage}"><h3>${news.title}</h3></a>
                                 <p> ${news.article}...</p>
                                 <span class="lsf-icon" title="calender"><f:formatDate type="date" value="${news.dateCreate}"
                                                                                                                    pattern="dd/MM/yyyy"/></span>
 								<span class="lsf-icon" title="user"><a
-                                        href="/author/${news.usersByAuthor.name}"> ${news.usersByAuthor.name}</a></span>
+                                        href="${pageContext.request.contextPath}/author/${news.usersByAuthor.name}"> ${news.usersByAuthor.name}</a></span>
                             </div>
 
 

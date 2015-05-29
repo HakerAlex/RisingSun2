@@ -52,7 +52,7 @@
 
             <ul id="menu-header" class="nav-bar horizontal">
 
-                <li><a href="/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
 
                 <li class="has-flyout">
                     <a href="#">Archive</a><a href="#" class="flyout-toggle"></a>
@@ -61,7 +61,7 @@
 
                         <c:if test="${!empty archive}">
                             <c:forEach items="${archive}" var="arch">
-                                <li class="has-flyout"><a href="/archive/${arch}"><f:formatDate type="date"
+                                <li class="has-flyout"><a href="${pageContext.request.contextPath}/archive/${arch}"><f:formatDate type="date"
                                                                                                 value="${arch}"
                                                                                                 pattern="MM-yyyy"/></a>
                                 </li>
@@ -127,10 +127,10 @@
                         <span class="lsf-icon" title="calender"><f:formatDate type="date" value="${news[0].dateCreate}"
                                                                               pattern="dd/MM/yyyy"/></span>
                         <span class="lsf-icon" title="user" style="margin-left:15px"><a
-                                href="/author/${news[1].name}"> ${news[1].name}</a></span>
+                                href="${pageContext.request.contextPath}/author/${news[1].name}"> ${news[1].name}</a></span>
                         <span class="lsf-icon" title="tags" style="margin-left:15px">
                         <c:forEach items="${tags}" var="tag">
-                            <a class="label" href="/tags/${tag.name}">${tag.name}</a>
+                            <a class="label" href="${pageContext.request.contextPath}/tags/${tag.name}">${tag.name}</a>
                         </c:forEach>
                         </span>
 

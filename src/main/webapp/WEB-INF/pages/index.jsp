@@ -47,7 +47,7 @@
            <div class="ten columns" style="padding-top:8px">
             <ul id="menu-header" class="nav-bar horizontal">
             
-            <li class="active"><a href="/">Home</a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
 
             <li class="has-flyout">
                 <a href="#">Archive</a><a href="#" class="flyout-toggle"></a>
@@ -56,7 +56,7 @@
 
                     <c:if test = "${!empty archive}">
                         <c:forEach items = "${archive}" var = "arch">
-                            <li class="has-flyout"><a href="/archive/${arch}"><f:formatDate type="date" value="${arch}" pattern="MM-yyyy" /></a></li>
+                            <li class="has-flyout"><a href="${pageContext.request.contextPath}/archive/${arch}"><f:formatDate type="date" value="${arch}" pattern="MM-yyyy" /></a></li>
                         </c:forEach>
                     </c:if>
 
@@ -102,12 +102,12 @@
 
 
                 <c:if test="${empty news[1].image}">
-                    <a href="news/${news[1].namePage}"><img src="${pageContext.request.contextPath}/resources/img/sunr.jpg" alt="desc"/>
+                    <a href="${pageContext.request.contextPath}/news/${news[1].namePage}"><img src="${pageContext.request.contextPath}/resources/img/sunr.jpg" alt="desc"/>
                     </a>
                 </c:if>
 
                 <c:if test="${!empty news[1].image}">
-                    <a href="news/${news[1].namePage}"><img src="${news[1].image}" alt="desc">
+                    <a href="${pageContext.request.contextPath}/news/${news[1].namePage}"><img src="${news[1].image}" alt="desc">
                     </a>
                 </c:if>
 
@@ -115,18 +115,18 @@
                 <marquee onmouseout="javascript:this.scrollAmount=4" onmouseover="javascript:this.scrollAmount=0"
                          style="background-color: transparent;" direction="left" scrollamount="2">
 
-                    <a href="news/${news[1].namePage}"><img src="${pageContext.request.contextPath}/resources/img/top.jpg" alt="desc"/>
+                    <a href="${pageContext.request.contextPath}/news/${news[1].namePage}"><img src="${pageContext.request.contextPath}/resources/img/top.jpg" alt="desc"/>
                     </a>
                 </marquee>
                 </c:if>
 
 
-                <h4><strong><a href="news/${news[1].namePage}">${news[1].title}</a></strong></h4>
+                <h4><strong><a href="${pageContext.request.contextPath}/news/${news[1].namePage}">${news[1].title}</a></strong></h4>
                 <p>${news[1].article}...</p>
 
                 <div class="post_meta">
                     <span class="lsf-icon" title="calender"><f:formatDate type="date" value="${news[1].dateCreate}" pattern="dd/MM/yyyy" /></span>
-                    <span class="lsf-icon" title="user" style="margin-left:15px"><a href="/author/${news[2].name}"> ${news[2].name}</a></span>
+                    <span class="lsf-icon" title="user" style="margin-left:15px"><a href="${pageContext.request.contextPath}/author/${news[2].name}"> ${news[2].name}</a></span>
                 </div>
             </div>
 
