@@ -154,14 +154,7 @@
             <version>1.10</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.jboss.as</groupId>
-            <artifactId>jboss-as-server</artifactId>
-            <version>7.1.1.Final</version>
-        </dependency>
-
-
-    </dependencies>
+      </dependencies>
 
     <build>
         <finalName>risingsun</finalName>
