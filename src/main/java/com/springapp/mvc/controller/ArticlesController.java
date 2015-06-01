@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.security.Principal;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -38,10 +37,16 @@ public class ArticlesController {
     }
 
 
+    public String stripTags(String xmlStr){
+        xmlStr = xmlStr.replaceAll("<(.)+?>", "");
+        xmlStr = xmlStr.replaceAll("<(\n)+?>", "");
+        return xmlStr;
+    }
+
     private  List<ArticlesEntity> clearSymbols(List<ArticlesEntity> newsList){
         for (Object news:newsList){
             ArticlesEntity article=(ArticlesEntity) news;
-            String ourText=org.apache.taglibs.string.util.XmlW.removeXml(article.getArticle());
+            String ourText=stripTags(article.getArticle());
             int len=Math.min(200, ourText.length() - 1);
 
             ourText=ourText.substring(0, len);

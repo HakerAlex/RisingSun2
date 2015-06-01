@@ -2,9 +2,6 @@ package com.springapp.mvc.domain;
 
 import javax.persistence.*;
 
-/**
- * Created by Alex on 30.04.2015.
- */
 @Entity
 @Table(name = "firstpage")
 public class FirstpageEntity {

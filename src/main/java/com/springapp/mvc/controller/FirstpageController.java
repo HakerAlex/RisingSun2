@@ -1,9 +1,7 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.domain.*;
-import com.springapp.mvc.repository.ArticlesRepository;
 import com.springapp.mvc.repository.FirstPageRepository;
-import com.springapp.mvc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -11,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.*;
 
 @Controller
@@ -24,14 +21,21 @@ public class FirstpageController {
         this.firstPageRepository=firstPageRepository;
     }
 
+    public String stripTags(String xmlStr){
+        xmlStr = xmlStr.replaceAll("<(.)+?>", "");
+        xmlStr = xmlStr.replaceAll("<(\n)+?>", "");
+        return xmlStr;
+    }
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getNews(Model model) {
         List<FirstpageEntity> news = this.firstPageRepository.listAll();
 
         for (Object list:news){
-            Object[] objectory=(Object[]) list;
+            Object[] objectory = (Object[]) list;
             ArticlesEntity article=(ArticlesEntity) objectory[1];
-            String ourText=org.apache.taglibs.string.util.XmlW.removeXml(article.getArticle());
+            String ourText=stripTags(article.getArticle());
             int len=Math.min(200, ourText.length() - 1);
             article.setArticle(ourText.substring(0, len));
             ourText= ourText.substring(0, len);
