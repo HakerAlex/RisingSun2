@@ -32,7 +32,7 @@ public class UserRepository {
 
     public List<RulesEntity> findRulesByUserID(int userId) {
 
-        return session.getCurrentSession().createSQLQuery("Select rules.ID, NameRule  from users LEFT JOIN usersrules on users.ID = usersrules.ID_Users LEFT JOIN rules ON rules.ID = usersrules.ID_Rules WHERE ID_Users=:ID").addEntity(RulesEntity.class).setInteger("ID",userId).list();
+        return session.getCurrentSession().createSQLQuery("Select rules.ID, namerule  from users LEFT JOIN usersrules on users.ID = usersrules.ID_Users LEFT JOIN rules ON rules.ID = usersrules.ID_Rules WHERE ID_Users=:ID").addEntity(RulesEntity.class).setInteger("ID",userId).list();
     }
 
     public List<RulesEntity> findAllRulesByUserID(int userId) {
@@ -53,7 +53,7 @@ public class UserRepository {
     }
 
     public List<UsersEntity> getAllUsers() {
-        return session.getCurrentSession().createSQLQuery("Select Users.ID as ID, Name,password, username,Status,GROUP_CONCAT(DISTINCT NameRule ORDER BY NameRule ASC SEPARATOR ', ') AS NameRule  from Users LEFT JOIN usersrules ON users.ID = usersrules.ID_Users LEFT JOIN rules ON rules.ID = usersrules.ID_Rules group by Name, username,Status, users.ID").addEntity(UsersEntity.class).addEntity(RulesEntity.class).list();
+        return session.getCurrentSession().createSQLQuery("Select users.ID as ID, Name,password, username,status,GROUP_CONCAT(DISTINCT namerule ORDER BY namerule ASC SEPARATOR ', ') AS namerule  from users LEFT JOIN usersrules ON users.ID = usersrules.ID_Users LEFT JOIN rules ON rules.ID = usersrules.ID_Rules group by Name, username,Status, users.ID").addEntity(UsersEntity.class).addEntity(RulesEntity.class).list();
     }
 
     public void updateRules(int id,String[] rules)
