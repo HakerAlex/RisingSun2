@@ -146,7 +146,7 @@ public class ArticlesController {
 
         if (onlyAuthor()==1) {
             User user=getCurrentUser();
-            if (user.getUsername()!=article.getUsersByAuthor().getUsername())return "forward:/tablearticles";
+            if (!user.getUsername().toLowerCase().equals(article.getUsersByAuthor().getUsername().toLowerCase()))return "forward:/tablearticles";
         }
 
         List<UsersEntity> users=this.articlesRepository.listAllAuthors();
