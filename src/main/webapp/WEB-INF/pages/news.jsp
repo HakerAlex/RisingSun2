@@ -14,7 +14,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width"/>
 
-    <title>Rising sun news/</title>
+    <title>Rising sun news</title>
 
     <!-- Included CSS Files (Uncompressed) -->
     <!--
