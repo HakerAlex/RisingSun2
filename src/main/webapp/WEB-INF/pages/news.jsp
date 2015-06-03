@@ -61,9 +61,11 @@
 
                         <c:if test="${!empty archive}">
                             <c:forEach items="${archive}" var="arch">
-                                <li class="has-flyout"><a href="${pageContext.request.contextPath}/archive/${arch}"><f:formatDate type="date"
-                                                                                                value="${arch}"
-                                                                                                pattern="MM-yyyy"/></a>
+                                <li class="has-flyout"><a
+                                        href="${pageContext.request.contextPath}/archive/${arch}"><f:formatDate
+                                        type="date"
+                                        value="${arch}"
+                                        pattern="MM-yyyy"/></a>
                                 </li>
                             </c:forEach>
                         </c:if>
@@ -77,7 +79,6 @@
             </ul>
 
 
-
             <script type="text/javascript">
                 //<![CDATA[
                 $('ul#menu-header').nav - bar();
@@ -87,7 +88,8 @@
         </div>
 
         <div class="two columns" style="padding-top:8px">
-            <form class="searching" method="post" action="${pageContext.request.contextPath}/search" commandName="search">
+            <form class="searching" method="post" action="${pageContext.request.contextPath}/search"
+                  commandName="search">
                 <input tabindex="1" id="autocomplete" name="value" type="search" placeholder="Type and hit Enter">
             </form>
         </div>
@@ -135,25 +137,45 @@
                         </span>
 
 
+                    <%--<div class="post_meta">--%>
 
-            <%--<div class="post_meta">--%>
+                    <%--</div>--%>
 
-            <%--</div>--%>
+                <script type="text/javascript">(function () {
+                    if (window.pluso)if (typeof window.pluso.start == "function") return;
+                    if (window.ifpluso == undefined) {
+                        window.ifpluso = 1;
+                        var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                        s.type = 'text/javascript';
+                        s.charset = 'UTF-8';
+                        s.async = true;
+                        s.src = ('https:' == window.location.protocol ? 'https' : 'http') + '://share.pluso.ru/pluso-like.js';
+                        var h = d[g]('body')[0];
+                        h.appendChild(s);
+                    }
+                })();</script>
+                <br>
+                <div class="pluso" data-background="transparent"
+                     data-options="big,square,line,horizontal,counter,theme=06"
+                     data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print"></div>
 
 
-            <div id="disqus_thread"></div>
-            <script type="text/javascript">
-                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                var disqus_shortname = 'risingsunnews'; // Required - Replace '<example>' with your forum shortname
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                    var disqus_shortname = 'risingsunnews'; // Required - Replace '<example>' with your forum shortname
 
-                /* * * DON'T EDIT BELOW THIS LINE * * */
-                (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function () {
+                        var dsq = document.createElement('script');
+                        dsq.type = 'text/javascript';
+                        dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments
+                    powered by Disqus.</a></noscript>
 
             </div>
         </section>
