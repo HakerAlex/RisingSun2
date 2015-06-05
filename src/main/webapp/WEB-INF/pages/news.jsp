@@ -54,24 +54,8 @@
 
                 <li><a href="${pageContext.request.contextPath}/">Home</a></li>
 
-                <li class="has-flyout">
-                    <a href="#">Archive</a><a href="#" class="flyout-toggle"></a>
-
-                    <ul class="flyout">
-
-                        <c:if test="${!empty archive}">
-                            <c:forEach items="${archive}" var="arch">
-                                <li class="has-flyout"><a
-                                        href="${pageContext.request.contextPath}/archive/${arch}"><f:formatDate
-                                        type="date"
-                                        value="${arch}"
-                                        pattern="MM-yyyy"/></a>
-                                </li>
-                            </c:forEach>
-                        </c:if>
-
-                    </ul>
-
+                <li>
+                    <a href="${pageContext.request.contextPath}/allarchive">Archive</a>
                 </li>
 
                 <li class="active"><a href="#">Article</a></li>

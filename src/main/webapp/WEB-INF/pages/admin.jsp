@@ -32,7 +32,7 @@
 <!-- Title-->
 <title>RISING SUN ADMIN</title>
 <!-- Favicons -->
-
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/ico/favicon.ico">
 <!-- CSS Stylesheet-->
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap/bootstrap.min.css" />
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap/bootstrap-themes.css" />

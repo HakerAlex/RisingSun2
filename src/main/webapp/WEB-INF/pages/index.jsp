@@ -49,20 +49,9 @@
             
             <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
 
-            <li class="has-flyout">
-                <a href="#">Archive</a><a href="#" class="flyout-toggle"></a>
-
-                <ul class="flyout">
-
-                    <c:if test = "${!empty archive}">
-                        <c:forEach items = "${archive}" var = "arch">
-                            <li class="has-flyout"><a href="${pageContext.request.contextPath}/archive/${arch}"><f:formatDate type="date" value="${arch}" pattern="MM-yyyy" /></a></li>
-                        </c:forEach>
-                    </c:if>
-
-                </ul>
-
-            </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/allarchive">Archive</a>
+                </li>
 
 
             </ul>
@@ -98,7 +87,15 @@
             <c:if test = "${!empty allnews}">
             <c:forEach items = "${allnews}" var = "news">
 
-			<div class='box photo col2'>
+
+                <c:if test="${news[0].feature==true}">
+                    <div class='box photo col2' style="background: dimgrey;" >
+                </c:if>
+
+                <c:if test="${news[0].feature==false}">
+                    <div class='box photo col2'>
+                </c:if>
+
 
 
                 <c:if test="${empty news[1].image}">
@@ -122,9 +119,17 @@
 
 
                 <h4><strong><a href="${pageContext.request.contextPath}/news/${news[1].namePage}">${news[1].title}</a></strong></h4>
-                <p>${news[1].article}...</p>
 
-                <div class="post_meta">
+                    <c:if test="${news[0].feature==false}">
+                        <p>${news[1].article}...</p>
+                    </c:if>
+
+                    <c:if test="${news[0].feature==true}">
+                        <p style="color: white">${news[1].article}...</p>
+                     </c:if>
+
+
+                        <div class="post_meta">
                     <span class="lsf-icon" title="calender"><f:formatDate type="date" value="${news[1].dateCreate}" pattern="dd/MM/yyyy" /></span>
                     <span class="lsf-icon" title="user" style="margin-left:15px"><a href="${pageContext.request.contextPath}/author/${news[2].name}"> ${news[2].name}</a></span>
                 </div>

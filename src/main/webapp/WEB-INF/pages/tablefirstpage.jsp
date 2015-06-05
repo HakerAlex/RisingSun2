@@ -22,6 +22,7 @@
           href="${pageContext.request.contextPath}/resources/assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed"
           href="${pageContext.request.contextPath}/resources/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/ico/favicon.ico">
 
     <!-- CSS Stylesheet-->
     <link type="text/css" rel="stylesheet"

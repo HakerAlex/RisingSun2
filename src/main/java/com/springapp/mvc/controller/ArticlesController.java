@@ -78,6 +78,18 @@ public class ArticlesController {
         return "search";
     }
 
+
+    @RequestMapping(value = "allarchive", method = RequestMethod.GET)
+    public String archiveAll(Model model) {
+        List<String> list=this.articlesRepository.allArchive();
+        List<Integer> listYear=this.articlesRepository.allYearArchive();
+        model.addAttribute("allnews", list);
+        model.addAttribute("yearnews", listYear);
+        return "archive";
+    }
+
+
+
     @RequestMapping(value = "tags/{tag}", method = RequestMethod.GET)
     public String searchByTag(@PathVariable String tag,  Model model) {
         List<ArticlesEntity> news = this.articlesRepository.newsSearchByTag(tag);

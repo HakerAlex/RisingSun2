@@ -75,8 +75,18 @@ public class ArticlesRepository {
     }
 
     public List<Date> newsArchive(){
-        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT LAST_DAY(DateCreate) + INTERVAL 1 DAY - INTERVAL 1 MONTH  as DateArchive FROM articles where articles.archive=1 GROUP BY DateArchive").list();
+        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT LAST_DAY(DateCreate) + INTERVAL 1 DAY - INTERVAL 1 MONTH  as DateArchive FROM articles where articles.archive=1 GROUP BY DateArchive ORDER BY DateArchive DESC").list();
     }
+
+
+    public List<String> allArchive(){
+        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT YEAR(DateCreate) as year,LAST_DAY(DateCreate) + INTERVAL 1 DAY - INTERVAL 1 MONTH  as DateArchive, MONTHNAME(DateCreate) as month FROM articles where articles.archive=1 GROUP BY year,DateArchive ORDER BY YEAR DESC, DateArchive").list();
+    }
+
+    public List<Integer> allYearArchive(){
+        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT YEAR(DateCreate) as year FROM articles where articles.archive=1 GROUP BY year ORDER BY year DESC ").list();
+    }
+
 
     public void deleteArticle(Integer id){
         ArticlesEntity article=(ArticlesEntity)this.sessionFactory.getCurrentSession().load(ArticlesEntity.class,id);

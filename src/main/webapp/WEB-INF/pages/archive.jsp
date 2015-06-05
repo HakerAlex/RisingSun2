@@ -47,11 +47,9 @@
 
                 <li><a href="${pageContext.request.contextPath}/">Home</a></li>
 
-                <li>
+                <li class="active">
                     <a href="${pageContext.request.contextPath}/allarchive">Archive</a>
                 </li>
-
-                <li class="active"><a href="#">Search</a></li>
 
             </ul>
 
@@ -87,41 +85,44 @@
 
             <section class="eight columns">
 
-                <c:if test = "${!empty searchr}">
-                    <h2>${searchr}</h2>
-                </c:if>
-                <c:if test="${!empty allnews}">
-                    <c:forEach items="${allnews}" var="news">
-                        <article class="blog_post">
+                <h3>Archive panel</h3>
 
-                            <div class="three columns">
+                <c:set var="flag" value="1" scope="session"/>
 
-                                <c:if test="${empty news.image}">
-                                    <a href="${pageContext.request.contextPath}/news/${news.namePage}" class="th"><img src="${pageContext.request.contextPath}/resources/img/sunr.jpg" alt="desc"/>
-                                    </a>
-                                </c:if>
+                <ul class="accordion">
+                    <c:forEach items="${yearnews}" var="year">
 
-                                <c:if test="${!empty news.image}">
-                                    <a href="${pageContext.request.contextPath}/news/${news.namePage}" class="th"><img src="${news.image}" alt="desc">
-                                    </a>
-                                </c:if>
+                    <c:if test="${flag eq 1}">
+                        <li class="active">
+                    </c:if>
 
+                        <c:if test="${flag eq 2}">
+                            <li>
+                        </c:if>
+
+                        <c:set var="flag" value="2" scope="session" />
+
+                        <div class="title">
+                            <h5>Year:${year}</h5>
+                        </div>
+
+                            <div class="content">
+                            <c:forEach items="${allnews}" var="news">
+                                    <p>
+
+                                        <c:if test="${year==news[0]}">
+                                            <span class="lsf-icon" title="album" style="margin-left:15px"> <a href="${pageContext.request.contextPath}/archive/${news[1]}" title="archive">${news[2]}</a></span>
+                                        </c:if>
+                                    </p>
+                            </c:forEach>
                             </div>
-
-                            <div class="nine columns">
-                                <a href="${pageContext.request.contextPath}/news/${news.namePage}"><h3>${news.title}</h3></a>
-                                <p> ${news.article}...</p>
-                                <span class="lsf-icon" title="calender"><f:formatDate type="date" value="${news.dateCreate}"
-                                                                                                                   pattern="dd/MM/yyyy"/></span>
-								<span class="lsf-icon" title="user"><a
-                                        href="${pageContext.request.contextPath}/author/${news.usersByAuthor.name}"> ${news.usersByAuthor.name}</a></span>
-                            </div>
-
-
-
-                        </article>
+                    </li>
                     </c:forEach>
-                </c:if>
+                </ul>
+
+
+
+
             </section>
 
 
