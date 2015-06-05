@@ -45,20 +45,15 @@ public class FirstpageController {
 
         }
 
-        List<Date> list=this.firstPageRepository.newsArchive();
-
         model.addAttribute("allnews", news);
-        model.addAttribute("archive", list);
         return "index";
     }
 
     @RequestMapping(value = "/news/{name}", method = RequestMethod.GET)
     public String getNewsByName(@PathVariable String name, Model model) {
         List<FirstpageEntity> news = this.firstPageRepository.newsByName(name);
-        List<Date> list=this.firstPageRepository.newsArchive();
         List<TagsEntity> tags=this.firstPageRepository.tagsByNewsName(name);
         model.addAttribute("allnews", news);
-        model.addAttribute("archive", list);
         model.addAttribute("tags", tags);
         return "news";
     }

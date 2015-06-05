@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width" />
 
   <title>Rising sun news</title>
-  
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/ico/favicon.ico">
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/foundation.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">

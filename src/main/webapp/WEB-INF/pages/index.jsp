@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width" />
 
   <title>Rising sun news</title>
-  
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/ico/favicon.ico">
   <!-- Included CSS Files (Uncompressed) -->
   <!--
   <link rel="stylesheet" href="stylesheets/foundation.css">
@@ -31,6 +31,7 @@
   
   <!-- Google fonts -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic' rel='stylesheet' type='text/css' />
+
 
   <!-- IE Fix for HTML5 Tags -->
   <!--[if lt IE 9]>
