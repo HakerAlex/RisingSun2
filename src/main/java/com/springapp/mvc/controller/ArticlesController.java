@@ -20,6 +20,8 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class ArticlesController {
@@ -66,15 +68,25 @@ public class ArticlesController {
 
             int len;
             if (position!=-1) {
-                if (position>200) {
-                    int begin=position-200;
-                    len=Math.min(begin+200, ourText.length() - 1);
-                    ourText=ourText.substring(begin, len);
-                }
-                else{
+
+
+                int positionComa=ourText.lastIndexOf(".",position);
+
+                if (positionComa==-1) //this begin text
+                {
                     len=Math.min(200, ourText.length() - 1);
-                    ourText=ourText.substring(position, len+position);
+
+                    if (position>200) len=position;
+
+                    ourText=ourText.substring(0, len+50);
                 }
+
+                else
+                {
+                    len=Math.min(200, ourText.length() - 1);
+                    ourText=ourText.substring(positionComa+1, len+positionComa);
+                }
+
             }
             else {
                 len=Math.min(200, ourText.length() - 1);
@@ -84,8 +96,19 @@ public class ArticlesController {
             len=ourText.lastIndexOf(" ");
             ourText=ourText.substring(0, len);
 
-            String newStr=ourText.replaceAll(search,"<span style=\" background: yellow\">"+search+"</span>");
-            article.setArticle(newStr + "...");
+            //create pattern
+            String pat="";
+            for (char i:search.toCharArray()){
+                pat=pat+"("+Character.toLowerCase(i)+"|"+Character.toUpperCase(i)+")";
+            }
+
+            StringBuffer sb = new StringBuffer();
+            Matcher m = Pattern.compile(pat).matcher(ourText);
+            while (m.find()) {
+                m.appendReplacement(sb, "<span style=\" background: yellow\">"+m.group()+"</span>");
+            }
+            m.appendTail(sb);
+            article.setArticle(sb.toString() + "...");
         }
         return newsList;
     }
