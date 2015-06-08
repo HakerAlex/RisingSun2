@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,56 +61,101 @@ public class ArticlesController {
     }
 
     private  List<ArticlesEntity> clearSymbolsForSearch(List<ArticlesEntity> newsList, String search){
-        for (Object news:newsList){
-            ArticlesEntity article=(ArticlesEntity) news;
-            String ourText=stripTags(article.getArticle());
-
-            int position=ourText.toLowerCase().indexOf(search.toLowerCase());
-
-            int len;
-            if (position!=-1) {
-
-
-                int positionComa=ourText.lastIndexOf(".",position);
-
-                if (positionComa==-1) //this begin text
-                {
-                    len=Math.min(200, ourText.length() - 1);
-
-                    if (position>200) len=position;
-
-                    ourText=ourText.substring(0, len+50);
-                }
-
-                else
-                {
-                    len=Math.min(200, ourText.length() - 1);
-                    ourText=ourText.substring(positionComa+1, len+positionComa);
-                }
-
-            }
-            else {
-                len=Math.min(200, ourText.length() - 1);
-                ourText=ourText.substring(0, len);
-            }
-
-            len=ourText.lastIndexOf(" ");
-            ourText=ourText.substring(0, len);
-
-            //create pattern
-            String pat="";
-            for (char i:search.toCharArray()){
-                pat=pat+"("+Character.toLowerCase(i)+"|"+Character.toUpperCase(i)+")";
-            }
-
-            StringBuffer sb = new StringBuffer();
-            Matcher m = Pattern.compile(pat).matcher(ourText);
-            while (m.find()) {
-                m.appendReplacement(sb, "<span style=\" background: yellow\">"+m.group()+"</span>");
-            }
-            m.appendTail(sb);
-            article.setArticle(sb.toString() + "...");
+        List<Object> newsWrong=new ArrayList<>();
+        List<Object> newsTitle=new ArrayList<>();
+        //create pattern
+        String pat="";
+        for (char i:search.toCharArray()){
+            pat=pat+"("+Character.toLowerCase(i)+"|"+Character.toUpperCase(i)+")";
         }
+        String ourText;
+        for (Object news:newsList) {
+            ArticlesEntity article = (ArticlesEntity) news;
+            for (int i = 1; i <= 2; i++)
+            {
+                if (i==1)
+                    ourText = stripTags(article.getArticle());
+                else
+                    ourText = article.getTitle();
+
+
+                int position = ourText.toLowerCase().indexOf(search.toLowerCase());
+
+                int len=200;
+                if (i==1) {
+                    if (position != -1) {
+
+                        int positionComa = ourText.lastIndexOf(".", position);
+                        int positionA = ourText.lastIndexOf("?", position);
+                        int positionE = ourText.lastIndexOf("!", position);
+
+                        positionComa=Math.max(positionComa,positionA);
+                        positionComa=Math.max(positionComa,positionE);
+
+
+                        int positionComaL = ourText.indexOf(".", position);
+                        int positionAL = ourText.indexOf("?", position);
+                        int positionEL = ourText.indexOf("!", position);
+
+                        if (positionComaL==-1) positionComaL=1000000;
+                        if (positionAL==-1) positionAL=1000000;
+                        if (positionEL==-1) positionEL=1000000;
+
+                        positionComaL=Math.min(positionComaL, positionAL);
+                        positionComaL = Math.min(positionComaL,positionEL);
+
+
+                        if (positionComaL==1000000) positionComaL=ourText.length()-1;
+
+                        if (positionComaL-positionComa<200)
+                            positionComaL=positionComaL+200-(positionComaL-positionComa)+100;
+                        else
+                            positionComaL=positionComaL+100;
+
+                        positionComaL=Math.min(positionComaL,ourText.length()-1);
+
+                        if (positionComa == -1) //this begin text
+                            ourText = ourText.substring(0, positionComaL);
+                        else
+                            ourText = ourText.substring(positionComa + 1, positionComaL);
+
+                       positionComa = ourText.lastIndexOf(".");
+                       positionA = ourText.lastIndexOf("?");
+                       positionE = ourText.lastIndexOf("!");
+
+                        positionComa=Math.max(positionComa,positionA);
+                        positionComa=Math.max(positionComa, positionE);
+
+                        if (positionComa>0)
+                        ourText = ourText.substring(0, positionComa);
+
+                    } else {
+                        newsWrong.add(news);
+                    }
+
+
+
+                }
+                else{
+                    if (position != -1){
+                        newsTitle.add(news);
+                    }
+                }
+
+                StringBuffer sb = new StringBuffer();
+                Matcher m = Pattern.compile(pat).matcher(ourText);
+                while (m.find()) {
+                    m.appendReplacement(sb, "<span style=\" background: yellow\">" + m.group() + "</span>");
+                }
+                m.appendTail(sb);
+                if (i==1)
+                    article.setArticle(sb.toString() + "...");
+                else
+                    article.setTitle(sb.toString());
+            }
+        }
+        if (!newsTitle.isEmpty()) newsWrong.removeAll(newsTitle);
+        if (!newsWrong.isEmpty()) newsList.removeAll(newsWrong);
         return newsList;
     }
 

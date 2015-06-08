@@ -43,7 +43,7 @@ public class ArticlesRepository {
     }
 
     public List<ArticlesEntity> newsSearch(String name){
-        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM articles WHERE articles.Article LIKE :name order by DateCreate").addEntity(ArticlesEntity.class).setString("name", name).list();
+        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM articles WHERE articles.Article LIKE :name or articles.Title LIKE :name order by DateCreate").addEntity(ArticlesEntity.class).setString("name", name).list();
     }
 
     public List<ArticlesEntity> newsSearchByTag(String name){

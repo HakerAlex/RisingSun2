@@ -165,7 +165,27 @@
             <version>1.10</version>
         </dependency>
 
-      </dependencies>
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>ejb-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.jms</groupId>
+            <artifactId>jms</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.resource</groupId>
+            <artifactId>javax.resource-api</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+
+
+    </dependencies>
 
     <build>
         <finalName>risingsun</finalName>
