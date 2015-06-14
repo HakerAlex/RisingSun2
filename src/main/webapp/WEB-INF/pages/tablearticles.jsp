@@ -80,6 +80,7 @@
                                         <th> Date create </th>
                                         <th> Image </th>
                                         <th> Author </th>
+                                        <th> First page </th>
                                         <th> Archive </th>
                                         <th> Action </th>
                                     </tr>
@@ -103,6 +104,17 @@
                                             </td>
 
                                             <td class="text-center" valign="middle">${article[1].name}</td>
+
+                                                <td align="center" valign="middle">
+                                                    <c:if test="${article[2]==1}">
+                                                        <span class="label bg-success">TRUE</span>
+                                                    </c:if>
+
+                                                    <c:if test="${article[2]==0}">
+                                                        <span class="label bg-danger">FALSE</span>
+                                                    </c:if>
+                                                </td>
+
 
                                             <td class="text-center" valign="middle">
                                                 <c:if test="${article[0].archive==false}">

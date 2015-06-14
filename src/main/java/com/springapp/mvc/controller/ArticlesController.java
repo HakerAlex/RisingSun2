@@ -81,7 +81,6 @@ public class ArticlesController {
 
                 int position = ourText.toLowerCase().indexOf(search.toLowerCase());
 
-                int len=200;
                 if (i==1) {
                     if (position != -1) {
 
@@ -302,13 +301,18 @@ public class ArticlesController {
         return "addarticles";
     }
 
+    private String getNamePage(){
+       java.util.Date ourDate=java.util.Calendar.getInstance().getTime();
+       SimpleDateFormat dateFormat = new SimpleDateFormat("yy_MM_dd_HH_mm_ss_Z");
+       return "article_"+dateFormat.format(ourDate).replaceAll("\\+","");
+    }
 
     @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author')")
     @RequestMapping(value = "addarticletoDB", method = RequestMethod.POST)
-    public String addarticles(@RequestParam("article") String textarticle,@RequestParam(value="tags[]", defaultValue = "",required = false) String[] tags, @RequestParam("author") int author,@RequestParam("title") String title, @RequestParam("namepage") String namepage, @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
+    public String addarticles(@RequestParam("article") String textarticle,@RequestParam(value="tags[]", defaultValue = "",required = false) String[] tags, @RequestParam("author") int author,@RequestParam("title") String title,  @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
         ArticlesEntity article=new ArticlesEntity();
         article.setTitle(title);
-        article.setNamePage(namepage);
+        article.setNamePage(getNamePage());
         article.setImage(image);
 
         boolean ourA;

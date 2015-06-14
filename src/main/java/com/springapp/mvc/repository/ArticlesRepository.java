@@ -1,9 +1,6 @@
 package com.springapp.mvc.repository;
 
-import com.springapp.mvc.domain.ArticlesEntity;
-import com.springapp.mvc.domain.TagsEntity;
-import com.springapp.mvc.domain.TagsarcticleEntity;
-import com.springapp.mvc.domain.UsersEntity;
+import com.springapp.mvc.domain.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +32,7 @@ public class ArticlesRepository {
     }
 
     public List<ArticlesEntity> listAll(){
-        return this.sessionFactory.getCurrentSession().createSQLQuery("Select * from articles left join users ON articles.Author=users.ID").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).list();
+        return this.sessionFactory.getCurrentSession().createSQLQuery("Select articles.*,users.*,IF(firstpage.ID is NULL,0,1) as flag from articles left join users ON articles.Author=users.ID LEFT JOIN firstpage on articles.ID = firstpage.Article_ID").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).addScalar("flag").list();
     }
 
     public ArticlesEntity getArticleByID(int id){
@@ -51,7 +48,7 @@ public class ArticlesRepository {
     }
 
     public List<ArticlesEntity> newsByAuthorUsername(String name){
-        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM articles   LEFT JOIN users on users.ID = articles.Author WHERE users.username = :name ORDER BY DateCreate").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).setString("name", name).list();
+        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT articles.*,users.*,IF(firstpage.ID is NULL,0,1) as flag FROM articles   LEFT JOIN users on users.ID = articles.Author left join firstpage on firstpage.Article_ID=articles.ID WHERE users.username = :name ORDER BY DateCreate").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).addScalar("flag").setString("name", name).list();
     }
 
 
@@ -73,11 +70,6 @@ public class ArticlesRepository {
     public List<ArticlesEntity> newsArchive(Date dateArchive){
         return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM articles WHERE articles.archive=1 and articles.DateCreate BETWEEN :date1 and LAST_DAY(:date1) order by DateCreate").addEntity(ArticlesEntity.class).setDate("date1", dateArchive).list();
     }
-
-    public List<Date> newsArchive(){
-        return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT LAST_DAY(DateCreate) + INTERVAL 1 DAY - INTERVAL 1 MONTH  as DateArchive FROM articles where articles.archive=1 GROUP BY DateArchive ORDER BY DateArchive DESC").list();
-    }
-
 
     public List<String> allArchive(){
         return this.sessionFactory.getCurrentSession().createSQLQuery("SELECT YEAR(DateCreate) as year,LAST_DAY(DateCreate) + INTERVAL 1 DAY - INTERVAL 1 MONTH  as DateArchive, MONTHNAME(DateCreate) as month FROM articles where articles.archive=1 GROUP BY year,DateArchive ORDER BY YEAR DESC, DateArchive").list();

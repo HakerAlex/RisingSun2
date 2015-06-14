@@ -143,8 +143,39 @@
                      data-options="big,square,line,horizontal,counter,theme=06"
                      data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print"></div>
 
+                        <!-- hit.ua invisible part -->
+                        <a href='http://hit.ua/?x=137209' target='_blank'>
+                            <script language="javascript" type="text/javascript"><!--
+                            Cd=document;Cr="&"+Math.random();Cp="&s=1";
+                            Cd.cookie="b=b";if(Cd.cookie)Cp+="&c=1";
+                            Cp+="&t="+(new Date()).getTimezoneOffset();
+                            if(self!=top)Cp+="&f=1";
+                            //--></script>
+                            <script language="javascript1.1" type="text/javascript"><!--
+                            if(navigator.javaEnabled())Cp+="&j=1";
+                            //--></script>
+                            <script language="javascript1.2" type="text/javascript"><!--
+                            if(typeof(screen)!='undefined')Cp+="&w="+screen.width+"&h="+
+                                    screen.height+"&d="+(screen.colorDepth?screen.colorDepth:screen.pixelDepth);
+                            //--></script>
+                            <script language="javascript" type="text/javascript"><!--
+                            Cd.write("<sc"+"ript src='http://c.hit.ua/hit?i=137209&g=0&x=3"+Cp+Cr+
+                                    "&r="+escape(Cd.referrer)+"&u="+escape(window.location.href)+"'></sc"+"ript>");
+                            //--></script>
+                            <noscript>
+                                <img src='http://c.hit.ua/hit?i=137209&amp;g=0&amp;x=2' border='0'/>
+                            </noscript></a>
+                        <!-- / hit.ua invisible part -->
 
-                <div id="disqus_thread"></div>
+                        <!-- hit.ua visible part -->
+                        <script language="javascript" type="text/javascript"><!--
+                        if (typeof(hitua) == 'object') document.write("<table cellpadding='0' cellspacing='0' border='0' style='display: inline'><tr><td><div style='width: 86px; height: 29px; padding: 0px; margin: 0px; border: solid #777 1px; background-color: #444'><a href='http://hit.ua/?x=" + hitua.site_id + "' target='_blank' style='float: left; padding: 3px; font: bold 8px tahoma; text-decoration: none; color: #ccc' title='hit.ua'>STATISTICS</a><div style='padding: 3px; float: right; text-align: right; font: 7.1px tahoma; color: #ccc' title='Now online, visitors, pageviews today'>" + hitua.online_count + "<br>" + hitua.uid_count + "<br>" + hitua.hit_count + "</div></div></td></tr></table>");
+                        //--></script>
+                        <!-- / hit.ua visible part -->
+
+
+
+                        <div id="disqus_thread"></div>
                 <script type="text/javascript">
                     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
                     var disqus_shortname = 'risingsunnews'; // Required - Replace '<example>' with your forum shortname

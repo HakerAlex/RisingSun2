@@ -77,12 +77,12 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="control-label">Name page</label>
-                                    <div class="input-icon"> <i class="fa fa-pencil ico"></i>
-                                        <input class="form-control rounded" name="namepage" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Name page" >
-                                    </div>
-                                </div>
+                                <%--<div class="form-group">--%>
+                                    <%--<label class="control-label">Name page</label>--%>
+                                    <%--<div class="input-icon"> <i class="fa fa-pencil ico"></i>--%>
+                                        <%--<input class="form-control rounded" name="namepage" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Name page" >--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
 
                                 <div class="form-group">
                                     <label class="control-label">Image</label>
