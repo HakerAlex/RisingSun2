@@ -5,6 +5,10 @@
 
 	<display-name>Spring MVC Application</display-name>
 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/pages/404.jsp</location>
+	</error-page>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
