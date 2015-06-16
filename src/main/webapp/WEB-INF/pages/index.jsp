@@ -148,7 +148,6 @@
 
         </div>
         <!-- end Masonry container -->
-        +-
     </div>
 </div>
 
