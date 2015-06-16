@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,9 +48,11 @@ public class UserRepository {
 
 
     public UsersEntity findUserByName(String username) {
-        Criteria criteria = session.getCurrentSession().createCriteria(UsersEntity.class);
-        criteria.add(Restrictions.eq("username", username));
-        return (UsersEntity) criteria.uniqueResult();
+        return (UsersEntity) session.getCurrentSession().createSQLQuery("Select * from users WHERE  users.username=:name").addEntity(UsersEntity.class).setString("name", username).uniqueResult();
+    }
+
+    public UsersEntity findUserByFullName(String username) {
+        return (UsersEntity) session.getCurrentSession().createSQLQuery("Select * from users WHERE  users.Name=:name").addEntity(UsersEntity.class).setString("name", username).uniqueResult();
     }
 
     public List<UsersEntity> getAllUsers() {

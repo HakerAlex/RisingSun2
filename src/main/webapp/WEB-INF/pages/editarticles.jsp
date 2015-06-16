@@ -121,20 +121,40 @@
 
                                 <div class="form-group">
                                     <label class="control-label">Author</label>
-                                    <div>
-                                    <select  class="selectpicker form-control rounded" data-size="10" data-live-search="true" name="author">
-                                        <c:forEach items="${authors}" var="author">
-                                            <c:if test="${author.id!=arcticle.usersByAuthor.id}">
-                                                <option value="${author.id} " >${author.name}</option>
-                                            </c:if>
 
-                                            <c:if test="${author.id==arcticle.usersByAuthor.id}">
-                                                <option value="${author.id}" selected="selected">${author.name}</option>
-                                            </c:if>
 
-                                        </c:forEach>
-                                    </select>
-                                    </div>
+                                    <c:set var="flag" value="0"/>
+                                    <sec:authorize access="hasRole('Admin') or hasRole('Editor')">
+                                        <c:set var="flag" value="1"/>
+                                        <div>
+                                            <select class="selectpicker form-control rounded" data-size="10"
+                                                    data-live-search="true" name="author">
+                                                <c:forEach items="${authors}" var="author">
+                                                    <c:if test="${author.id!=arcticle.usersByAuthor.id}">
+                                                        <option value="${author.name}" >${author.name}</option>
+                                                    </c:if>
+
+                                                    <c:if test="${author.id==arcticle.usersByAuthor.id}">
+                                                        <option value="${author.name}" selected="selected">${author.name}</option>
+                                                    </c:if>
+
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </sec:authorize>
+
+
+                                    <sec:authorize access="hasRole('Author') or hasRole('Corrector')">
+                                        <c:if test="${flag==0}">
+                                            <div class="input-icon"><i class="fa fa-user ico"></i>
+                                                <input class="form-control rounded" name="author"
+                                                       parsley-trigger="change" type="text" value="${authors[0].name}"
+                                                       readonly>
+                                            </div>
+                                        </c:if>
+                                    </sec:authorize>
+
+
                                 </div>
 
                                 <div class="form-group">

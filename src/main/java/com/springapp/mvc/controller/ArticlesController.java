@@ -160,6 +160,7 @@ public class ArticlesController {
 
     @RequestMapping(value = "search", method = RequestMethod.POST)
     public String search(@RequestParam("value") String search1, Model model) {
+        if (search1.trim()=="") return "redirect:/";
         List<ArticlesEntity> news = this.articlesRepository.newsSearch("%" + search1 + "%");
         model.addAttribute("allnews", clearSymbolsForSearch(news,search1));
         model.addAttribute("searchr", " Search by value:"+search1);
@@ -267,7 +268,7 @@ public class ArticlesController {
 
     @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author') or hasRole('Corrector')")
     @RequestMapping(value = "updatearticle", method = RequestMethod.POST)
-    public String updatearticles(@RequestParam("article") String textarticle,@RequestParam(value="tags[]", defaultValue = "",required = false) String[] tags,@RequestParam("dateCreate") Timestamp datecreate, @RequestParam("author") int author, @RequestParam("id") int id,@RequestParam("title") String title, @RequestParam("namepage") String namepage, @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
+    public String updatearticles(@RequestParam("article") String textarticle,@RequestParam(value="tags[]", defaultValue = "",required = false) String[] tags,@RequestParam("dateCreate") Timestamp datecreate, @RequestParam("author") String author, @RequestParam("id") int id,@RequestParam("title") String title, @RequestParam("namepage") String namepage, @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
         ArticlesEntity article=new ArticlesEntity();
         article.setId(id);
         article.setTitle(title);
@@ -281,7 +282,7 @@ public class ArticlesController {
             ourA=false;
 
         article.setArchive(ourA);
-        article.setUsersByAuthor(this.userRepository.findUser(author));
+        article.setUsersByAuthor(this.userRepository.findUserByFullName(author));
         article.setDateCreate(datecreate);
         article.setArticle(textarticle);
 
@@ -296,7 +297,15 @@ public class ArticlesController {
     @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author')")
     @RequestMapping(value = "addarticles", method = RequestMethod.GET)
     public String editarticles(Model model) {
-        List<UsersEntity> users=this.articlesRepository.listAllAuthors();
+        List<UsersEntity> users;
+        if (onlyAuthor()==1) {
+            UsersEntity user = this.userRepository.findUserByName(getCurrentUser().getUsername());
+            users=new ArrayList<>();
+            users.add(user);
+        }
+            else
+            users=this.articlesRepository.listAllAuthors();
+
         model.addAttribute("authors", users);
         return "addarticles";
     }
@@ -309,7 +318,7 @@ public class ArticlesController {
 
     @PreAuthorize("hasRole('Admin') or hasRole('Editor') or hasRole('Author')")
     @RequestMapping(value = "addarticletoDB", method = RequestMethod.POST)
-    public String addarticles(@RequestParam("article") String textarticle,@RequestParam(value="tags[]", defaultValue = "",required = false) String[] tags, @RequestParam("author") int author,@RequestParam("title") String title,  @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
+    public String addarticles(@RequestParam("article") String textarticle,@RequestParam(value="tags[]", defaultValue = "",required = false) String[] tags, @RequestParam("author") String author,@RequestParam("title") String title,  @RequestParam(value="image", defaultValue = "",required = false) String image, @RequestParam(value="archive" , required = false, defaultValue = "off") String status, Model model) {
         ArticlesEntity article=new ArticlesEntity();
         article.setTitle(title);
         article.setNamePage(getNamePage());
@@ -322,7 +331,7 @@ public class ArticlesController {
             ourA=false;
 
         article.setArchive(ourA);
-        article.setUsersByAuthor(this.userRepository.findUser(author));
+        article.setUsersByAuthor(this.userRepository.findUserByFullName(author));
         article.setArticle(textarticle);
 
         this.articlesRepository.addArticle(article, tags);
