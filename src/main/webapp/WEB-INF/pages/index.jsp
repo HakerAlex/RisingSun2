@@ -90,7 +90,7 @@
 
 
         <c:if test="${news[0].feature==true}">
-        <div class='box photo col2' style="background: dimgrey;">
+        <div id="masonry" class='box photo col2' style="background: dimgrey;">
             </c:if>
 
             <c:if test="${news[0].feature==false}">
@@ -139,6 +139,8 @@
                                                                           pattern="dd/MM/yyyy"/></span>
                     <span class="lsf-icon" title="user" style="margin-left:15px"><a
                             href="${pageContext.request.contextPath}/author/${news[2].name}"> ${news[2].name}</a></span>
+                     <%--<span class="lsf-icon" title="dashboard" style="margin-left:15px"><a--%>
+                             <%--href="#"> ${news[0].raiting}</a></span>--%>
                 </div>
             </div>
 
@@ -164,6 +166,10 @@
     <!-- Masonry for galleries -->
     <script src="${pageContext.request.contextPath}/resources/js/masonry.js" type="text/javascript">
     </script>
+
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.masonry.ordered.js" type="text/javascript">
+    </script>
+
     <script type="text/javascript">
         //<![CDATA[
         $(function () {
@@ -178,6 +184,20 @@
         });
         //]]>
     </script>
+
+
+<script>
+    $(document).ready(function(){
+        $('#container').masonry({
+            itemSelector: '.box',
+            isFitWidth: true,
+            isAnimated: true,
+            layoutPriorities: {
+                shelfOrder: 2
+            }
+        });
+    });
+</script>
 
 
     <!-- END Masonry -->

@@ -345,7 +345,7 @@ public class ArticlesController {
     @PreAuthorize("hasRole('Admin') or hasRole('Editor')")
     @RequestMapping(value = "deletearticle/{id}", method = RequestMethod.GET)
     public String deletearticles(@PathVariable int id,Model model) {
-        this.firstPageRepository.removeArticleFromFirstPage(id);
+        this.firstPageRepository.removeArticleFromFirstPageByArticle_ID(id);
         this.articlesRepository.deleteAllTagByArticleID(id);
         this.articlesRepository.deleteArticle(id);
         return "redirect:/tablearticles";
