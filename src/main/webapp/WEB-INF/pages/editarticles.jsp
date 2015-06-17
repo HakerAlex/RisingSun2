@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 
@@ -148,7 +148,7 @@
                                         <c:if test="${flag==0}">
                                             <div class="input-icon"><i class="fa fa-user ico"></i>
                                                 <input class="form-control rounded" name="author"
-                                                       parsley-trigger="change" type="text" value="${authors[0].name}"
+                                                       parsley-trigger="change" type="text" value="${arcticle.usersByAuthor.name}"
                                                        readonly>
                                             </div>
                                         </c:if>
@@ -233,8 +233,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/styleswitch.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/styleswitch.js"></script>
 <!-- Library 10+ Form plugins-->
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/plugins/form/form.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/form/form.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/ckeditor/ckeditor.js"></script>
 <!-- Datetime plugins -->
 <script type="text/javascript"

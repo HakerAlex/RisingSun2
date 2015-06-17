@@ -298,8 +298,9 @@ public class ArticlesController {
     @RequestMapping(value = "addarticles", method = RequestMethod.GET)
     public String editarticles(Model model) {
         List<UsersEntity> users;
+        UsersEntity user = this.userRepository.findUserByName(getCurrentUser().getUsername());
+
         if (onlyAuthor()==1) {
-            UsersEntity user = this.userRepository.findUserByName(getCurrentUser().getUsername());
             users=new ArrayList<>();
             users.add(user);
         }
@@ -307,6 +308,7 @@ public class ArticlesController {
             users=this.articlesRepository.listAllAuthors();
 
         model.addAttribute("authors", users);
+        model.addAttribute("user", user);
         return "addarticles";
     }
 

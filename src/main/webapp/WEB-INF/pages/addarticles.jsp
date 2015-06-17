@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 
@@ -43,7 +43,7 @@
 
 
 </head>
-<body  class="leftMenu nav-collapse in">
+<body class="leftMenu nav-collapse in">
 <div id="wrapper">
     <%@ include file="../pages/admin/template.jsp" %>
 
@@ -60,7 +60,8 @@
 
             <div class="row">
                 <form id="formID" class="form-horizontal" method="post"
-                      action="${pageContext.request.contextPath}/addarticletoDB" commandName="addarticletoDB" data-collabel="3"
+                      action="${pageContext.request.contextPath}/addarticletoDB" commandName="addarticletoDB"
+                      data-collabel="3"
                       data-alignlabel="right" data-parsley-validate>
                     <div class="col-lg-5">
                         <section class="panel" style="height:100%">
@@ -72,22 +73,21 @@
 
                                 <div class="form-group">
                                     <label class="control-label">Title</label>
-                                    <div class="input-icon"> <i class="fa fa-pencil ico"></i>
-                                        <input class="form-control rounded" name="title" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Title">
+
+                                    <div class="input-icon"><i class="fa fa-pencil ico"></i>
+                                        <input class="form-control rounded" name="title" parsley-required="true"
+                                               parsley-minlength="4" parsley-validation-minlength="3"
+                                               parsley-trigger="change" type="text" placeholder="Title">
                                     </div>
                                 </div>
 
-                                <%--<div class="form-group">--%>
-                                    <%--<label class="control-label">Name page</label>--%>
-                                    <%--<div class="input-icon"> <i class="fa fa-pencil ico"></i>--%>
-                                        <%--<input class="form-control rounded" name="namepage" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Name page" >--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
 
                                 <div class="form-group">
                                     <label class="control-label">Image</label>
-                                    <div class="input-icon"> <i class="fa fa-pencil ico"></i>
-                                        <input class="form-control rounded" name="image"   parsley-trigger="change" type="text" placeholder="Image">
+
+                                    <div class="input-icon"><i class="fa fa-pencil ico"></i>
+                                        <input class="form-control rounded" name="image" parsley-trigger="change"
+                                               type="text" placeholder="Image">
                                     </div>
                                 </div>
 
@@ -113,19 +113,28 @@
                                             <select class="selectpicker form-control rounded" data-size="10"
                                                     data-live-search="true" name="author">
                                                 <c:forEach items="${authors}" var="author">
-                                                    <option value="${author.name}">${author.name}</option>
+
+                                                    <c:if test="${author.id!=user.id}">
+                                                        <option value="${author.name}">${author.name}</option>
+                                                    </c:if>
+
+                                                    <c:if test="${author.id==user.id}">
+                                                        <option value="${author.name}"
+                                                                selected="selected">${author.name}</option>
+                                                    </c:if>
+
                                                 </c:forEach>
                                             </select>
                                         </div>
                                     </sec:authorize>
 
 
-                                    <sec:authorize access="hasRole('Author')">
+                                    <sec:authorize access="hasRole('Author') or hasRole('Corrector')">
                                         <c:if test="${flag==0}">
 
                                             <div class="input-icon"><i class="fa fa-user ico"></i>
                                                 <input class="form-control rounded" name="author"
-                                                       parsley-trigger="change" type="text" value="${authors[0].name}"
+                                                       parsley-trigger="change" type="text" value="${user.name}"
                                                        readonly>
                                             </div>
                                         </c:if>
@@ -135,9 +144,9 @@
                                 </div>
 
 
-
                                 <div class="form-group">
                                     <label class="control-label">Tags</label>
+
                                     <div>
                                         <select multiple data-role="tagsinput" name="tags[]">
                                         </select>
@@ -161,13 +170,14 @@
                             </header>
 
                             <div class="panel-body">
-                                    <div class="panel-body">
-                                            <div class="form-group">
-                                                <div>
-                                                    <textarea cols="80" id="editorCk" name="article" rows="30" style="height: 90%"></textarea>
-                                                </div>
-                                            </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <div>
+                                            <textarea cols="80" id="editorCk" name="article" rows="30"
+                                                      style="height: 90%"></textarea>
+                                        </div>
                                     </div>
+                                </div>
                             </div>
 
                         </section>
@@ -183,7 +193,6 @@
 
     </div>
     <!-- //main-->
-
 
 
     <%@ include file="../pages/admin/templatefoot.jsp" %>
@@ -205,8 +214,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/styleswitch.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/styleswitch.js"></script>
 <!-- Library 10+ Form plugins-->
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/plugins/form/form.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/form/form.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/ckeditor/ckeditor.js"></script>
 <!-- Datetime plugins -->
 <script type="text/javascript"
@@ -225,10 +233,12 @@
         src="${pageContext.request.contextPath}/resources/assets/js/caplet.custom.js"></script>
 
 <!-- Library datable -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/dataTables.bootstrap.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/resources/assets/plugins/datable/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/resources/assets/plugins/datable/dataTables.bootstrap.js"></script>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         $('table[data-provide="data-table"]').dataTable({
             "iDisplayLength": 5
         });
@@ -236,8 +246,8 @@
 </script>
 
 <script>
-    $(document).ready(function() {
-        $('a[data-confirm]').click(function(ev) {
+    $(document).ready(function () {
+        $('a[data-confirm]').click(function (ev) {
             var href = $(this).attr('href');
 
             if (!$('#dataConfirmModal').length) {
@@ -245,7 +255,7 @@
             }
             $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
             $('#dataConfirmOK').attr('href', href);
-            $('#dataConfirmModal').modal({show:true});
+            $('#dataConfirmModal').modal({show: true});
             return false;
         });
     });
@@ -253,12 +263,12 @@
 
 <script type="text/javascript">
     // Call CkEditor
-    CKEDITOR.replace( 'editorCk', {
-        removePlugins:'maximize',
+    CKEDITOR.replace('editorCk', {
+        removePlugins: 'maximize',
         language: 'en',
-        height:350,
-        width:600,
-        startupFocus : false,
+        height: 350,
+        width: 600,
+        startupFocus: false,
         uiColor: '#FFFFFF'
     });
 </script>
@@ -266,7 +276,6 @@
 <script>
     $('input#taginputs').tagsinput();
 </script>
-
 
 
 </body>
