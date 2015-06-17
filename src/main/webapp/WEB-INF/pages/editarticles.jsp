@@ -281,9 +281,10 @@
 <script type="text/javascript">
     // Call CkEditor
     CKEDITOR.replace( 'editorCk', {
-        removePlugins:'maximize',
+        removePlugins:'maximize, source',
         language: 'en',
         height:350,
+        entities : false,
         width:600,
         startupFocus : false,
         uiColor: '#FFFFFF'
