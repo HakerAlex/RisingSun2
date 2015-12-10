@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
   <!-- Title-->
-  <title>RISING SUN | Admin panel</title>
+  <title>Прогрессфарм | Задачи</title>
 
   <!-- Favicons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -49,9 +49,9 @@
     <div id="main">
 
         <ol class="breadcrumb">
-            <li><a href="#">FIRST PAGE</a></li>
-            <li><a href="${pageContext.request.contextPath}/tablefirstpage"> EDIT FIRST PAGE</a></li>
-            <li class="active">FIRST PAGE</li>
+            <li><a href="#">ПЕРВАЯ СТРАНИЦА</a></li>
+            <li><a href="${pageContext.request.contextPath}/tablefirstpage"> РЕДАКТИРОВАНИЕ ПЕРВОЙ СТРАНИЦЫ</a></li>
+            <li class="active">ПЕРВАЯ СТРАНИЦА</li>
         </ol>
         <!-- //breadcrumb-->
 
@@ -62,7 +62,7 @@
                 <div class="col-lg-8">
                 <section class="panel">
                     <header class="panel-heading">
-                        <h2><strong>EDIT</strong> FIRST PAGE</h2>
+                        <h2><strong>РЕДАКТИРОВАНИЕ</strong> ПЕРВАЯ СТРАНИЦА</h2>
                     </header>
                     <div class="panel-body">
                         <form id="formID" class="form-horizontal" method="post" action="${pageContext.request.contextPath}/updatefirstpage" commandName="updatefirstpage" data-collabel="3" data-alignlabel="right"  data-parsley-validate>
@@ -75,7 +75,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label">Title</label>
+                                <label class="control-label">Заголовок</label>
                                 <div class="input-icon"> <i class="fa fa-map-marker ico"></i>
                                     <input class="form-control rounded " name="title" type="text" value="${firstpage.articlesByArticleId.title}"  readonly >
                                 </div>
@@ -83,7 +83,7 @@
 
 
                             <div class="form-group">
-                                    <label class="control-label">Raiting </label>
+                                    <label class="control-label">Рейтинг </label>
                                 <br>
                                 <div class="panel-body">
                                     <div class="cp-slider-wrapper" data-color="green" data-max="100" data-range="min"
@@ -99,7 +99,7 @@
 
 
                             <div class="form-group">
-                                    <label class="control-label">Feature</label>
+                                    <label class="control-label">Помечена</label>
                                     <div>
                                         <c:if test="${firstpage.feature==true}">
                                             <label class="checkbox-inline">
@@ -117,7 +117,7 @@
                             </div>
 
                             <footer class="panel-footer">
-                                <button type="submit" class="btn btn-theme">Update</button>
+                                <button type="submit" class="btn btn-theme">Обновить</button>
                             </footer>
                         </form>
                     </div>

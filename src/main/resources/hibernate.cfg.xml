@@ -11,5 +11,12 @@
         <mapping class="com.springapp.mvc.domain.TagsarcticleEntity"/>
         <mapping class="com.springapp.mvc.domain.UsersEntity"/>
         <mapping class="com.springapp.mvc.domain.UsersrulesEntity"/>
+        <mapping class="com.springapp.mvc.domain.DepartmentEntity"/>
+        <mapping class="com.springapp.mvc.domain.DesktopEntity"/>
+        <mapping class="com.springapp.mvc.domain.OrganizationEntity"/>
+        <mapping class="com.springapp.mvc.domain.PositionsEntity"/>
+        <mapping class="com.springapp.mvc.domain.StatusEntity"/>
+        <mapping class="com.springapp.mvc.domain.TasksEntity"/>
+        <mapping class="com.springapp.mvc.domain.PhotoEntity"/>
     </session-factory>
 </hibernate-configuration>

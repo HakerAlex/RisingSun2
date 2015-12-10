@@ -1,9 +1,6 @@
 package com.springapp.mvc.repository;
 
-import com.springapp.mvc.domain.ArticlesEntity;
-import com.springapp.mvc.domain.FirstpageEntity;
-import com.springapp.mvc.domain.TagsEntity;
-import com.springapp.mvc.domain.UsersEntity;
+import com.springapp.mvc.domain.*;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -56,6 +53,12 @@ public class FirstPageRepository {
 
     }
 
+    public List<OrganizationEntity> getOrganizations()
+    {
+        return this.sessionFactory.getCurrentSession().createSQLQuery("select * from organization").addEntity(OrganizationEntity.class).list();
+    }
+
+
     public List<ArticlesEntity> getArticlesWithoutOnFirstPage()
     {
         return   this.sessionFactory.getCurrentSession().createSQLQuery("Select * from articles left JOIN users on users.ID = articles.Author where not articles.id in (Select Article_ID from firstpage) and Archive = FALSE").addEntity(ArticlesEntity.class).addEntity(UsersEntity.class).list();
@@ -68,5 +71,9 @@ public class FirstPageRepository {
 
     public void updateFirstPage(FirstpageEntity firstpage){
         this.sessionFactory.getCurrentSession().update(firstpage);
+    }
+
+    public List<PhotoEntity> listAllPhotos(){
+        return this.sessionFactory.getCurrentSession().createSQLQuery("Select * from photo").addEntity(PhotoEntity.class).list();
     }
 }

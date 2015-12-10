@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <!-- Title-->
-    <title>RISING SUN | Admin panel</title>
+    <title>Прогрессфарм | Задачи</title>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144"

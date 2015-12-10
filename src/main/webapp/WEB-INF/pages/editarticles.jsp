@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <!-- Title-->
-    <title>RISING SUN | Admin panel</title>
+    <title>Прогрессфарм | Задачи</title>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -50,9 +50,9 @@
     <div id="main">
 
         <ol class="breadcrumb">
-            <li><a href="#">ARTICLES</a></li>
-            <li><a href="${pageContext.request.contextPath}/tablearticles"> EDIT ARTICLES</a></li>
-            <li class="active">ARTICLES</li>
+            <li><a href="#">СТАТЬИ</a></li>
+            <li><a href="${pageContext.request.contextPath}/tablearticles"> РЕДАКТИРОВАНИЕ СТАТЬИ</a></li>
+            <li class="active">СТАТЬИ</li>
         </ol>
         <!-- //breadcrumb-->
 
@@ -65,7 +65,7 @@
                     <div class="col-lg-5">
                         <section class="panel" style="height:100%">
                             <header class="panel-heading">
-                                <h2><strong>EDIT</strong> ARTICLE </h2>
+                                <h2><strong>РЕДАКТИРОВАНИЕ</strong> СТАТЬИ </h2>
                             </header>
 
                             <div class="panel-body">
@@ -77,23 +77,23 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Title</label>
+                                    <label class="control-label">Заголовок</label>
                                     <div class="input-icon"> <i class="fa fa-pencil ico"></i>
-                                        <input class="form-control rounded" name="title" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Title" value="${arcticle.title}">
+                                        <input class="form-control rounded" name="title" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Заголовок" value="${arcticle.title}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Name page</label>
+                                    <label class="control-label">Псевдоним страницы</label>
                                     <div class="input-icon"> <i class="fa fa-pencil ico"></i>
-                                        <input class="form-control rounded" name="namepage" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Name page" value="${arcticle.namePage}">
+                                        <input class="form-control rounded" name="namepage" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Псевдоним" value="${arcticle.namePage}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Image</label>
+                                    <label class="control-label">Рисунок</label>
                                     <div class="input-icon"> <i class="fa fa-pencil ico"></i>
-                                        <input class="form-control rounded" name="image"   parsley-trigger="change" type="text" placeholder="Image" value="${arcticle.image}">
+                                        <input class="form-control rounded" name="image"   parsley-trigger="change" type="text" placeholder="Рисунок" value="${arcticle.image}">
                                     </div>
                                 </div>
 
@@ -104,14 +104,14 @@
                                                 <div class="ios-switch theme-inverse pull-right">
                                                     <div class="switch"><input type="checkbox" name="archive" checked></div>
                                                 </div>
-                                                <label class="control-label">Archive <span>ON</span></label>
+                                                <label class="control-label">В архиве <span>ON</span></label>
                                             </c:if>
 
                                             <c:if test="${arcticle.archive!=true}">
                                                 <div class="ios-switch theme-inverse pull-right">
                                                     <div class="switch"><input type="checkbox" name="archive" ></div>
                                                 </div>
-                                                <label class="control-label">Archive <span>OFF</span></label>
+                                                <label class="control-label">В архиве <span>OFF</span></label>
                                             </c:if>
 
 
@@ -120,7 +120,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Author</label>
+                                    <label class="control-label">Автор</label>
 
 
                                     <c:set var="flag" value="0"/>
@@ -158,14 +158,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Date create</label>
+                                    <label class="control-label"> Дата создания </label>
                                     <div class="input-icon"> <i class="fa fa-calendar ico"></i>
-                                        <input class="form-control rounded" name="dateCreate" type="text" placeholder="Name page" value="${arcticle.dateCreate}" readonly>
+                                        <input class="form-control rounded" name="dateCreate" type="text" placeholder="Дата создания" value="${arcticle.dateCreate}" readonly>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Tags</label>
+                                    <label class="control-label">Теги</label>
                                     <div>
                                         <select multiple data-role="tagsinput" name="tags[]">
                                             <c:forEach items="${tags}" var="tag">
@@ -179,7 +179,7 @@
                             </div>
 
                             <footer class="panel-footer">
-                                <button type="submit" class="btn btn-theme">Update</button>
+                                <button type="submit" class="btn btn-theme">Обновить</button>
                             </footer>
 
                         </section>
@@ -188,7 +188,7 @@
                     <div class="col-lg-7">
                         <section class="panel" style="height: 100%">
                             <header class="panel-heading">
-                                <h2><strong>EDIT</strong> TEXT ARTICLE </h2>
+                                <h2><strong>РЕДАКТИРОВАТЬ</strong> ТЕКСТ СТАТЬИ </h2>
                             </header>
 
                             <div class="panel-body">
@@ -282,7 +282,7 @@
     // Call CkEditor
     CKEDITOR.replace( 'editorCk', {
         removePlugins:'maximize, source',
-        language: 'en',
+        language: 'ru',
         height:350,
         entities : false,
         width:600,

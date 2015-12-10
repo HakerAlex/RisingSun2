@@ -2,19 +2,12 @@ package com.springapp.mvc.repository;
 
 import com.springapp.mvc.domain.*;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
-
-/**
- * Created by Alex on 01.05.2015.
- */
 
 @Repository
 @Transactional

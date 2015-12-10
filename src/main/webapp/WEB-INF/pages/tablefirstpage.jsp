@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <!-- Title-->
-    <title>RISING SUN | Admin panel</title>
+    <title>Прогрессфарм | Задачи</title>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -52,9 +52,9 @@
     <div id="main">
 
         <ol class="breadcrumb">
-            <li><a href="#">FIRST PAGE</a></li>
-            <li><a href="#"> EDIT FIRST PAGE</a></li>
-            <li class="active">FIRST PAGE</li>
+            <li><a href="#">ПЕРВАЯ СТРАНИЦА</a></li>
+            <li><a href="#"> РЕДАКТИРОВАНИЕ ПЕРВОЙ СТРАНИЦЫ</a></li>
+            <li class="active">ПЕРВАЯ СТРАНИЦА</li>
         </ol>
         <!-- //breadcrumb-->
 
@@ -66,7 +66,7 @@
 
                     <section class="panel">
                         <header class="panel-heading">
-                            <h2><strong>Table</strong> FIRST PAGE </h2>
+                            <h2><strong>ТАБЛИЦА</strong> ПЕРВАЯ СТРАНИЦА </h2>
                         </header>
 
                         <div class="panel-body">
@@ -74,12 +74,12 @@
                                 <table cellpadding="0" cellspacing="0" border="0" class="display" data-provide="data-table">
                                     <thead>
                                     <tr>
-                                        <th align="center">Title article</th>
-                                        <th align="center">Date create</th>
-                                        <th align="center">Author</th>
-                                        <th align="center">Raiting</th>
-                                        <th align="center">Feature</th>
-                                        <th width="25%">Action</th>
+                                        <th align="center">Заголовок статьи</th>
+                                        <th align="center">Дата создания</th>
+                                        <th align="center">Автор</th>
+                                        <th align="center">Рейтинг</th>
+                                        <th align="center">Пометка</th>
+                                        <th width="25%">Действие</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -92,18 +92,18 @@
 
                                             <td align="center">
                                                 <c:if test="${firstpage[0].feature==false}">
-                                                    <span class="label bg-success">FALSE</span>
+                                                    <span class="label bg-success">НЕТ</span>
                                                 </c:if>
                                                 <c:if test="${firstpage[0].feature==true}">
-                                                    <span class="label bg-danger">TRUE</span>
+                                                    <span class="label bg-danger">ДА</span>
                                                 </c:if>
                                             </td>
 
                                             <td align="center">
                                         <span class="tooltip-area">
                                              <sec:authorize access="hasAnyRole('Admin','Editor')">
-                                                <a href="${pageContext.request.contextPath}/editfirstpage/${firstpage[0].id}" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
-                                                <a href="${pageContext.request.contextPath}/deletefirstpage/${firstpage[0].id}" data-confirm="Are you sure you want to delete?" class="btn btn-default btn-sm" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                <a href="${pageContext.request.contextPath}/editfirstpage/${firstpage[0].id}" class="btn btn-default btn-sm" title="Редактирование"><i class="fa fa-pencil"></i></a>
+                                                <a href="${pageContext.request.contextPath}/deletefirstpage/${firstpage[0].id}" data-confirm="Вы уверены что хотите удалить?" class="btn btn-default btn-sm" title="Удалить"><i class="fa fa-trash-o"></i></a>
                                             </sec:authorize>
                                         </span>
                                             </td>
@@ -123,7 +123,7 @@
 
                     <section class="panel">
                         <header class="panel-heading">
-                            <h2><strong>Table</strong> ARTICLES </h2>
+                            <h2><strong>Таблица</strong> СТАТЬИ </h2>
                         </header>
 
                         <div class="panel-body">
@@ -131,10 +131,10 @@
                                 <table class="display" data-provide="data-table">
                                     <thead>
                                     <tr>
-                                        <th>Title article</th>
-                                        <th>Date create</th>
-                                        <th>Author</th>
-                                        <th>Action</th>
+                                        <th>Заголовок статьи</th>
+                                        <th>Дата создания</th>
+                                        <th>Автор</th>
+                                        <th>Действия</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -174,11 +174,11 @@
             <form id="addfirst" name="addfirst" method="post" action="${pageContext.request.contextPath}/addtofirstpage" commandname="addfirst">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-                <h4 class="modal-title">Please confirm add to first page</h4>
+                <h4 class="modal-title">Пожалуйста подтвердите добавление на первую страницу</h4>
             </div>
             <!-- //modal-header-->
             <div class="modal-body">
-                <label class="control-label">Raiting </label>
+                <label class="control-label">Рейтинг </label>
                 <div class="cp-slider-wrapper" data-color="green"  data-max="100" data-range="min" data-value="50">
                     <input type="hidden" name="raiting" id="raiting" />
                     <nav>
@@ -188,7 +188,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label">Feature</label>
+                    <label class="control-label">Пометка</label>
                     <div>
                         <label class="checkbox-inline">
                             <input type="checkbox" name="feature" id="feature">
@@ -198,8 +198,8 @@
             </div>
             <!-- //modal-body-->
             <div class="modal-footer">
-                <button type="button " data-dismiss="modal" class="btn btn-inverse">Cancel</button>
-                <button type="submit" class="btn btn-theme" name="id" id="butOk">Add</button>
+                <button type="button " data-dismiss="modal" class="btn btn-inverse">Отмена</button>
+                <button type="submit" class="btn btn-theme" name="id" id="butOk">Добавить</button>
             </div>
             </form>
         </div>

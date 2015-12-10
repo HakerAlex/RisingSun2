@@ -30,7 +30,6 @@
     <link type="text/css" rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/assets/css/bootstrap/bootstrap-themes.css"/>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap/bootstrap-editable.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap/dataTables.bootstrap.css">
 
     <!-- Styleswitch if  you don't chang theme , you can delete -->
@@ -43,7 +42,6 @@
     <link type="text/css" rel="alternate stylesheet" media="screen" title="style4"
           href="${pageContext.request.contextPath}/resources/assets/css/styleTheme4.css"/>
 
-
 </head>
 <body  class="leftMenu nav-collapse in">
 <div id="wrapper">
@@ -52,9 +50,9 @@
     <div id="main">
 
         <ol class="breadcrumb">
-            <li><a href="#">СТАТЬИ</a></li>
-            <li><a href="#"> РЕДАКТИРОВАНИЕ СТАТЕЙ</a></li>
-            <li class="active">СТАТЬИ</li>
+            <li><a href="#">ОРГАНИЗАЦИИ</a></li>
+            <li><a href="#"> РЕДАКТИРОВАНИЕ ОРГАНИЗАЦИИ</a></li>
+            <li class="active">ОРГАНИЗАЦИИ</li>
         </ol>
         <!-- //breadcrumb-->
 
@@ -66,7 +64,7 @@
 
                     <section class="panel">
                         <header class="panel-heading">
-                            <h2><strong>Таблица</strong> СТАТЬИ </h2>
+                            <h2><strong>ТАБЛИЦА</strong> ОРГАНИЗАЦИИ </h2>
                         </header>
 
                         <div class="panel-body">
@@ -74,64 +72,20 @@
                                 <table class="display" data-provide="data-table">
                                     <thead>
                                     <tr>
-                                        <%--<th>No.</th>--%>
-                                        <th>Заголовок статьи</th>
-                                        <th> Псевдоним </th>
-                                        <th> Дата создания </th>
-                                        <th> Рисунок </th>
-                                        <th> Автор </th>
-                                        <th> Первая страница </th>
-                                        <th> Архив </th>
-                                        <th> Действие </th>
+                                        <%--<th class="text-center">No.</th>--%>
+                                        <th class="text-center">Название</th>
+                                        <th width="10%">Действия</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <c:forEach items="${articles}" var="article">
+                                    <tbody align="center">
+                                    <c:forEach items="${organizations}" var="organization">
                                         <tr>
-                                            <%--<td class="text-center" >${article[0].id}</td>--%>
-                                            <td class="text-center" valign="middle">${article[0].title}</td>
-                                            <td class="text-center" valign="middle">${article[0].namePage}</td>
-                                            <td class="text-center" valign="middle">${article[0].dateCreate}</td>
-
-                                            <td align="center" valign="middle">
-                                            <c:if test="${!empty article[0].image}">
-                                                <span class="label bg-success">ЕСТЬ РИСУНОК</span>
-                                            </c:if>
-
-                                            <c:if test="${empty article[0].image}">
-                                                <span class="label bg-danger">НЕТ РИСУНКА</span>
-                                            </c:if>
-                                            </td>
-
-                                            <td class="text-center" valign="middle">${article[1].name}</td>
-
-                                                <td align="center" valign="middle">
-                                                    <c:if test="${article[2]==1}">
-                                                        <span class="label bg-success">ДА</span>
-                                                    </c:if>
-
-                                                    <c:if test="${article[2]==0}">
-                                                        <span class="label bg-danger">НЕТ</span>
-                                                    </c:if>
-                                                </td>
-
-
-                                            <td class="text-center" valign="middle">
-                                                <c:if test="${article[0].archive==false}">
-                                                    <span class="label bg-success">Активно</span>
-                                                </c:if>
-                                                <c:if test="${article[0].archive==true}">
-                                                    <span class="label bg-danger">В архиве</span>
-                                                </c:if>
-                                            </td>
-
+                                            <%--<td>${user[0].id}</td>--%>
+                                            <td valign="middle">${organization.name}</td>
                                             <td align="center">
                                         <span class="tooltip-area">
-                                            <a href="${pageContext.request.contextPath}/editarticle/${article[0].id}" class="btn btn-default btn-sm" title="Исправить"><i class="fa fa-pencil"></i></a>
-                                             <sec:authorize access="hasAnyRole('Admin','Editor')">
-                                                <a href="${pageContext.request.contextPath}/deletearticle/${article[0].id}" data-confirm="Вы уверены что хотите удалить?" class="btn btn-default btn-sm" title="Удалить"><i class="fa fa-trash-o"></i></a>
-                                            </sec:authorize>
-                                        </span>
+                                            <a href="${pageContext.request.contextPath}/editorganization/${organization.id}" class="btn btn-default btn-sm" title="Редактировать"><i
+                                                    class="fa fa-pencil"></i></a></span>
                                             </td>
 
 
@@ -153,11 +107,10 @@
 
     </div>
     <!-- //main-->
-
-
-     <%@ include file="../pages/admin/templatefoot.jsp" %>
-
+    <%@ include file="../pages/admin/templatefoot.jsp" %>
 </div>
+
+
 
 
 <!-- Jquery Library -->
@@ -195,8 +148,6 @@
 <!-- Library datable -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/datable/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/bootstrap-editable.js"></script>
-
 <script type="text/javascript">
     jQuery(document).ready(function() {
         $('table[data-provide="data-table"]').dataTable();
@@ -204,53 +155,9 @@
 </script>
 
 <script type="text/javascript">
-    // For demo to fit into DataTables site builder...
     $('table[data-provide="data-table"]')
             .removeClass( 'display' )
             .addClass('table table-striped table-bordered');
 </script>
-
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-
-        $(".cp-slider-wrapper").each(function(i) {
-            var slider=$(this), update=slider.find("input[type='hidden']"), data=slider.data();
-            slider.modernSlider({
-                total: data.max || 100,
-                value:data.value,
-                width: data.width || "100%",
-                range: data.range,
-                sliderOpened: data.opened,
-                onSlide: function(value) {
-                    update.val(value);
-                }
-            });
-            var sliderChange=slider.find("a.ui-slider-handle");
-            sliderChange.css({ "background-color":$.fillColor(slider) });
-        });
-
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $('a[data-confirm]').click(function(ev) {
-            var href = $(this).attr('href');
-
-            if (!$('#dataConfirmModal').length) {
-                $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-primary" id="dataConfirmOK">OK</a></div></div>');
-            }
-            $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
-            $('#dataConfirmOK').attr('href', href);
-            $('#dataConfirmModal').modal({show:true});
-            return false;
-        });
-    });
-</script>
-
-
 </body>
 </html>

@@ -3,9 +3,7 @@ package com.springapp.mvc.domain;
 import javax.persistence.*;
 import java.util.Collection;
 
-/**
- * Created by Alex on 30.04.2015.
- */
+
 @Entity
 @Table(name = "users")
 public class UsersEntity {
@@ -14,8 +12,12 @@ public class UsersEntity {
     private String username;
     private String password;
     private String status;
+    private DepartmentEntity departmentByUser;
+    private PositionsEntity positionByUser;
+    private UsersEntity bossByUser;
     private Collection<ArticlesEntity> articlesById;
     private Collection<UsersrulesEntity> usersrulesById;
+
 
     @Id
     @Column(name = "ID", nullable = false, insertable = true, updatable = true)
@@ -84,6 +86,8 @@ public class UsersEntity {
         return true;
     }
 
+
+
     @Override
     public int hashCode() {
         int result = id;
@@ -101,6 +105,7 @@ public class UsersEntity {
         this.articlesById = articlesById;
     }
 
+
     @OneToMany(mappedBy = "usersByIdUsers")
     public Collection<UsersrulesEntity> getUsersrulesById() {
         return usersrulesById;
@@ -109,5 +114,17 @@ public class UsersEntity {
     public void setUsersrulesById(Collection<UsersrulesEntity> usersrulesById) {
         this.usersrulesById = usersrulesById;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "id_boss", referencedColumnName = "ID", nullable = false)
+    public UsersEntity getBossByUser() {
+        return bossByUser;
+    }
+
+    public void setBossByUser(UsersEntity bossByUser) {
+        this.bossByUser = bossByUser;
+    }
+
+
 
 }

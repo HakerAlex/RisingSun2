@@ -1,4 +1,8 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
   <!--
   /////////////////////////////////////////////////////////////////////////
   //////////     HEADER  CONTENT     ///////////////
@@ -18,14 +22,14 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right tooltip-area">
-        <li><a href="#menu-right" data-toggle="tooltip" title="Right Menu" data-container="body" data-placement="left"><i class="fa fa-align-right"></i></a></li>
-        <li><a href="#" class="nav-collapse avatar-header" data-toggle="tooltip" title="Show / hide  menu" data-container="body" data-placement="bottom">
+        <li><a href="#menu-right" data-toggle="tooltip" title="Правое меню" data-container="body" data-placement="left"><i class="fa fa-align-right"></i></a></li>
+        <li><a href="#" class="nav-collapse avatar-header" data-toggle="tooltip" title="Показать/скрыть  меню" data-container="body" data-placement="bottom">
           <img alt="" src="${pageContext.request.contextPath}/resources/assets/img/avatar.png"  class="circle">
         </a>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-            <em><strong>Hi</strong>,
+            <em><strong>Привет</strong>,
               <sec:authorize access="isAuthenticated()">
                 <sec:authentication property="principal.username"/>
               </sec:authorize> </em> <i class="dropdown-icon fa fa-angle-down"></i>
@@ -33,7 +37,7 @@
           <ul class="dropdown-menu pull-right icon-right arrow">
 
             <sec:authorize access="isAuthenticated()">
-              <li><a href="${pageContext.request.contextPath}/j_spring_security_logout"><i class="fa fa-sign-out"></i> Signout </a></li>
+              <li><a href="${pageContext.request.contextPath}/j_spring_security_logout"><i class="fa fa-sign-out"></i> Выход </a></li>
             </sec:authorize>
 
           </ul>

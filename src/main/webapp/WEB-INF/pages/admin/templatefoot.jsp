@@ -1,3 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+
 <!--
 //////////////////////////////////////////////////////////////
 //////////     LEFT NAV MENU     //////////
@@ -7,29 +13,39 @@
   <ul>
 
   <sec:authorize access="hasRole('Admin')">
-    <li><span><i class="icon fa fa-smile-o"></i> USERS</span>
+    <li><span><i class="icon fa fa-smile-o"></i> ПОЛЬЗОВАТЕЛИ</span>
       <ul>
-        <li><a href="${pageContext.request.contextPath}/tableuser"><i class="icon  fa fa-th"></i> EDIT USER </a></li>
-        <li><a href="${pageContext.request.contextPath}/adduser"><i class="icon  fa fa-rocket"></i> ADD USER </a></li>
+        <li><a href="${pageContext.request.contextPath}/tableuser"><i class="icon  fa fa-th"></i> ИСПРАВИТЬ ПОЛЬЗОВАТЕЛЯ </a></li>
+        <li><a href="${pageContext.request.contextPath}/adduser"><i class="icon  fa fa-rocket"></i> ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ </a></li>
       </ul>
     </li>
   </sec:authorize>
 
 
-    <li><span><i class="icon  fa fa-inbox"></i> ARTICLES</span>
+    <li><span><i class="icon  fa fa-inbox"></i> СТАТЬИ</span>
       <ul>
-        <li><a href="${pageContext.request.contextPath}/tablearticles"><i class="icon  fa fa-th"></i> EDIT ARTICLE </a></li>
+        <li><a href="${pageContext.request.contextPath}/tablearticles"><i class="icon  fa fa-th"></i> РЕДАКТИРОВАТЬ СТАТЬЮ </a></li>
         <sec:authorize access="hasRole('Admin') or hasRole('Editor') or hasRole('Author')">
-          <li><a href="${pageContext.request.contextPath}/addarticles"><i class="icon  fa fa-rocket"></i> ADD ARCTICLE </a></li>
+          <li><a href="${pageContext.request.contextPath}/addarticles"><i class="icon  fa fa-rocket"></i> ДОБАВИТЬ СТАТЬЮ </a></li>
         </sec:authorize>
       </ul>
     </li>
 
+
+  <sec:authorize access="hasRole('Admin')">
+    <li><span><i class="icon  fa fa-cutlery"></i> ОРГАНИЗАЦИИ</span>
+      <ul>
+        <li><a href="${pageContext.request.contextPath}/tableorganization"><i class="icon  fa fa-th"></i> РЕДАКТИРОВАТЬ ОРГАНИЗАЦИЮ </a></li>
+        <li><a href="${pageContext.request.contextPath}/addorganization"><i class="icon  fa fa-rocket"></i> ДОБАВИТЬ ОРГАНИЗАЦИЮ </a></li>
+      </ul>
+    </li>
+  </sec:authorize>
+
     <sec:authorize access="hasRole('Admin') or hasRole('Editor')">
-    <li><span><i class="icon  fa fa-laptop"></i> FIRSTPAGE</span>
+    <li><span><i class="icon  fa fa-laptop"></i> ПЕРВАЯ СТРАНИЦА</span>
       <ul>
 
-          <li><a href="${pageContext.request.contextPath}/tablefirstpage"><i class="icon  fa fa-rocket"></i> EDIT FIRST PAGE </a></li>
+          <li><a href="${pageContext.request.contextPath}/tablefirstpage"><i class="icon  fa fa-rocket"></i> РЕДАКТИРОВАТЬ ПЕРВУЮ СТРАНИЦУ </a></li>
       </ul>
     </li>
     </sec:authorize>
@@ -45,7 +61,7 @@
 -->
 <nav id="menu-right">
   <ul>
-    <li class="Label label-lg">Theme color</li>
+    <li class="Label label-lg">Цветовые темы</li>
     <li>
 							<span class="text-center">
 								<div id="style1" class="color-themes col1"></div>

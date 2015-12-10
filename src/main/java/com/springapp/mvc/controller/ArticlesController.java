@@ -163,7 +163,7 @@ public class ArticlesController {
         if (search1.trim()=="") return "redirect:/";
         List<ArticlesEntity> news = this.articlesRepository.newsSearch("%" + search1 + "%");
         model.addAttribute("allnews", clearSymbolsForSearch(news,search1));
-        model.addAttribute("searchr", " Search by value:"+search1);
+        model.addAttribute("searchr", " Поиск по значению:"+search1);
         return "search";
     }
 
@@ -172,7 +172,7 @@ public class ArticlesController {
         List<ArticlesEntity> news = this.articlesRepository.newsArchive(date);
         model.addAttribute("allnews", clearSymbols(news));
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-yyyy");
-        model.addAttribute("searchr", " Archive from:"+ dateFormat.format(date));
+        model.addAttribute("searchr", " Архив с:"+ dateFormat.format(date));
         return "search";
     }
 
@@ -197,7 +197,7 @@ public class ArticlesController {
             tagE.setName("");
         }
         model.addAttribute("allnews", clearSymbols(news));
-        model.addAttribute("searchr", " Search by tag:<a href=\"../tags/"+tag+"\">"+tag+"</a>, this tag often to meet with <a href=\"../tags/"+tagE.getName()+"\">"+tagE.getName()+"</a>");
+        model.addAttribute("searchr", " Поиск по тегу:<a href=\"../tags/"+tag+"\">"+tag+"</a>, этот тег чаще всего встречается с тегом <a href=\"../tags/"+tagE.getName()+"\">"+tagE.getName()+"</a>");
         return "search";
     }
 

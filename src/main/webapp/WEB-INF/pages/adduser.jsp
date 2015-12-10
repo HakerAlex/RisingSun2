@@ -33,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
   <!-- Title-->
-  <title>RISING SUN | Admin panel</title>
+  <title>Прогрессфарм | Задачи</title>
 
   <!-- Favicons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -71,9 +71,9 @@
     <div id="main">
 
         <ol class="breadcrumb">
-            <li><a href="#">USERS</a></li>
-            <li><a href="#"> ADD USER</a></li>
-            <li class="active">USERS</li>
+            <li><a href="#">ПОЛЬЗОВАТЕЛИ</a></li>
+            <li><a href="#"> ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ</a></li>
+            <li class="active">ПОЛЬЗОВАТЕЛИ</li>
         </ol>
         <!-- //breadcrumb-->
 
@@ -84,7 +84,7 @@
                 <div class="col-lg-8">
                 <section class="panel">
                     <header class="panel-heading">
-                        <h2><strong>ADD</strong> USER</h2>
+                        <h2><strong>ДОБАВИТЬ</strong> ПОЛЬЗОВАТЕЛЯ</h2>
                     </header>
                     <div class="panel-body">
                         <form id="formID" class="form-horizontal" method="post" action="${pageContext.request.contextPath}/adduser" commandName="adduser" data-collabel="3" data-alignlabel="right"  data-parsley-validate>
@@ -92,11 +92,11 @@
                             <c:if test="${!empty error}" >
                                 <script type="text/javascript">
                                     $(function() {
-                                        $.notific8('Username is not unique', {
+                                        $.notific8('Имя пользователя не уникально', {
                                             life: 5000,
                                             horizontalEdge: "bottom",
                                             theme: "danger",
-                                            heading: " ERROR :); "
+                                            heading: "Ошибка:);"
                                         });
                                     });
                                 </script>
@@ -104,22 +104,22 @@
 
 
                             <div class="form-group">
-                                <label class="control-label">Full name</label>
+                                <label class="control-label">Полное имя</label>
                                 <div class="input-icon"> <i class="fa fa-user ico"></i>
-                                    <input class="form-control rounded" name="name" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Full name" value="${name}">
+                                    <input class="form-control rounded" name="name" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3"  parsley-trigger="change" type="text" placeholder="Полное имя" value="${name}">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label">Login</label>
+                                <label class="control-label">Псевдоним</label>
                                 <div class="input-icon"> <i class="fa fa-user ico"></i>
-                                    <input class="form-control rounded" name="username" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3" parsley-trigger="change" type="text" placeholder="Login" value="${username}">
+                                    <input class="form-control rounded" name="username" parsley-required="true" parsley-minlength="4"  parsley-validation-minlength="3" parsley-trigger="change" type="text" placeholder="Псевдоним" value="${username}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Password</label>
+                                <label class="control-label">Пароль</label>
                                 <div class="input-icon"> <i class="fa fa-key ico"></i>
-                                    <input class="form-control rounded" name="password" parsley-required="true" parsley-minlength="6" parsley-validation-minlength="3" parsley-trigger="change" type="password" placeholder="Password" value="${password}">
+                                    <input class="form-control rounded" name="password" parsley-required="true" parsley-minlength="6" parsley-validation-minlength="3" parsley-trigger="change" type="password" placeholder="Пароль" value="${password}">
                                 </div>
                             </div>
 
@@ -130,14 +130,14 @@
                                         <div class="ios-switch theme-inverse pull-right">
                                             <div class="switch"><input type="checkbox" name="status" checked></div>
                                         </div>
-                                        <label class="control-label">Status <span>ON</span></label>
+                                        <label class="control-label">Статус <span>ON</span></label>
                                         </c:if>
 
                                         <c:if test="${status!='ACTIVE'}">
                                             <div class="ios-switch theme-inverse pull-right">
                                                 <div class="switch"><input type="checkbox" name="status" ></div>
                                             </div>
-                                            <label class="control-label">Status <span>OFF</span></label>
+                                            <label class="control-label">Статус <span>OFF</span></label>
                                         </c:if>
 
 
@@ -145,7 +145,7 @@
                                 </ul>
                             </div>
                                 <div class="form-group">
-                                    <label class="control-label">Credentials left: all rules, right: user rules </label>
+                                    <label class="control-label">Доступы слева: все права, справа: права пользователя </label>
                                     <div>
                                         <select multiple="multiple" id="my-select" name="select[]" parsley-required="true" parsley-error-container="div#select-com-error">
 
@@ -157,7 +157,7 @@
                                     </div>
                                 </div><!-- //form-group-->
                             <footer class="panel-footer">
-                                <button type="submit" class="btn btn-theme">Add</button>
+                                <button type="submit" class="btn btn-theme">Добавить</button>
                             </footer>
                         </form>
                     </div>

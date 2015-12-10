@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <!-- Title-->
-    <title>RISING SUN | Admin panel</title>
+    <title>Прогрессфарм | Задачи</title>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -50,9 +50,9 @@
     <div id="main">
 
         <ol class="breadcrumb">
-            <li><a href="#">USERS</a></li>
-            <li><a href="#"> EDIT USER</a></li>
-            <li class="active">USERS</li>
+            <li><a href="#">ПОЛЬЗОВАТЕЛИ</a></li>
+            <li><a href="#"> РЕДАКТИРОВАНИЕ ПОЛЬЗОВАТЕЛЯ</a></li>
+            <li class="active">ПОЛЬЗОВАТЕЛИ</li>
         </ol>
         <!-- //breadcrumb-->
 
@@ -64,7 +64,7 @@
 
                     <section class="panel">
                         <header class="panel-heading">
-                            <h2><strong>Table</strong> USERS </h2>
+                            <h2><strong>ТАБЛИЦА</strong> ПОЛЬЗОВАТЕЛИ </h2>
                         </header>
 
                         <div class="panel-body">
@@ -73,11 +73,11 @@
                                     <thead>
                                     <tr>
                                         <%--<th class="text-center">No.</th>--%>
-                                        <th class="text-center">Full name</th>
-                                        <th class="text-center">Username</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="text-center">Rules</th>
-                                        <th width="10%">Action</th>
+                                        <th class="text-center">Полное имя</th>
+                                        <th class="text-center">Псевдоним</th>
+                                        <th class="text-center">Статус</th>
+                                        <th class="text-center">Права</th>
+                                        <th width="10%">Действия</th>
                                     </tr>
                                     </thead>
                                     <tbody align="center">
@@ -89,10 +89,10 @@
 
                                             <td valign="middle">
                                                 <c:if test="${user[0].status=='ACTIVE'}">
-                                                    <span class="label bg-success">ACTIVE</span>
+                                                    <span class="label bg-success">Активен</span>
                                                 </c:if>
                                                 <c:if test="${user[0].status=='INACTIVE'}">
-                                                    <span class="label bg-danger">INACTIVE</span>
+                                                    <span class="label bg-danger">Отключен</span>
                                                 </c:if>
                                             </td>
 
@@ -100,7 +100,7 @@
 
                                             <td align="center">
                                         <span class="tooltip-area">
-                                            <a href="${pageContext.request.contextPath}/edituser/${user[0].id}" class="btn btn-default btn-sm" title="Edit"><i
+                                            <a href="${pageContext.request.contextPath}/edituser/${user[0].id}" class="btn btn-default btn-sm" title="Редактировать"><i
                                                     class="fa fa-pencil"></i></a></span>
                                             </td>
 

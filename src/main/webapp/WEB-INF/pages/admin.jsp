@@ -30,7 +30,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <!-- Title-->
-<title>RISING SUN ADMIN</title>
+<title>Прогрессфарм: ИТ-отдел</title>
 <!-- Favicons -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/ico/favicon.ico">
 <!-- CSS Stylesheet-->
@@ -44,7 +44,7 @@
 
 <div id="loading-top">
 		<div id="canvas_loading"></div>
-		<span>Checking...</span>
+		<span>Проверка...</span>
 </div>
 
 <div id="main">
@@ -55,16 +55,16 @@
 								<div class="account-wall">
 										<section class="align-lg-center">
 										<!-- <div class="site-logo"></div> -->
-										<h1 class="login-title"><span>wel</span>come <small> Rising Sun Admin</small></h1>
+										<h1 class="login-title"><span>Добро</span> пожаловать <small>IT-отдел вход</small></h1>
 										</section>
 										<c:if test="${!empty error}" >
 											<script type="text/javascript">
 												$(function() {
-													$.notific8('Check Username or Password again !! ', {
+													$.notific8('Проверьте имя пользователя и пароль !! ', {
 														life: 5000,
 														horizontalEdge: "bottom",
 														theme: "danger",
-														heading: " ERROR :); "
+														heading: "ОШИБКА:); "
 													});
 												});
 											</script>
@@ -79,7 +79,7 @@
 																<div class="input-group-addon"><i class="fa fa-key"></i></div>
 																<input type="password" class="form-control"  name="j_password" placeholder="Password">
 														</div>
-														<button class="btn btn-lg btn-theme-inverse btn-block" type="submit"  id="sign-in">Sign in</button>
+														<button class="btn btn-lg btn-theme-inverse btn-block" type="submit"  id="sign-in">Войти</button>
 												</section>
 										</form>
 								</div>	

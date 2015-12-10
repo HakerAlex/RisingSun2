@@ -13,7 +13,7 @@
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width" />
 
-  <title>Rising sun news</title>
+  <title>Прогрессфарм: ИТ-отдел</title>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/ico/favicon.ico">
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/foundation.min.css">
@@ -45,12 +45,19 @@
 
             <ul id="menu-header" class="nav-bar horizontal">
 
-                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/">Главная</a></li>
 
                 <li class="active">
-                    <a href="${pageContext.request.contextPath}/allarchive">Archive</a>
+                    <a href="${pageContext.request.contextPath}/allarchive">Архив</a>
                 </li>
 
+                <li>
+                    <a href="${pageContext.request.contextPath}/admin">Задачи для отдела</a>
+                </li>
+
+                <li>
+                    <a href="${pageContext.request.contextPath}/aboutus">Об отделе</a>
+                </li>
             </ul>
 
 
@@ -65,7 +72,7 @@
 
         <div class="two columns" style="padding-top:8px">
             <form class="searching" method="post" action="${pageContext.request.contextPath}/search" commandName="search">
-                <input tabindex="1" id="autocomplete" name="value" type="search" placeholder="Type and hit Enter">
+                <input tabindex="1" id="autocomplete" name="value" type="search" placeholder="Введите текст и Enter">
             </form>
         </div>
     </div>
@@ -85,7 +92,7 @@
 
             <section class="eight columns">
 
-                <h3>Archive panel</h3>
+                <h3>Панель архива</h3>
 
                 <c:set var="flag" value="1" scope="session"/>
 

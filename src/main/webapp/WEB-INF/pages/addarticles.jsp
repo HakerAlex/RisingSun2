@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <!-- Title-->
-    <title>RISING SUN | Admin panel</title>
+    <title>Прогрессфарм | Задачи</title>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -50,9 +50,9 @@
     <div id="main">
 
         <ol class="breadcrumb">
-            <li><a href="#">ARTICLES</a></li>
-            <li><a href="${pageContext.request.contextPath}/tablearticles"> ADD ARTICLE</a></li>
-            <li class="active">ARTICLE</li>
+            <li><a href="#">СТАТЬИ</a></li>
+            <li><a href="${pageContext.request.contextPath}/tablearticles"> ДОБАВИТЬ СТАТЬЮ</a></li>
+            <li class="active">СТАТЬЯ</li>
         </ol>
         <!-- //breadcrumb-->
 
@@ -66,28 +66,28 @@
                     <div class="col-lg-5">
                         <section class="panel" style="height:100%">
                             <header class="panel-heading">
-                                <h2><strong>ADD</strong> ARTICLE </h2>
+                                <h2><strong>ДОБАВИТЬ</strong> СТАТЬЮ </h2>
                             </header>
 
                             <div class="panel-body">
 
                                 <div class="form-group">
-                                    <label class="control-label">Title</label>
+                                    <label class="control-label">Заголовок</label>
 
                                     <div class="input-icon"><i class="fa fa-pencil ico"></i>
                                         <input class="form-control rounded" name="title" parsley-required="true"
                                                parsley-minlength="4" parsley-validation-minlength="3"
-                                               parsley-trigger="change" type="text" placeholder="Title">
+                                               parsley-trigger="change" type="text" placeholder="Заголовок">
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label class="control-label">Image</label>
+                                    <label class="control-label">Рисунок</label>
 
                                     <div class="input-icon"><i class="fa fa-pencil ico"></i>
                                         <input class="form-control rounded" name="image" parsley-trigger="change"
-                                               type="text" placeholder="Image">
+                                               type="text" placeholder="Рисунок">
                                     </div>
                                 </div>
 
@@ -97,13 +97,13 @@
                                             <div class="ios-switch theme-inverse pull-right">
                                                 <div class="switch"><input type="checkbox" name="archive"></div>
                                             </div>
-                                            <label class="control-label">Archive <span>OFF</span></label>
+                                            <label class="control-label">Архив <span>OFF</span></label>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Author</label>
+                                    <label class="control-label">Автор</label>
 
 
                                     <c:set var="flag" value="0"/>
@@ -145,7 +145,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="control-label">Tags</label>
+                                    <label class="control-label">Теги</label>
 
                                     <div>
                                         <select multiple data-role="tagsinput" name="tags[]">
@@ -157,7 +157,7 @@
                             </div>
 
                             <footer class="panel-footer">
-                                <button type="submit" class="btn btn-theme">Add</button>
+                                <button type="submit" class="btn btn-theme">Добавить</button>
                             </footer>
 
                         </section>
@@ -166,7 +166,7 @@
                     <div class="col-lg-7">
                         <section class="panel" style="height: 100%">
                             <header class="panel-heading">
-                                <h2><strong>EDIT</strong> TEXT ARTICLE </h2>
+                                <h2><strong>РЕДАКТИРОВАТЬ</strong> ТЕКСТ СТАТЬИ </h2>
                             </header>
 
                             <div class="panel-body">
@@ -266,7 +266,7 @@
     CKEDITOR.replace('editorCk', {
         removePlugins: 'maximize, source',
             entities : false,
-        language: 'en',
+        language: 'ru',
         height: 350,
         width: 600,
         startupFocus: false,

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <!-- Title-->
-<title>Rising sun news</title>
+<title>Прогрессфарм: ИТ-отдел</title>
 <!-- Favicons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${pageContext.request.contextPath}/resources/assets/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath}/resources/assets/ico/apple-touch-icon-114-precomposed.png">
@@ -34,18 +36,18 @@
 								<div class="input-group">
                                     <input type="text" class="form-control" name="value">
 										<span class="input-group-btn">
-												<button class="btn btn-theme" type="submit">SEARCH</button>
-										</span>	
+												<button class="btn btn-theme" type="submit">ПОИСК</button>
+										</span>
 								</div>
 						</form>
 				</div>
 				<div class="row align-lg-center">
 						<div class="col-md-12">
 								<div class="error-template">
-										<h1> ERROR <strong>404</strong> -:)</h1>
-										<h2>Oops! That page can't be found.</h2>
-										<div class="error-details"> Sorry, an error has occured, Requested page not found! </div>
-										<div class="error-details"> Copyright &copy; 2015 Rising Sun</div>
+										<h1> ОШИБКА <strong>404</strong> -:)</h1>
+										<h2>Ууууупс! Страница не найдена.</h2>
+										<div class="error-details"> К сожалению, произошла ошибка, запрашиваемая страница не найдена! </div>
+										<div class="error-details"> Copyright &copy; 2015 Прогрессфарм</div>
 								</div>
 						</div>
 				</div>

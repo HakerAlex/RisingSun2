@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.*;
 
 @Controller
@@ -87,6 +86,12 @@ public class FirstpageController {
         return "tablefirstpage";
     }
 
+    @RequestMapping(value = "/tableorganization", method = RequestMethod.GET)
+    public String tableorganization(Model model) {
+        model.addAttribute("organizations",this.firstPageRepository.getOrganizations());
+        return "tableorganization";
+    }
+
 
     @RequestMapping(value = "/deletefirstpage/{id}", method = RequestMethod.GET)
     public String deleteFromFirstpage(@PathVariable int id, Model model) {
@@ -135,4 +140,11 @@ public class FirstpageController {
 
         return "redirect:/tablefirstpage";
     }
+
+    @RequestMapping(value = "/aboutus", method = RequestMethod.GET)
+    public String aboutus(Model model) {
+        model.addAttribute("listPhoto",this.firstPageRepository.listAllPhotos());
+        return "aboutus";
+    }
+
 }
