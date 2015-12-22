@@ -94,6 +94,25 @@
                             </div>
 
                             <div class="form-group">
+                                    <select class="selectpicker form-control rounded" data-size="10"
+                                            data-live-search="true" name="author">
+                                        <c:forEach items="${authors}" var="author">
+
+                                            <c:if test="${author.id!=user.id}">
+                                                <option value="${author.name}">${author.name}</option>
+                                            </c:if>
+
+                                            <c:if test="${author.id==user.id}">
+                                                <option value="${author.name}"
+                                                        selected="selected">${author.name}</option>
+                                            </c:if>
+
+                                        </c:forEach>
+                                    </select>
+                                </div>
+
+
+                            <div class="form-group">
                                 <ul>
                                     <li>
                                         <c:if test="${user.status=='ACTIVE'}">

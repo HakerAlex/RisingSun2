@@ -12,6 +12,7 @@ public class UsersEntity {
     private String username;
     private String password;
     private String status;
+    private String email;
     private DepartmentEntity departmentByUser;
     private PositionsEntity positionByUser;
     private UsersEntity bossByUser;
@@ -28,6 +29,16 @@ public class UsersEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "email", nullable = false, insertable = true, updatable = true, length = 250)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Basic
@@ -115,15 +126,15 @@ public class UsersEntity {
         this.usersrulesById = usersrulesById;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_boss", referencedColumnName = "ID", nullable = false)
-    public UsersEntity getBossByUser() {
-        return bossByUser;
-    }
-
-    public void setBossByUser(UsersEntity bossByUser) {
-        this.bossByUser = bossByUser;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "id_boss", referencedColumnName = "ID", nullable = false)
+//    public UsersEntity getBossByUser() {
+//        return bossByUser;
+//    }
+//
+//    public void setBossByUser(UsersEntity bossByUser) {
+//        this.bossByUser = bossByUser;
+//    }
 
 
 

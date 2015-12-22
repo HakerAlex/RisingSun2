@@ -20,7 +20,7 @@ public class DepartmentEntity {
 
 
     @Basic
-    @Column(name = "Name", nullable = false, insertable = true, updatable = true)
+    @Column(name = "nameD", nullable = false, insertable = true, updatable = true)
     public String getName() {
         return name;
     }

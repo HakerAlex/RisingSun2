@@ -21,7 +21,7 @@ public class OrganizationEntity {
     }
 
     @Basic
-    @Column(name = "Name", nullable = false, insertable = true, updatable = true)
+    @Column(name = "nameO", nullable = false, insertable = true, updatable = true)
     public String getName() {
         return name;
     }

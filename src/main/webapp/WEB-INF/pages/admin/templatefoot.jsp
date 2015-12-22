@@ -15,7 +15,7 @@
   <sec:authorize access="hasRole('Admin')">
     <li><span><i class="icon fa fa-smile-o"></i> ПОЛЬЗОВАТЕЛИ</span>
       <ul>
-        <li><a href="${pageContext.request.contextPath}/tableuser"><i class="icon  fa fa-th"></i> ИСПРАВИТЬ ПОЛЬЗОВАТЕЛЯ </a></li>
+        <li><a href="${pageContext.request.contextPath}/tableuser"><i class="icon  fa fa-th"></i> РЕДАКТИРОВАТЬ ПОЛЬЗОВАТЕЛЯ </a></li>
         <li><a href="${pageContext.request.contextPath}/adduser"><i class="icon  fa fa-rocket"></i> ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ </a></li>
       </ul>
     </li>

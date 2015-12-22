@@ -1,7 +1,6 @@
 package com.springapp.mvc.repository;
 
-import com.springapp.mvc.domain.RulesEntity;
-import com.springapp.mvc.domain.UsersEntity;
+import com.springapp.mvc.domain.*;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -55,8 +54,36 @@ public class UserRepository {
         return (UsersEntity) session.getCurrentSession().createSQLQuery("Select * from users WHERE  users.Name=:name").addEntity(UsersEntity.class).setString("name", username).uniqueResult();
     }
 
+    public List<DepartmentEntity> getAllDepartment() {
+
+        return session.getCurrentSession().createSQLQuery("Select * from department").addEntity(DepartmentEntity.class).list();
+    }
+
+    public List<PositionsEntity> getAllPositions() {
+
+        return session.getCurrentSession().createSQLQuery("Select * from positions").addEntity(PositionsEntity.class).list();
+    }
+
+    public PositionsEntity getUserPosition(int id) {
+
+        return (PositionsEntity) session.getCurrentSession().createSQLQuery("Select positions.ID,positions.NameP from positions LEFT JOIN users on users.id_position=positions.ID where users.ID=:ID").addEntity(PositionsEntity.class).setInteger("ID",id).uniqueResult();
+    }
+
+    public DepartmentEntity getUserDepartment(int id) {
+
+        return (DepartmentEntity) session.getCurrentSession().createSQLQuery("Select department.ID,department.NameD from department LEFT JOIN users on users.id_department=department.ID where users.ID=:ID").addEntity(DepartmentEntity.class).setInteger("ID",id).uniqueResult();
+    }
+
     public List<UsersEntity> getAllUsers() {
-        return session.getCurrentSession().createSQLQuery("Select users.ID as ID, Name,password, username,status,GROUP_CONCAT(DISTINCT namerule ORDER BY namerule ASC SEPARATOR ', ') AS namerule  from users LEFT JOIN usersrules ON users.ID = usersrules.ID_Users LEFT JOIN rules ON rules.ID = usersrules.ID_Rules group by Name, username,Status, users.ID").addEntity(UsersEntity.class).addEntity(RulesEntity.class).list();
+        return session.getCurrentSession().createSQLQuery("Select users.ID as ID, users.Name,password, username,status,email,GROUP_CONCAT(DISTINCT namerule ORDER BY namerule ASC SEPARATOR ', ') AS namerule,\n" +
+                "  positions.nameP, department.nameD,organization.nameO\n" +
+                "from users\n" +
+                "  LEFT JOIN usersrules ON users.ID = usersrules.ID_Users\n" +
+                "  LEFT JOIN rules ON rules.ID = usersrules.ID_Rules\n" +
+                "  LEFT JOIN positions ON positions.ID = users.id_position\n" +
+                "  LEFT JOIN department ON department.ID = users.id_department\n" +
+                "  LEFT JOIN organization ON department.id_organization = organization.ID\n" +
+                "group by users.Name,email, username,Status, users.ID,positions.nameP, department.nameD,organization.nameO").addEntity(UsersEntity.class).addEntity(RulesEntity.class).addEntity(OrganizationEntity.class).addEntity(DepartmentEntity.class).addEntity(PositionsEntity.class).list();
     }
 
     public void updateRules(int id,String[] rules)

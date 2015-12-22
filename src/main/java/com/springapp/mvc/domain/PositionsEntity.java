@@ -23,7 +23,7 @@ public class PositionsEntity {
 
 
     @Basic
-    @Column(name = "Name", nullable = false, insertable = true, updatable = true)
+    @Column(name = "nameP", nullable = false, insertable = true, updatable = true)
     public String getName() {
         return name;
     }

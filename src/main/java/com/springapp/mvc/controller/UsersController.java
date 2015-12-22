@@ -1,5 +1,7 @@
 package com.springapp.mvc.controller;
 
+import com.springapp.mvc.domain.DepartmentEntity;
+import com.springapp.mvc.domain.PositionsEntity;
 import com.springapp.mvc.domain.RulesEntity;
 import com.springapp.mvc.repository.UserRepository;
 import com.springapp.mvc.domain.UsersEntity;
@@ -38,9 +40,18 @@ public class UsersController {
         UsersEntity user =this.userRepository.findUser(id);
         List<RulesEntity> rules =this.userRepository.findRulesByUserID(id);
         List<RulesEntity> allrules =this.userRepository.findAllRulesByUserID(id);
+        List<DepartmentEntity> alldepartments =this.userRepository.getAllDepartment();
+        DepartmentEntity currentDepartment =this.userRepository.getUserDepartment(id);
+        List<PositionsEntity> allpositions =this.userRepository.getAllPositions();
+        PositionsEntity currentPosition =this.userRepository.getUserPosition(id);
         model.addAttribute("user",user);
         model.addAttribute("rules",rules);
         model.addAttribute("allrules",allrules);
+        model.addAttribute("alldepartments",alldepartments);
+        model.addAttribute("currentDepartment",currentDepartment);
+        model.addAttribute("allpositions",allpositions);
+        model.addAttribute("currentPosition",currentPosition);
+
         return "edituser";
     }
 

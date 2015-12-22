@@ -77,6 +77,10 @@
                                         <th class="text-center">Псевдоним</th>
                                         <th class="text-center">Статус</th>
                                         <th class="text-center">Права</th>
+                                        <th class="text-center">Организация</th>
+                                        <th class="text-center">Департамент</th>
+                                        <th class="text-center">Должность</th>
+                                        <th class="text-center">E-mail</th>
                                         <th width="10%">Действия</th>
                                     </tr>
                                     </thead>
@@ -98,6 +102,10 @@
 
                                             <td valign="middle">${user[1].nameRule}</td>
 
+                                            <td valign="middle">${user[2].name}</td>
+                                            <td valign="middle">${user[3].name}</td>
+                                            <td valign="middle">${user[4].name}</td>
+                                            <td valign="middle">${user[0].email}</td>
                                             <td align="center">
                                         <span class="tooltip-area">
                                             <a href="${pageContext.request.contextPath}/edituser/${user[0].id}" class="btn btn-default btn-sm" title="Редактировать"><i

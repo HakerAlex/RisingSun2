@@ -1,8 +1,10 @@
 package com.springapp.mvc.domain;
 
 import java.sql.Timestamp;
+import javax.persistence.*;
 
-
+@Entity
+@Table(name = "desktop")
 public class DesktopEntity {
     private int id;
     private String title;
@@ -10,6 +12,9 @@ public class DesktopEntity {
     private Timestamp dateBegin;
     private Timestamp dateEnd;
 
+    @Id
+    @Column(name = "ID", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -18,6 +23,9 @@ public class DesktopEntity {
         this.id = id;
     }
 
+
+    @Basic
+    @Column(name = "Title", nullable = false, insertable = true, updatable = true)
     public String getTitle() {
         return title;
     }
@@ -26,6 +34,8 @@ public class DesktopEntity {
         this.title = title;
     }
 
+    @Basic
+    @Column(name = "Task", nullable = false, insertable = true, updatable = true)
     public String getTask() {
         return task;
     }
@@ -34,6 +44,8 @@ public class DesktopEntity {
         this.task = task;
     }
 
+    @Basic
+    @Column(name = "DateBegin", nullable = false, insertable = true, updatable = true)
     public Timestamp getDateBegin() {
         return dateBegin;
     }
@@ -42,6 +54,8 @@ public class DesktopEntity {
         this.dateBegin = dateBegin;
     }
 
+    @Basic
+    @Column(name = "DateEnd", nullable = false, insertable = true, updatable = true)
     public Timestamp getDateEnd() {
         return dateEnd;
     }
